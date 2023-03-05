@@ -1,30 +1,15 @@
-import {
-  Summary,
-  Contact,
-  About,
-  Skills,
-  Positions,
-  Repositories,
-} from "./components";
+import { Navigate, Route, Routes } from "react-router-dom";
+
+import { HomePage, LoginPage } from "./pages";
 
 export const App = () => {
   return (
     <>
-      <div className="bg-gray-900 text-gray-200">
-        <div className="container mx-auto divide-gray-700 max-w-3xl">
-          <Summary />
-          <hr />
-          <Contact />
-          <hr />
-          <About />
-          <hr />
-          <Skills />
-          <hr />
-          <Positions />
-          <hr />
-          <Repositories />
-        </div>
-      </div>
+      <Routes>
+        <Route index element={<HomePage />} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="*" element={<Navigate to="/" />} />
+      </Routes>
     </>
   );
 };
