@@ -4,3 +4,5 @@ export * from "./About";
 export * from "./Skills";
 export * from "./Positions";
 export * from "./Repositories";
+export * from "./auth/LoginButton";
+export * from "./auth/LogoutButton";
