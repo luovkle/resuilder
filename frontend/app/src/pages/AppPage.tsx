@@ -7,7 +7,7 @@ import {
   Repositories,
 } from "../components";
 
-export const HomePage = () => {
+export const AppPage = () => {
   return (
     <>
       <div className="bg-gray-900 text-gray-200">

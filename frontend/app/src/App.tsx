@@ -1,7 +1,7 @@
 import { Navigate, Route, Routes } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 
-import { HomePage } from "./pages";
+import { AppPage } from "./pages";
 import { LoginButton, LogoutButton, Spinner } from "./components";
 
 export const App = () => {
@@ -15,7 +15,7 @@ export const App = () => {
     <>
       {isAuthenticated ? <LogoutButton /> : <LoginButton />}
       <Routes>
-        <Route index element={<HomePage />} />
+        <Route index element={<AppPage />} />
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </>
