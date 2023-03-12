@@ -6,6 +6,9 @@ name = "pypi"
 [packages]
 fastapi = "*"
 uvicorn = "*"
+pyjwt = {extras = ["crypto"], version = "*"}
+requests = "*"
+python-dotenv = "*"
 
 [dev-packages]
 
