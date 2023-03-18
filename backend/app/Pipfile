@@ -9,6 +9,7 @@ uvicorn = "*"
 pyjwt = {extras = ["crypto"], version = "*"}
 requests = "*"
 python-dotenv = "*"
+pymongo = "*"
 
 [dev-packages]
 
