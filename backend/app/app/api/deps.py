@@ -1,18 +1,16 @@
-import os
-
 import requests
 from fastapi import Depends, HTTPException, status
 from fastapi.security import HTTPBearer
 from fastapi.security.http import HTTPAuthorizationCredentials
 
 from app.utils.jwt import VerifyToken
+from app.core.config import settings
 
 token_auth_scheme = HTTPBearer()
 
 
 def get_user_info(token: HTTPAuthorizationCredentials):
-    ISSUER = os.getenv("ISSUER", "")
-    url = ISSUER + "userinfo"
+    url = settings.AUTH0_ISSUER + "userinfo"
     response = requests.get(
         url, headers={"Authorization": f"Bearer {token.credentials}"}
     )

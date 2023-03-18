@@ -1,5 +1,5 @@
-import os
-
 from pymongo import MongoClient
 
-client = MongoClient(os.getenv("DB_URI", ""))
+from app.core.config import settings
+
+client = MongoClient(settings.DB_URI)

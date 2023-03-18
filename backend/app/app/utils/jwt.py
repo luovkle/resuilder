@@ -1,15 +1,16 @@
-import os
 import jwt
+
+from app.core.config import settings
 
 
 def set_up():
     """Sets up configuration for the app"""
 
     config = {
-        "DOMAIN": os.getenv("DOMAIN", ""),
-        "API_AUDIENCE": os.getenv("API_AUDIENCE", ""),
-        "ISSUER": os.getenv("ISSUER", ""),
-        "ALGORITHMS": os.getenv("ALGORITHMS", ""),
+        "DOMAIN": settings.AUTH0_DOMAIN,
+        "API_AUDIENCE": settings.AUTH0_API_AUDIENCE,
+        "ISSUER": settings.AUTH0_ISSUER,
+        "ALGORITHMS": settings.AUTH0_ALGORITHMS,
     }
     return config
 
