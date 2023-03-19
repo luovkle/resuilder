@@ -4,6 +4,7 @@ from dotenv import load_dotenv
 
 from app.api.api_v1.api import api_router
 from app.core.config import settings
+from app.db.client import client
 
 load_dotenv()
 
@@ -19,4 +20,11 @@ app.add_middleware(
     allow_headers=settings.APP_ALLOW_HEADERS,
     allow_methods=settings.APP_ALLOW_METHODS,
 )
+
+
+@app.on_event("shutdown")
+def shutdown_event():
+    client.close()
+
+
 app.include_router(api_router)
