@@ -10,7 +10,7 @@ class AboutCreate(AboutBase):
 
 
 class AboutRead(AboutBase):
-    id: str
+    ...
 
 
 class AboutUpdate(BaseModel):
