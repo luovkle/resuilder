@@ -3,6 +3,7 @@ from fastapi.encoders import jsonable_encoder
 
 from app.db.client import client
 from app.schemas.contact import ContactCreate, ContactUpdate, Contact
+from app.core.config import settings
 
 db = client.resuilder
 col = db.contacts
@@ -10,7 +11,7 @@ col = db.contacts
 
 class CRUDContact:
     def _get_by_user(self, user: str):
-        return list(col.find({"user": user}).limit(5))
+        return list(col.find({"user": user}).limit(settings.CURD_CONTACTS_LIMIT))
 
     def _get_by_id(self, user: str, id: str):
         doc = col.find_one({"user": user, "_id": id})
@@ -19,7 +20,11 @@ class CRUDContact:
         return doc
 
     def _allow_new_doc(self, user: str):
-        return False if col.count_documents({"user": user}) >= 5 else True
+        return (
+            False
+            if col.count_documents({"user": user}) >= settings.CURD_CONTACTS_LIMIT
+            else True
+        )
 
     def create(self, user: str, contact: ContactCreate):
         if not self._allow_new_doc(user):

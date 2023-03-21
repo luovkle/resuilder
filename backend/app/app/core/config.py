@@ -23,5 +23,8 @@ class Settings(BaseSettings):
     # DB
     DB_URI: str = os.getenv("DB_URI", "")
 
+    # CURD
+    CURD_CONTACTS_LIMIT: int = 5
+
 
 settings = Settings()
