@@ -8,7 +8,7 @@ from app.schemas.message import Message
 router = APIRouter(prefix="/profiles", tags=["contacts"])
 
 
-@router.post("/@me/contacts/", response_model=ContactRead)
+@router.post("/@me/contacts", response_model=ContactRead)
 def create_current_contact(token: Payload = Depends(verify_token)):
     ...
 
