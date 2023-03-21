@@ -10,7 +10,7 @@ col = db.contacts
 
 class CRUDContact:
     def _get_by_user(self, user: str):
-        return list(col.find({"user": user}))
+        return list(col.find({"user": user}).limit(5))
 
     def _get_by_id(self, user: str, id: str):
         doc = col.find_one({"user": user, "_id": id})
@@ -18,7 +18,14 @@ class CRUDContact:
             raise HTTPException(status.HTTP_404_NOT_FOUND)
         return doc
 
+    def _allow_new_doc(self, user: str):
+        return False if col.count_documents({"user": user}) >= 5 else True
+
     def create(self, user: str, contact: ContactCreate):
+        if not self._allow_new_doc(user):
+            raise HTTPException(
+                status.HTTP_403_FORBIDDEN, "Maximum number of elements reached"
+            )
         contact_db = jsonable_encoder(Contact.parse_obj(contact))
         id = col.insert_one({"user": user, **contact_db}).inserted_id
         return self._get_by_id(user, id)
