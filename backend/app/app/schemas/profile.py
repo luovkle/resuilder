@@ -1,21 +1,21 @@
 from pydantic import BaseModel, HttpUrl
 
 
-class SummaryBase(BaseModel):
+class ProfileBase(BaseModel):
     name: str
     content: str
     url: HttpUrl
 
 
-class SummaryCreate(SummaryBase):
+class ProfileCreate(ProfileBase):
     ...
 
 
-class SummaryRead(SummaryBase):
+class ProfileRead(ProfileBase):
     id: int
 
 
-class SummaryUpdate(BaseModel):
+class ProfileUpdate(BaseModel):
     name: str | None = None
     content: str | None = None
     url: HttpUrl | None = None
