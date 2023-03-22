@@ -1,3 +1,5 @@
+from typing import TypedDict
+
 from pydantic import BaseModel, HttpUrl
 
 
@@ -25,3 +27,12 @@ class RepositoryUpdate(BaseModel):
     lang: str | None = None
     stars: int | None = None
     forks: str | None = None
+
+
+class RepositoryRaw(TypedDict):
+    name: str
+    url: str
+    description: str
+    lang: str
+    stars: int
+    forks: int
