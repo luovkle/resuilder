@@ -21,8 +21,10 @@ class CRUDAbout:
 
     def update(self, user: str, about: AboutUpdate):
         doc = self._get_by_user(user)
-        col.update_one({"_id": doc["_id"]}, {"$set": about.dict(exclude_none=True)})
-        return self._get_by_user(user)
+        changes = col.update_one(
+            {"_id": doc["_id"]}, {"$set": about.dict(exclude_none=True)}
+        ).modified_count
+        return self._get_by_user(user) if changes else doc
 
 
 crud_about = CRUDAbout()
