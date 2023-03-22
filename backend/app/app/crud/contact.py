@@ -43,10 +43,10 @@ class CRUDContact:
 
     def update(self, user: str, id: str, contact: ContactUpdate):
         doc = self._get_by_id(user, id)
-        col.update_one(
+        changes = col.update_one(
             {"user": user, "_id": doc["_id"]}, {"$set": contact.dict(exclude_none=True)}
-        )
-        return self._get_by_id(user, id)
+        ).modified_count
+        return self._get_by_id(user, id) if changes else doc
 
     def delete(self, user: str, id: str):
         doc = self._get_by_id(user, id)
