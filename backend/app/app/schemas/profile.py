@@ -12,7 +12,7 @@ class ProfileCreate(ProfileBase):
 
 
 class ProfileRead(ProfileBase):
-    id: int
+    ...
 
 
 class ProfileUpdate(BaseModel):
