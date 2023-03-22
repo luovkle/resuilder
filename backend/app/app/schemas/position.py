@@ -1,4 +1,6 @@
-from pydantic import BaseModel, HttpUrl
+from uuid import uuid4
+
+from pydantic import BaseModel, Field, HttpUrl
 
 
 class PositionBase(BaseModel):
@@ -10,12 +12,16 @@ class PositionBase(BaseModel):
     details: str
 
 
+class Position(PositionBase):
+    id: str = Field(default_factory=uuid4, alias="_id")
+
+
 class PositionCreate(PositionBase):
     ...
 
 
 class PositionRead(PositionBase):
-    id: str
+    id: str = Field(alias="_id")
 
 
 class PositionUpdate(BaseModel):
