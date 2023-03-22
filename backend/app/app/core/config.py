@@ -24,7 +24,7 @@ class Settings(BaseSettings):
     DB_URI: str = os.getenv("DB_URI", "")
 
     # CURD
-    CURD_CONTACTS_LIMIT: int = 5
+    CRUD_CONTACTS_LIMIT: int = 10
     CRUD_POSITIONS_LIMIT: int = 10
 
 

@@ -11,7 +11,7 @@ col = db.contacts
 
 class CRUDContact:
     def _get_by_user(self, user: str):
-        return list(col.find({"user": user}).limit(settings.CURD_CONTACTS_LIMIT))
+        return list(col.find({"user": user}).limit(settings.CRUD_CONTACTS_LIMIT))
 
     def _get_by_id(self, user: str, id: str):
         doc = col.find_one({"user": user, "_id": id})
@@ -22,7 +22,7 @@ class CRUDContact:
     def _allow_new_doc(self, user: str):
         return (
             False
-            if col.count_documents({"user": user}) >= settings.CURD_CONTACTS_LIMIT
+            if col.count_documents({"user": user}) >= settings.CRUD_CONTACTS_LIMIT
             else True
         )
 
