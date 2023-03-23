@@ -1,6 +1,7 @@
 from typing import TypedDict
+from uuid import uuid4
 
-from pydantic import BaseModel, HttpUrl
+from pydantic import BaseModel, Field, HttpUrl
 
 
 class RepositoryBase(BaseModel):
@@ -9,29 +10,25 @@ class RepositoryBase(BaseModel):
     description: str
     lang: str
     stars: int
-    forks: str
+    forks: int
+    show: bool = False
 
 
-class RepositoryCreate(RepositoryBase):
-    ...
+class Repository(RepositoryBase):
+    id: str = Field(default_factory=uuid4, alias="_id")
 
 
 class RepositoryRead(RepositoryBase):
-    id: str
+    id: str = Field(alias="_id")
 
 
 class RepositoryUpdate(BaseModel):
-    name: str | None = None
-    url: HttpUrl | None = None
-    description: str | None = None
-    lang: str | None = None
-    stars: int | None = None
-    forks: str | None = None
+    show: bool | None = None
 
 
 class RepositoryRaw(TypedDict):
     name: str
-    url: str
+    url: HttpUrl
     description: str
     lang: str
     stars: int
