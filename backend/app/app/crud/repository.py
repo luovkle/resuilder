@@ -5,6 +5,7 @@ from app.db.client import client
 from app.schemas.repository import Repository, RepositoryUpdate
 from app.utils.profile import get_data
 from app.utils.repository import get_repositories
+from app.core.config import settings
 
 db = client.resuilder
 col = db.repositories
@@ -17,16 +18,18 @@ class CRUDRepository:
             repository_db = jsonable_encoder(Repository(**repository))
             repositories.append({"user": user, **repository_db})
         col.insert_many(repositories)
-        return list(col.find({"user": user}))
+        return list(col.find({"user": user}).limit(settings.CRUD_REPOSITORIES_LIMIT))
 
     def _get_by_user(self, user: str, access_token: str):
-        doc = list(col.find({"user": user}))
+        doc = list(col.find({"user": user}).limit(settings.CRUD_REPOSITORIES_LIMIT))
         if not doc:
             data = get_data(access_token)
             if not data:
                 raise HTTPException(status.HTTP_404_NOT_FOUND)
             nickname = data["nickname"]
-            repositories_data = get_repositories(nickname)
+            repositories_data = get_repositories(
+                nickname, settings.CRUD_REPOSITORIES_LIMIT
+            )
             if not repositories_data:
                 return []
             doc = self._create_repositories(user, repositories_data)

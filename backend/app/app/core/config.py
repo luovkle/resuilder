@@ -26,6 +26,7 @@ class Settings(BaseSettings):
     # CURD
     CRUD_CONTACTS_LIMIT: int = 10
     CRUD_POSITIONS_LIMIT: int = 10
+    CRUD_REPOSITORIES_LIMIT: int = 30
 
 
 settings = Settings()

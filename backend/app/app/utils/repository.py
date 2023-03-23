@@ -5,7 +5,7 @@ from bs4 import BeautifulSoup
 from app.schemas.repository import RepositoryRaw
 
 
-def get_repositories(user: str):
+def get_repositories(user: str, limit: int):
     user = user.lower()
     url = f"https://github.com/{user}?tab=repositories"
     repos: list[RepositoryRaw] = []
@@ -18,6 +18,9 @@ def get_repositories(user: str):
 
         divs = soup.find_all("div", class_="col-10 col-lg-9 d-inline-block")
         for div in divs:
+            if not len(repos) < limit:
+                break
+
             repo_stars = None
 
             # name, url
