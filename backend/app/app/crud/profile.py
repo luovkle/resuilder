@@ -31,7 +31,7 @@ class CRUDProfile:
     def read(self, user: str, access_token: str):
         return self._get_by_user(user, access_token)
 
-    def update(self, user: str, access_token, profile: ProfileUpdate):
+    def update(self, user: str, access_token: str, profile: ProfileUpdate):
         doc = self._get_by_user(user, access_token)
         changes = col.update_one(
             {"_id": doc["_id"], "user": doc["user"]},
