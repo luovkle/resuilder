@@ -4,7 +4,6 @@ from pydantic import BaseModel, Field, HttpUrl
 
 
 class PositionBase(BaseModel):
-    picture_url: HttpUrl
     title: str
     company: str
     start_date: str
@@ -14,6 +13,8 @@ class PositionBase(BaseModel):
 
 class Position(PositionBase):
     id: str = Field(default_factory=uuid4, alias="_id")
+    picture_id: HttpUrl = Field(default_factory=uuid4)
+    picture_url: HttpUrl | None = None
 
 
 class PositionCreate(PositionBase):
@@ -22,10 +23,10 @@ class PositionCreate(PositionBase):
 
 class PositionRead(PositionBase):
     id: str = Field(alias="_id")
+    picture_url: HttpUrl | None = None
 
 
 class PositionUpdate(BaseModel):
-    picture_url: HttpUrl | None = None
     title: str | None = None
     company: str | None = None
     start_date: str | None = None

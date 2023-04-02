@@ -1,9 +1,10 @@
-from fastapi import HTTPException, status
+from fastapi import HTTPException, UploadFile, status
 from fastapi.encoders import jsonable_encoder
 
 from app.schemas.position import PositionCreate, PositionUpdate, Position
 from app.core.config import settings
 from app.db.client import client
+from app.utils.picture import update_picture
 
 db = client.resuilder
 col = db.positions
@@ -46,6 +47,18 @@ class CRUDPosition:
         changes = col.update_one(
             {"user": user, "_id": doc["_id"]},
             {"$set": position.dict(exclude_none=True)},
+        ).modified_count
+        return self._get_by_id(user, id) if changes else doc
+
+    def update_picture(self, user: str, id: str, picture: UploadFile):
+        doc = self._get_by_id(user, id)
+        res = update_picture(picture, doc["picture_id"])
+        if res.get("error"):
+            raise HTTPException(status.HTTP_400_BAD_REQUEST, res["error"])
+        url = res["secure_url"]
+        changes = col.update_one(
+            {"user": user, "_id": doc["_id"]},
+            {"$set": {"picture_url": url}},
         ).modified_count
         return self._get_by_id(user, id) if changes else doc
 

@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Path, Depends
+from fastapi import APIRouter, Path, Depends, UploadFile
 
 from app.api.deps import verify_token
 from app.schemas.payload import Payload
@@ -36,6 +36,16 @@ def update_current_position(
     position: PositionUpdate
 ):
     return crud_position.update(token["sub"], id, position)
+
+
+@router.put("/@me/positions/{id}/picture", response_model=PositionRead)
+def update_current_picture(
+    token: Payload = Depends(verify_token),
+    id: str = Path(..., title="Position ID"),
+    *,
+    picture: UploadFile
+):
+    return crud_position.update_picture(token["sub"], id, picture)
 
 
 @router.delete("/@me/positions/{id}", response_model=Message)
