@@ -23,7 +23,7 @@ class CRUDProfile:
                     "user": user,
                     "name": data["name"],
                     "content": "",
-                    "url": data["picture"],
+                    "picture_url": data["picture"],
                     "picture_id": uuid4().hex,
                 }
             ).inserted_id
@@ -51,7 +51,7 @@ class CRUDProfile:
         url = res["secure_url"]
         changes = col.update_one(
             {"_id": doc["_id"], "user": doc["user"]},
-            {"$set": {"url": url}},
+            {"$set": {"picture_url": url}},
         ).modified_count
         return self._get_by_user(user, access_token) if changes else doc
 

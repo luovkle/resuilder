@@ -4,7 +4,7 @@ from pydantic import BaseModel, HttpUrl
 class ProfileBase(BaseModel):
     name: str
     content: str
-    url: HttpUrl
+    picture_url: HttpUrl
 
 
 class ProfileRead(ProfileBase):
