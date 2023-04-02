@@ -18,4 +18,3 @@ class ProfileRead(ProfileBase):
 class ProfileUpdate(BaseModel):
     name: str | None = None
     content: str | None = None
-    url: HttpUrl | None = None

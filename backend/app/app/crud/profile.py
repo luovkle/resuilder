@@ -1,8 +1,11 @@
-from fastapi import HTTPException, status
+from uuid import uuid4
+
+from fastapi import HTTPException, UploadFile, status
 
 from app.db.client import client
 from app.schemas.profile import ProfileUpdate
 from app.utils.profile import get_data
+from app.utils.picture import update_picture
 
 db = client.resuilder
 col = db.profiles
@@ -21,6 +24,7 @@ class CRUDProfile:
                     "name": data["name"],
                     "content": "",
                     "url": data["picture"],
+                    "picture_id": uuid4().hex,
                 }
             ).inserted_id
             doc = col.find_one({"_id": id})
@@ -36,6 +40,18 @@ class CRUDProfile:
         changes = col.update_one(
             {"_id": doc["_id"], "user": doc["user"]},
             {"$set": profile.dict(exclude_none=True)},
+        ).modified_count
+        return self._get_by_user(user, access_token) if changes else doc
+
+    def update_picture(self, user: str, access_token: str, picture: UploadFile):
+        doc = self._get_by_user(user, access_token)
+        res = update_picture(picture, doc["picture_id"])
+        if res.get("error"):
+            raise HTTPException(status.HTTP_400_BAD_REQUEST, res["error"])
+        url = res["secure_url"]
+        changes = col.update_one(
+            {"_id": doc["_id"], "user": doc["user"]},
+            {"$set": {"url": url}},
         ).modified_count
         return self._get_by_user(user, access_token) if changes else doc
 

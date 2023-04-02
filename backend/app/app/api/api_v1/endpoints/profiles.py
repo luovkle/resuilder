@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, UploadFile
 
 from app.api.deps import verify_token, get_access_token
 from app.schemas.payload import Payload
@@ -24,3 +24,13 @@ def update_current_profile(
     profile: ProfileUpdate
 ):
     return crud_profile.update(token["sub"], access_token, profile)
+
+
+@router.put("/@me/picture", response_model=ProfileRead)
+def update_current_picture(
+    token: Payload = Depends(verify_token),
+    access_token: str = Depends(get_access_token),
+    *,
+    picture: UploadFile
+):
+    return crud_profile.update_picture(token["sub"], access_token, picture)
