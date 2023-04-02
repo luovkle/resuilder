@@ -7,10 +7,6 @@ class ProfileBase(BaseModel):
     url: HttpUrl
 
 
-class ProfileCreate(ProfileBase):
-    ...
-
-
 class ProfileRead(ProfileBase):
     ...
 
