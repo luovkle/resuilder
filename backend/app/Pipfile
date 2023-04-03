@@ -17,6 +17,7 @@ cloudinary = "*"
 
 [dev-packages]
 pytest = "*"
+httpx = "*"
 
 [requires]
 python_version = "3.10"
