@@ -1,0 +1,10 @@
+version: "3.8"
+
+services:
+  backend:
+    build: ./backend
+    env_file:
+        - ./backend/app/.env
+    restart: always
+    ports:
+      - 8000:8000
