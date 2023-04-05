@@ -1,12 +1,9 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from dotenv import load_dotenv
 
 from app.api.api_v1.api import api_router
 from app.core.config import settings
 from app.db.client import client
-
-load_dotenv()
 
 app = FastAPI(
     title=settings.APP_TITLE,
