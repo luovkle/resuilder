@@ -1,31 +1,28 @@
 from fastapi import HTTPException, status
+from pymongo.database import Database
 
-from app.db.client import client
 from app.schemas.skills import SkillsUpdate
-
-db = client.resuilder
-col = db.skills
 
 
 class CRUDSkills:
-    def _get_by_user(self, user: str):
-        doc = col.find_one({"user": user})
+    def _get_by_user(self, db: Database, user: str):
+        doc = db.skills.find_one({"user": user})
         if not doc:
-            id = col.insert_one({"user": user, "skills": []}).inserted_id
-            doc = col.find_one({"_id": id})
+            id = db.skills.insert_one({"user": user, "skills": []}).inserted_id
+            doc = db.skills.find_one({"_id": id})
         if not doc:
             raise HTTPException(status.HTTP_404_NOT_FOUND)
         return doc
 
-    def read(self, user: str):
-        return self._get_by_user(user)
+    def read(self, db: Database, user: str):
+        return self._get_by_user(db, user)
 
-    def update(self, user: str, skills: SkillsUpdate):
-        doc = self._get_by_user(user)
-        changes = col.update_one(
+    def update(self, db: Database, user: str, skills: SkillsUpdate):
+        doc = self._get_by_user(db, user)
+        changes = db.skills.update_one(
             {"_id": doc["_id"]}, {"$set": skills.dict(exclude_none=True)}
         ).modified_count
-        return self._get_by_user(user) if changes else doc
+        return self._get_by_user(db, user) if changes else doc
 
 
 crud_skills = CRUDSkills()
