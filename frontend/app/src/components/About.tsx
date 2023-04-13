@@ -1,10 +1,12 @@
 import React, { useState, useRef, useEffect, KeyboardEvent } from "react";
 
-import { about as data } from "../about.json";
+import { useAbout } from "../hooks";
 
 export const About = () => {
-  const [about, setAbout] = useState(data);
+  const { about, updateAbout } = useAbout("[Empty]");
+  const [tempAbout, setTempAbout] = useState(about);
   const [edit, setEdit] = useState(false);
+
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
   const handleClick = () => {
@@ -14,11 +16,14 @@ export const About = () => {
   const handleChange = ({
     target: { value },
   }: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setAbout(value);
+    setTempAbout(value);
   };
 
   const handleKeyDown = (event: KeyboardEvent<HTMLTextAreaElement>) => {
-    if (event.key === "Enter" || event.key === "Escape") setEdit(false);
+    if (event.key === "Enter" || event.key === "Escape") {
+      if (tempAbout !== about) updateAbout(tempAbout);
+      setEdit(false);
+    }
   };
 
   useEffect(() => {
@@ -40,7 +45,7 @@ export const About = () => {
             rows={4}
             className="bg-gray-700 w-full"
             ref={textareaRef}
-            value={about}
+            value={tempAbout}
             onChange={handleChange}
             onKeyDown={handleKeyDown}
           ></textarea>
