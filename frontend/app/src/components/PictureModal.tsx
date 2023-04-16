@@ -13,7 +13,7 @@ export const PictureModal = ({ showModal, url, setUrl, alt }: Props) => {
   const cardRef = useRef<HTMLDivElement>(null);
 
   const handleClick = ({ target }: MouseEvent) => {
-    !cardRef.current?.contains(target) && showModal(false);
+    !cardRef.current?.contains(target as Node) && showModal(false);
   };
 
   const handleKey = ({ key }: KeyboardEvent) => {
@@ -26,7 +26,7 @@ export const PictureModal = ({ showModal, url, setUrl, alt }: Props) => {
     setNewUrl(value);
   };
 
-  const handleKeyDown = ({ key }) => {
+  const handleKeyDown = ({ key }: React.KeyboardEvent<HTMLInputElement>) => {
     key === "Enter" && setUrl(newUrl);
   };
 

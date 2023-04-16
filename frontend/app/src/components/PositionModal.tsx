@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 
 interface Position {
-  id?: string;
+  id: string;
   picture: string;
   title: string;
   company: string;
@@ -13,7 +13,7 @@ interface Position {
 interface Props {
   showModal: (arg0: boolean) => void;
   positionData: Position;
-  addPosition: (arg0: Position) => void;
+  addPosition: (position: Position) => void;
   editPosition: (arg0: string, arg1: Position) => void;
 }
 
@@ -30,7 +30,7 @@ export const PositionModal = ({
   const companyRef = useRef<HTMLInputElement>(null);
   const startDateRef = useRef<HTMLInputElement>(null);
   const endDateRef = useRef<HTMLInputElement>(null);
-  const detailsRef = useRef<HTMLInputElement>(null);
+  const detailsRef = useRef<HTMLTextAreaElement>(null);
 
   const handleConfirm = () => {
     position.id ? editPosition(position.id, position) : addPosition(position);
@@ -38,7 +38,7 @@ export const PositionModal = ({
   };
 
   const handleClick = ({ target }: MouseEvent) => {
-    !cardRef.current?.contains(target) && showModal(false);
+    !cardRef.current?.contains(target as Node) && showModal(false);
   };
 
   const handleKey = ({ key }: KeyboardEvent) => {
@@ -51,7 +51,7 @@ export const PositionModal = ({
     setPosition({ ...position, [name]: value });
   };
 
-  const handleKeyDown = (event) => {
+  const handleKeyDown = (event: React.KeyboardEvent) => {
     // disable when shift is pressed
     if (event.key === "Enter") {
       if (position.title.trim().length < 1) titleRef.current?.focus();

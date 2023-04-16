@@ -32,8 +32,8 @@ export const Skills = () => {
   };
 
   const handleClick = ({
-    target: { id, textContent },
-  }: React.ChangeEvent<HTMLSpanElement>) => {
+    currentTarget: { id, textContent },
+  }: React.MouseEvent<HTMLSpanElement>) => {
     setEditSkill({ id, name: textContent || "" });
   };
 

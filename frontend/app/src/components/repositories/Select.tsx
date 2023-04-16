@@ -1,9 +1,10 @@
-import { useEffect, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 
 interface Repository {
   id: string;
   name: string;
   url: string;
+  description: string;
   lang: string;
   stars: number;
   forks: number;
@@ -13,21 +14,21 @@ interface Repository {
 interface Props {
   showMenu: (arg0: boolean) => void;
   repositories: Repository[];
-  setRepositories: (arg0: Repository[]) => {};
+  setRepositories: (arg0: Repository[]) => void;
 }
 
 export const Select = ({ showMenu, repositories, setRepositories }: Props) => {
   const cardRef = useRef<HTMLDivElement>(null);
 
   const handleClick = ({ target }: MouseEvent) => {
-    !cardRef.current?.contains(target) && showMenu(false);
+    !cardRef.current?.contains(target as Node) && showMenu(false);
   };
 
   const handleKey = ({ key }: KeyboardEvent) => {
     key === "Escape" && showMenu(false);
   };
 
-  const handleChange = ({ target: { id } }) => {
+  const handleChange = ({ target: { id } }: React.ChangeEvent<HTMLInputElement>) => {
     // setRepositories((repositories) => {
     //   return repositories.map((repository) =>
     //     repository.id === id

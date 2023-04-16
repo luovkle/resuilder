@@ -9,12 +9,12 @@ export const getProviderConfig = () => {
   const audience = import.meta.env.VITE_AUTH0_AUDIENCE;
   const scope = "openid profile email";
 
-  const onRedirectCallback = (appState) => {
+  const onRedirectCallback = (appState: any) => {
     navigate(appState?.returnTo || window.location.pathname);
   };
 
   if (!(domain && clientId && redirectUri)) {
-    return null;
+    throw new Error("Missing Auth0 env vars");
   }
 
   return {
