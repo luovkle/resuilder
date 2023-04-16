@@ -3,6 +3,7 @@ import React, { useState, KeyboardEvent, useRef, useEffect } from "react";
 import { Picture } from "./Picture";
 import { Content } from "./profile/Content";
 import { Name } from "./profile/Name";
+import { EditName } from "./profile/EditName";
 import { name, content } from "../summary.json";
 import { url } from "../picture.json";
 
@@ -21,6 +22,10 @@ export const Summary = () => {
 
   const editName = (arg: boolean) => {
     setEdit((edit) => ({ ...edit, name: arg }));
+  };
+
+  const newName = (arg: string) => {
+    setSummary((summary) => ({ ...summary, name: arg }));
   };
 
   const handleChange = ({
@@ -53,14 +58,11 @@ export const Summary = () => {
       </div>
       <div className="col-span-10 space-y-1.5">
         {edit.name ? (
-          <input
-            ref={inputRef}
-            type="text"
-            name="name"
-            className="bg-gray-700 text-2xl font-bold w-full"
-            value={summary.name}
-            onChange={handleChange}
-            onKeyDown={onKeyDown}
+          <EditName
+            inputRef={inputRef}
+            currentName={summary.name}
+            editName={editName}
+            newName={newName}
           />
         ) : (
           <Name name={summary.name} editName={editName} />
