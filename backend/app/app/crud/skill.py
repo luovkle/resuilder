@@ -3,11 +3,12 @@ from fastapi.encoders import jsonable_encoder
 from pymongo.database import Database
 
 from app.schemas.skill import Skill, SkillCreate, SkillUpdate
+from app.core.config import settings
 
 
 class CRUDSkill:
     def _get_by_user(self, db: Database, user: str):
-        return list(db.skills.find({"user": user}))
+        return list(db.skills.find({"user": user}).limit(settings.CRUD_SKILLS_LIMIT))
 
     def _get_by_id(self, db: Database, user: str, id: str):
         doc = db.skills.find_one({"user": user, "_id": id})
@@ -15,7 +16,18 @@ class CRUDSkill:
             raise HTTPException(status.HTTP_404_NOT_FOUND)
         return doc
 
+    def _allow_new_doc(self, db: Database, user: str):
+        return (
+            False
+            if db.skills.count_documents({"user": user}) >= settings.CRUD_SKILLS_LIMIT
+            else True
+        )
+
     def create(self, db: Database, user: str, skill: SkillCreate):
+        if not self._allow_new_doc(db, user):
+            raise HTTPException(
+                status.HTTP_403_FORBIDDEN, "Maximum number of elements reached"
+            )
         position_db = jsonable_encoder(Skill.parse_obj(skill))
         id = db.skills.insert_one({"user": user, **position_db}).inserted_id
         return self._get_by_id(db, user, id)

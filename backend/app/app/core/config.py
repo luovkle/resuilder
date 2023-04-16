@@ -30,6 +30,7 @@ class Settings(BaseSettings):
     CRUD_CONTACTS_LIMIT: int = 10
     CRUD_POSITIONS_LIMIT: int = 10
     CRUD_REPOSITORIES_LIMIT: int = 30
+    CRUD_SKILLS_LIMIT: int = 30
 
 
 settings = Settings()
