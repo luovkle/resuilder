@@ -22,8 +22,9 @@ export type { ProfileRead } from './models/ProfileRead';
 export type { ProfileUpdate } from './models/ProfileUpdate';
 export type { RepositoryRead } from './models/RepositoryRead';
 export type { RepositoryUpdate } from './models/RepositoryUpdate';
-export type { SkillsRead } from './models/SkillsRead';
-export type { SkillsUpdate } from './models/SkillsUpdate';
+export type { SkillCreate } from './models/SkillCreate';
+export type { SkillRead } from './models/SkillRead';
+export type { SkillUpdate } from './models/SkillUpdate';
 export type { ValidationError } from './models/ValidationError';
 
 export { AboutService } from './services/AboutService';

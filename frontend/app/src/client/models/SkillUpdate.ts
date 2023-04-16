@@ -2,7 +2,7 @@
 /* tslint:disable */
 /* eslint-disable */
 
-export type SkillsRead = {
-    skills: Array<string>;
+export type SkillUpdate = {
+    name?: string;
 };
 
