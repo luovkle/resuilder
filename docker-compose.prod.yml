@@ -8,3 +8,13 @@ services:
     restart: always
     ports:
       - 8000:8000
+
+  frontend:
+    build: ./frontend
+    env_file:
+      - ./frontend/app/.env
+    restart: always
+    ports:
+      - 80:80
+    depends_on:
+      - backend
