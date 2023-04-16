@@ -1,11 +1,12 @@
 import React, { useState, KeyboardEvent, useRef, useEffect } from "react";
 
 import { Picture } from "./Picture";
+import { Content } from "./profile/Content";
 import { name, content } from "../summary.json";
 import { url } from "../picture.json";
 
 export const Summary = () => {
-  const [summary, setSummary] = useState({ name, content });
+  const [summary, setSummary] = useState({ name, content, picture_url: url });
   const [edit, setEdit] = useState({
     name: false,
     content: false,
@@ -13,12 +14,12 @@ export const Summary = () => {
   const inputRef = useRef<HTMLInputElement>(null);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
-  const handleClickName = () => {
-    setEdit({ content: false, name: true });
+  const editContent = (arg: boolean) => {
+    setEdit((edit) => ({ ...edit, content: arg }));
   };
 
-  const handleCLickContent = () => {
-    setEdit({ name: false, content: true });
+  const handleClickName = () => {
+    setEdit({ content: false, name: true });
   };
 
   const handleChange = ({
@@ -76,9 +77,7 @@ export const Summary = () => {
             onKeyDown={onKeyDown}
           ></textarea>
         ) : (
-          <p onClick={handleCLickContent} className="text-gray-300">
-            {summary.content}
-          </p>
+          <Content content={summary.content} editContent={editContent} />
         )}
       </div>
     </div>
