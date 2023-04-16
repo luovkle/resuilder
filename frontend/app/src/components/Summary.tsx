@@ -2,6 +2,7 @@ import React, { useState, KeyboardEvent, useRef, useEffect } from "react";
 
 import { Picture } from "./Picture";
 import { Content } from "./profile/Content";
+import { Name } from "./profile/Name";
 import { name, content } from "../summary.json";
 import { url } from "../picture.json";
 
@@ -18,8 +19,8 @@ export const Summary = () => {
     setEdit((edit) => ({ ...edit, content: arg }));
   };
 
-  const handleClickName = () => {
-    setEdit({ content: false, name: true });
+  const editName = (arg: boolean) => {
+    setEdit((edit) => ({ ...edit, name: arg }));
   };
 
   const handleChange = ({
@@ -62,9 +63,7 @@ export const Summary = () => {
             onKeyDown={onKeyDown}
           />
         ) : (
-          <h1 onClick={handleClickName} className="text-2xl font-bold">
-            {summary.name}
-          </h1>
+          <Name name={summary.name} editName={editName} />
         )}
         {edit.content ? (
           <textarea
