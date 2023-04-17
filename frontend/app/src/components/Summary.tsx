@@ -1,9 +1,10 @@
-import React, { useState, KeyboardEvent, useRef, useEffect } from "react";
+import { useState, useRef, useEffect } from "react";
 
 import { Picture } from "./Picture";
 import { Content } from "./profile/Content";
 import { Name } from "./profile/Name";
 import { EditName } from "./profile/EditName";
+import { EditContent } from "./profile/EditContent";
 import { name, content } from "../summary.json";
 import { url } from "../picture.json";
 
@@ -28,17 +29,8 @@ export const Summary = () => {
     setSummary((summary) => ({ ...summary, name: arg }));
   };
 
-  const handleChange = ({
-    target: { name, value },
-  }: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setSummary({ ...summary, [name]: value });
-  };
-
-  const onKeyDown = (
-    event: KeyboardEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    if (event.key === "Enter" || event.key === "Escape")
-      setEdit({ name: false, content: false });
+  const newContent = (arg: string) => {
+    setSummary((summary) => ({ ...summary, content: arg }));
   };
 
   useEffect(() => {
@@ -68,15 +60,12 @@ export const Summary = () => {
           <Name name={summary.name} editName={editName} />
         )}
         {edit.content ? (
-          <textarea
-            ref={textareaRef}
-            name="content"
-            rows={4}
-            className="bg-gray-700 w-full"
-            value={summary.content}
-            onChange={handleChange}
-            onKeyDown={onKeyDown}
-          ></textarea>
+          <EditContent
+            textareaRef={textareaRef}
+            currentContent={summary.content}
+            editContent={editContent}
+            newContent={newContent}
+          />
         ) : (
           <Content content={summary.content} editContent={editContent} />
         )}
