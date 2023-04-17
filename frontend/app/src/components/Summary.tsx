@@ -1,10 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 
 import { Picture } from "./Picture";
-import { Content } from "./profile/Content";
-import { Name } from "./profile/Name";
-import { EditName } from "./profile/EditName";
-import { EditContent } from "./profile/EditContent";
+import { Name, Content, EditName, EditContent } from "./profile";
 import { name, content } from "../summary.json";
 import { url } from "../picture.json";
 
