@@ -2,11 +2,14 @@ import { useState, useRef, useEffect } from "react";
 
 import { Picture } from "./Picture";
 import { Name, Content, EditName, EditContent } from "./profile";
-import { name, content } from "../summary.json";
-import { url } from "../picture.json";
+import { useProfile } from "../hooks";
 
 export const Summary = () => {
-  const [summary, setSummary] = useState({ name, content, picture_url: url });
+  const { profile, newName, newContent } = useProfile({
+    name: "",
+    content: "",
+    picture_url: "",
+  });
   const [edit, setEdit] = useState({
     name: false,
     content: false,
@@ -22,19 +25,11 @@ export const Summary = () => {
     setEdit((edit) => ({ ...edit, name: arg }));
   };
 
-  const newName = (arg: string) => {
-    setSummary((summary) => ({ ...summary, name: arg }));
-  };
-
-  const newContent = (arg: string) => {
-    setSummary((summary) => ({ ...summary, content: arg }));
-  };
-
   useEffect(() => {
     if (edit.name && inputRef.current) {
       inputRef.current.focus();
     } else if (edit.content && textareaRef.current) {
-      const end = summary.content.length;
+      const end = profile.content.length;
       textareaRef.current.setSelectionRange(end, end);
       textareaRef.current.focus();
     }
@@ -43,28 +38,28 @@ export const Summary = () => {
   return (
     <div className="grid grid-cols-12 gap-5 py-5">
       <div className="col-span-2">
-        <Picture url={url} alt={summary.name} />
+        <Picture url={profile.picture_url} alt={profile.name} />
       </div>
       <div className="col-span-10 space-y-1.5">
         {edit.name ? (
           <EditName
             inputRef={inputRef}
-            currentName={summary.name}
+            currentName={profile.name}
             editName={editName}
             newName={newName}
           />
         ) : (
-          <Name name={summary.name} editName={editName} />
+          <Name name={profile.name} editName={editName} />
         )}
         {edit.content ? (
           <EditContent
             textareaRef={textareaRef}
-            currentContent={summary.content}
+            currentContent={profile.content}
             editContent={editContent}
             newContent={newContent}
           />
         ) : (
-          <Content content={summary.content} editContent={editContent} />
+          <Content content={profile.content} editContent={editContent} />
         )}
       </div>
     </div>
