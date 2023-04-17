@@ -10,7 +10,7 @@ export const Content = ({ editContent, content }: Props) => {
 
   return (
     <p onClick={handleClick} className="text-gray-300">
-      {content}
+      {content.length > 0 ? content : <span className="italic">[Empty]</span>}
     </p>
   );
 };
