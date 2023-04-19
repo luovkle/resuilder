@@ -1,9 +1,8 @@
-from uuid import uuid4
-
 from fastapi import HTTPException, UploadFile, status
+from fastapi.encoders import jsonable_encoder
 from pymongo.database import Database
 
-from app.schemas.profile import ProfileUpdate
+from app.schemas.profile import ProfileUpdate, Profile
 from app.utils.profile import get_data
 from app.utils.picture import update_picture
 
@@ -15,15 +14,17 @@ class CRUDProfile:
             data = get_data(access_token)
             if not data:
                 raise HTTPException(status.HTTP_404_NOT_FOUND)
-            id = db.profiles.insert_one(
-                {
-                    "user": user,
-                    "name": data["name"],
-                    "content": "",
-                    "picture_url": data["picture"],
-                    "picture_id": uuid4().hex,
-                }
-            ).inserted_id
+            profile_db = jsonable_encoder(
+                Profile.parse_obj(
+                    {
+                        "user": user,
+                        "name": data["name"],
+                        "content": "",
+                        "picture_url": data["picture"],
+                    }
+                )
+            )
+            id = db.profiles.insert_one({"user": user, **profile_db}).inserted_id
             doc = db.profiles.find_one({"_id": id})
         if not doc:
             raise HTTPException(status.HTTP_404_NOT_FOUND)
