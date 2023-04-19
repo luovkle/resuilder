@@ -5,6 +5,10 @@ class AboutBase(BaseModel):
     about: str
 
 
+class About(AboutBase):
+    ...
+
+
 class AboutCreate(AboutBase):
     ...
 
