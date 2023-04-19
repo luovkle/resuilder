@@ -5,7 +5,7 @@ import { Name, Content, EditName, EditContent } from "./profile";
 import { useProfile } from "../hooks";
 
 export const Summary = () => {
-  const { profile, newName, newContent } = useProfile({
+  const { profile, newName, newContent, newPicture } = useProfile({
     name: "",
     content: "",
     picture_url: "",
@@ -38,7 +38,11 @@ export const Summary = () => {
   return (
     <div className="grid grid-cols-12 gap-5 py-5">
       <div className="col-span-2">
-        <Picture url={profile.picture_url} alt={profile.name} />
+        <Picture
+          picture_url={profile.picture_url}
+          alt={profile.name}
+          newPicture={newPicture}
+        />
       </div>
       <div className="col-span-10 space-y-1.5">
         {edit.name ? (

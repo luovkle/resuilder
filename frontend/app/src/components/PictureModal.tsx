@@ -1,15 +1,15 @@
-import React, { useRef, useEffect, useState } from "react";
+import { useRef, useEffect } from "react";
+
+import { SelectPicture } from "./picture/SelectPicture";
 
 interface Props {
   showModal: (arg0: boolean) => void;
   url: string;
-  setUrl: (arg0: string) => void;
   alt: string;
+  newPicture: (picture: File) => void;
 }
 
-export const PictureModal = ({ showModal, url, setUrl, alt }: Props) => {
-  const [newUrl, setNewUrl] = useState(url);
-
+export const PictureModal = ({ showModal, url, alt, newPicture }: Props) => {
   const cardRef = useRef<HTMLDivElement>(null);
 
   const handleClick = ({ target }: MouseEvent) => {
@@ -18,16 +18,6 @@ export const PictureModal = ({ showModal, url, setUrl, alt }: Props) => {
 
   const handleKey = ({ key }: KeyboardEvent) => {
     key === "Escape" && showModal(false);
-  };
-
-  const handleChange = ({
-    target: { value },
-  }: React.ChangeEvent<HTMLInputElement>) => {
-    setNewUrl(value);
-  };
-
-  const handleKeyDown = ({ key }: React.KeyboardEvent<HTMLInputElement>) => {
-    key === "Enter" && setUrl(newUrl);
   };
 
   useEffect(() => {
@@ -51,14 +41,7 @@ export const PictureModal = ({ showModal, url, setUrl, alt }: Props) => {
               <img src={url} alt={alt} className="rounded-full w-4/5" />
             </div>
             <div className="flex justify-center">
-              <input
-                type="text"
-                value={newUrl}
-                onChange={handleChange}
-                onKeyDown={handleKeyDown}
-                placeholder="Url"
-                className="bg-blue-700 hover:bg-blue-600 px-4 py-1 w-4/5"
-              />
+              <SelectPicture newPicture={newPicture} />
             </div>
           </div>
         </div>

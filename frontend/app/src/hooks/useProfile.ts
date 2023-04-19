@@ -35,6 +35,18 @@ export const useProfile = (initialState: ProfileRead) => {
     setIsLoading(false);
   };
 
+  const newPicture = (picture: File) => {
+    setIsLoading(true);
+    const formData = new FormData();
+    formData.append("picture", picture, picture.name);
+    ProfilesService.updateCurrentPictureProfilesMePicturePut({
+      picture,
+    })
+      .then((res) => setProfile(res))
+      .catch(console.error);
+    setIsLoading(false);
+  };
+
   useEffect(() => {
     getData();
   }, []);
@@ -43,6 +55,7 @@ export const useProfile = (initialState: ProfileRead) => {
     profile,
     newName,
     newContent,
+    newPicture,
     isLoading,
   };
 };
