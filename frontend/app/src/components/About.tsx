@@ -1,29 +1,16 @@
-import React, { useState, useRef, useEffect, KeyboardEvent } from "react";
+import { useState, useRef, useEffect } from "react";
 
 import { useAbout } from "../hooks";
+import { Content, EditContent } from "./about";
 
 export const About = () => {
   const { about, updateAbout } = useAbout({ about: "" });
-  const [tempAbout, setTempAbout] = useState(about);
   const [edit, setEdit] = useState(false);
 
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
-  const handleClick = () => {
-    setEdit(true);
-  };
-
-  const handleChange = ({
-    target: { value },
-  }: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setTempAbout({ about: value });
-  };
-
-  const handleKeyDown = (event: KeyboardEvent<HTMLTextAreaElement>) => {
-    if (event.key === "Enter" || event.key === "Escape") {
-      if (tempAbout !== about && tempAbout.about) updateAbout(tempAbout.about);
-      setEdit(false);
-    }
+  const editContent = (arg: boolean) => {
+    setEdit(arg);
   };
 
   useEffect(() => {
@@ -43,18 +30,14 @@ export const About = () => {
       </div>
       <div>
         {edit ? (
-          <textarea
-            rows={4}
-            className="bg-gray-700 w-full"
-            ref={textareaRef}
-            value={tempAbout.about}
-            onChange={handleChange}
-            onKeyDown={handleKeyDown}
-          ></textarea>
+          <EditContent
+            textareaRef={textareaRef}
+            currentContent={about.about}
+            editContent={editContent}
+            newContent={updateAbout}
+          />
         ) : (
-          <p onClick={handleClick} className="text-gray-300">
-            {about.about || "[Empty]"}
-          </p>
+          <Content content={about.about} editContent={editContent} />
         )}
       </div>
     </div>
