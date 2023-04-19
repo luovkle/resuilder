@@ -8,25 +8,29 @@ from app.utils.picture import update_picture
 
 
 class CRUDProfile:
+    def _create(self, db: Database, user: str, access_token: str):
+        data = get_data(access_token)
+        if not data:
+            raise HTTPException(status.HTTP_404_NOT_FOUND)
+        profile_db = jsonable_encoder(
+            Profile.parse_obj(
+                {
+                    "user": user,
+                    "name": data["name"],
+                    "picture_url": data["picture"],
+                }
+            )
+        )
+        id = db.profiles.insert_one({"user": user, **profile_db}).inserted_id
+        doc = db.profiles.find_one({"_id": id})
+        return doc
+
     def _get_by_user(self, db: Database, user: str, access_token: str):
         doc = db.profiles.find_one({"user": user})
         if not doc:
-            data = get_data(access_token)
-            if not data:
+            doc = self._create(db, user, access_token)
+            if not doc:
                 raise HTTPException(status.HTTP_404_NOT_FOUND)
-            profile_db = jsonable_encoder(
-                Profile.parse_obj(
-                    {
-                        "user": user,
-                        "name": data["name"],
-                        "picture_url": data["picture"],
-                    }
-                )
-            )
-            id = db.profiles.insert_one({"user": user, **profile_db}).inserted_id
-            doc = db.profiles.find_one({"_id": id})
-        if not doc:
-            raise HTTPException(status.HTTP_404_NOT_FOUND)
         return doc
 
     def read(self, db: Database, user: str, access_token: str):
