@@ -5,7 +5,7 @@ from pydantic import BaseModel, HttpUrl, Field
 
 class ProfileBase(BaseModel):
     name: str
-    content: str
+    content: str | None = None
     picture_url: HttpUrl
 
 

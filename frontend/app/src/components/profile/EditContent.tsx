@@ -1,7 +1,7 @@
 import React, { useState, KeyboardEvent } from "react";
 
 interface Props {
-  currentContent: string;
+  currentContent?: string;
   editContent: (arg: boolean) => void;
   newContent: (arg: string) => void;
   textareaRef: React.RefObject<HTMLTextAreaElement>;
@@ -13,7 +13,7 @@ export const EditContent = ({
   newContent,
   textareaRef,
 }: Props) => {
-  const [content, setContentent] = useState(currentContent);
+  const [content, setContentent] = useState(currentContent || "");
 
   const handleChange = ({
     target,
@@ -25,7 +25,7 @@ export const EditContent = ({
     event: KeyboardEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     if (event.key === "Enter" || event.key === "Escape") {
-      event.key === "Enter" && newContent(content);
+      event.key === "Enter" && content && newContent(content);
       editContent(false);
     }
   };

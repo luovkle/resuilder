@@ -4,7 +4,7 @@
 
 export type ProfileRead = {
     name: string;
-    content: string;
+    content?: string;
     picture_url: string;
 };
 

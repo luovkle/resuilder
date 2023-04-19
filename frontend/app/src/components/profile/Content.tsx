@@ -1,6 +1,6 @@
 interface Props {
   editContent: (arg: boolean) => void;
-  content: string;
+  content?: string;
 }
 
 export const Content = ({ editContent, content }: Props) => {
@@ -10,7 +10,7 @@ export const Content = ({ editContent, content }: Props) => {
 
   return (
     <p onClick={handleClick} className="text-gray-300">
-      {content.length > 0 ? content : <span className="italic">[Empty]</span>}
+      {content ? content : <span className="italic">[Empty]</span>}
     </p>
   );
 };

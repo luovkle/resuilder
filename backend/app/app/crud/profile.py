@@ -19,7 +19,6 @@ class CRUDProfile:
                     {
                         "user": user,
                         "name": data["name"],
-                        "content": "",
                         "picture_url": data["picture"],
                     }
                 )

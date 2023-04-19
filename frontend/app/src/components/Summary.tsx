@@ -29,8 +29,10 @@ export const Summary = () => {
     if (edit.name && inputRef.current) {
       inputRef.current.focus();
     } else if (edit.content && textareaRef.current) {
-      const end = profile.content.length;
-      textareaRef.current.setSelectionRange(end, end);
+      if (profile.content) {
+        const end = profile.content.length;
+        textareaRef.current.setSelectionRange(end, end);
+      }
       textareaRef.current.focus();
     }
   }, [edit]);
