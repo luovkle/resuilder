@@ -8,8 +8,8 @@ class CRUDAbout:
     def _get_by_user(self, db: Database, user: str):
         doc = db.about.find_one({"user": user})
         if not doc:
-            about_db = jsonable_encoder(About.parse_obj({"about": ""}))
-            id = db.about.insert_one({"user": user, **about_db}).inserted_id
+            about_db = jsonable_encoder(About.parse_obj({"user": user, "about": ""}))
+            id = db.about.insert_one(about_db).inserted_id
             doc = db.about.find_one({"_id": id})
         if not doc:
             raise HTTPException(status.HTTP_404_NOT_FOUND)

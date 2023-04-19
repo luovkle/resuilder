@@ -6,7 +6,7 @@ class AboutBase(BaseModel):
 
 
 class About(AboutBase):
-    ...
+    user: str
 
 
 class AboutCreate(AboutBase):
