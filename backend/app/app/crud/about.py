@@ -8,7 +8,7 @@ class CRUDAbout:
     def _get_by_user(self, db: Database, user: str):
         doc = db.about.find_one({"user": user})
         if not doc:
-            about_db = jsonable_encoder(About.parse_obj({"user": user, "about": ""}))
+            about_db = jsonable_encoder(About.parse_obj({"user": user}))
             id = db.about.insert_one(about_db).inserted_id
             doc = db.about.find_one({"_id": id})
         if not doc:

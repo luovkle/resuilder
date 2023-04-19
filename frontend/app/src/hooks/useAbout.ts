@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 
-import { OpenAPI, AboutService } from "../client";
+import { OpenAPI, AboutService, AboutRead } from "../client";
 
-export const useAbout = (initialData: string) => {
+export const useAbout = (initialData: AboutRead) => {
   const [about, setAbout] = useState(initialData);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -13,17 +13,20 @@ export const useAbout = (initialData: string) => {
     setIsLoading(true);
     const token = await getAccessTokenSilently();
     OpenAPI.TOKEN = token;
-    const { about: data } =
-      await AboutService.readCurrentAboutProfilesMeAboutGet();
-    if (data !== "") setAbout(data);
+    AboutService.readCurrentAboutProfilesMeAboutGet()
+      .then((res) => setAbout(res))
+      .catch(console.error);
     setIsLoading(false);
   };
 
-  const updateAbout = async (data: string) => {
-    const { about } = await AboutService.updateCurrentAboutProfilesMeAboutPut({
-      about: data,
-    });
-    setAbout(about);
+  const updateAbout = async (newAbout: string) => {
+    setIsLoading(true);
+    AboutService.updateCurrentAboutProfilesMeAboutPut({
+      about: newAbout,
+    })
+      .then((res) => setAbout(res))
+      .catch(console.error);
+    setIsLoading(false);
   };
 
   useEffect(() => {

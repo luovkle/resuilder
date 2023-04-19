@@ -2,7 +2,7 @@ from pydantic import BaseModel
 
 
 class AboutBase(BaseModel):
-    about: str
+    about: str | None = None
 
 
 class About(AboutBase):
