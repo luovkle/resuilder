@@ -9,10 +9,6 @@ class About(AboutBase):
     user: str
 
 
-class AboutCreate(AboutBase):
-    ...
-
-
 class AboutRead(AboutBase):
     ...
 
