@@ -12,6 +12,7 @@ class ProfileBase(BaseModel):
 class Profile(ProfileBase):
     id: str = Field(default_factory=uuid4, alias="_id")
     picture_id: HttpUrl = Field(default_factory=uuid4)
+    user: str
 
 
 class ProfileRead(ProfileBase):

@@ -21,7 +21,7 @@ class CRUDProfile:
                 }
             )
         )
-        id = db.profiles.insert_one({"user": user, **profile_db}).inserted_id
+        id = db.profiles.insert_one(profile_db).inserted_id
         doc = db.profiles.find_one({"_id": id})
         return doc
 
