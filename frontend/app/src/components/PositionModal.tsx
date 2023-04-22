@@ -1,20 +1,12 @@
 import React, { useEffect, useRef, useState } from "react";
 
-interface Position {
-  id: string;
-  picture: string;
-  title: string;
-  company: string;
-  start_date: string;
-  end_date: string;
-  details: string;
-}
+import { PositionRead } from "../client";
 
 interface Props {
   showModal: (arg0: boolean) => void;
-  positionData: Position;
-  addPosition: (position: Position) => void;
-  editPosition: (arg0: string, arg1: Position) => void;
+  positionData: PositionRead;
+  addPosition: (position: PositionRead) => void;
+  editPosition: (arg0: string, arg1: PositionRead) => void;
 }
 
 export const PositionModal = ({
@@ -23,7 +15,7 @@ export const PositionModal = ({
   addPosition,
   editPosition,
 }: Props) => {
-  const [position, setPosition] = useState<Position>(positionData);
+  const [position, setPosition] = useState<PositionRead>(positionData);
   const cardRef = useRef<HTMLDivElement>(null);
 
   const titleRef = useRef<HTMLInputElement>(null);
@@ -33,7 +25,7 @@ export const PositionModal = ({
   const detailsRef = useRef<HTMLTextAreaElement>(null);
 
   const handleConfirm = () => {
-    position.id ? editPosition(position.id, position) : addPosition(position);
+    position._id ? editPosition(position._id, position) : addPosition(position);
     showModal(false);
   };
 
@@ -85,9 +77,9 @@ export const PositionModal = ({
           <div className="space-y-4 mx-8 my-8">
             <div className="grid grid-cols-12 gap-4" onKeyDown={handleKeyDown}>
               <div className="col-span-1">
-                {position.picture.length > 0 ? (
+                {position.picture_url && position.picture_url.length > 0 ? (
                   <img
-                    src={position.picture}
+                    src={position.picture_url}
                     alt={position.title}
                     className="rounded-full"
                   />

@@ -1,25 +1,12 @@
 import { useState } from "react";
-import { v4 as uuid4 } from "uuid";
+import { PositionRead } from "../client";
 
-import { positions as data } from "../positions.json";
-import { Picture } from "./Picture";
+import { usePositions } from "../hooks";
+// import { Picture } from "./Picture";
 import { PositionModal } from "./PositionModal";
 
-interface PositionData {
-  picture: string;
-  title: string;
-  company: string;
-  start_date: string;
-  end_date: string;
-  details: string;
-}
-
-interface Position extends PositionData {
-  id: string;
-}
-
 const positionInitialData = {
-  id: "",
+  _id: "",
   picture: "",
   title: "",
   company: "",
@@ -29,22 +16,12 @@ const positionInitialData = {
 };
 
 export const Positions = () => {
-  const [positions, setPositions] = useState<Position[]>(data);
+  const {positions, createPosition, updatePosition} = usePositions(); 
   const [showModal, setShowModal] = useState(false);
   const [positionData, setPositionData] =
-    useState<Position>(positionInitialData);
+    useState<PositionRead>(positionInitialData);
 
-  const addPosition = (position: Position) => {
-    setPositions([...positions, { ...position, id: uuid4() }]);
-  };
-
-  const editPosition = (id: string, newData: Position) => {
-    setPositions(
-      positions.map((position) => (position.id === id ? newData : position))
-    );
-  };
-
-  const handleClick = (position: Position) => {
+  const handleClick = (position: PositionRead) => {
     setShowModal(true);
     setPositionData(position);
   };
@@ -62,10 +39,18 @@ export const Positions = () => {
         </div>
         <div className="space-y-5">
           {positions.map((position) => (
-            <div key={position.id} className="grid grid-cols-12 gap-4">
+            <div key={position._id} className="grid grid-cols-12 gap-4">
               <div className="col-span-1">
-                {position.picture ? (
-                  <Picture url={position.picture} alt={position.title} />
+                {position.picture_url ? (
+                  <div>
+                  {/*
+                    <Picture
+                      picture_url={position.picture_url}
+                      alt={position.title}
+                      newPicture={updatePositionPicture}
+                    />
+                  */}
+                  </div>
                 ) : (
                   <div className="flex items-center justify-center bg-blue-600 w-[43.8333px] h-[43.8333px] rounded-full font-bold select-none">
                     {position.title[0]?.toUpperCase()}
@@ -102,8 +87,8 @@ export const Positions = () => {
         <PositionModal
           showModal={setShowModal}
           positionData={positionData}
-          addPosition={addPosition}
-          editPosition={editPosition}
+          addPosition={createPosition}
+          editPosition={updatePosition}
         />
       )}
     </div>
