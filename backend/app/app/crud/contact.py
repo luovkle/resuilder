@@ -31,8 +31,10 @@ class CRUDContact:
             raise HTTPException(
                 status.HTTP_403_FORBIDDEN, "Maximum number of elements reached"
             )
-        contact_db = jsonable_encoder(Contact.parse_obj(contact))
-        id = db.contacts.insert_one({"user": user, **contact_db}).inserted_id
+        contact_db = jsonable_encoder(
+            Contact.parse_obj({**contact.dict(), "user": user})
+        )
+        id = db.contacts.insert_one(contact_db).inserted_id
         return self._get_by_id(db, user, id)
 
     def read_one(self, db: Database, user: str, id: str):

@@ -10,6 +10,7 @@ class ContactBase(BaseModel):
 
 class Contact(ContactBase):
     id: str = Field(default_factory=uuid4, alias="_id")
+    user: str
 
 
 class ContactCreate(ContactBase):
