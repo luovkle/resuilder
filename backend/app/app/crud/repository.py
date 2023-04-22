@@ -12,8 +12,10 @@ class CRUDRepository:
     def _create_repositories(self, db: Database, user: str, repositories_data: list):
         repositories = []
         for repository in repositories_data:
-            repository_db = jsonable_encoder(Repository(**repository))
-            repositories.append({"user": user, **repository_db})
+            repository_db = jsonable_encoder(
+                Repository.parse_obj({**repository, "user": user})
+            )
+            repositories.append(repository_db)
         db.repositories.insert_many(repositories)
         return list(
             db.repositories.find({"user": user}).limit(settings.CRUD_REPOSITORIES_LIMIT)

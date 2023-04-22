@@ -16,6 +16,7 @@ class RepositoryBase(BaseModel):
 
 class Repository(RepositoryBase):
     id: str = Field(default_factory=uuid4, alias="_id")
+    user: str
 
 
 class RepositoryRead(RepositoryBase):
