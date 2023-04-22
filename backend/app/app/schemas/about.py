@@ -1,4 +1,6 @@
-from pydantic import BaseModel
+from uuid import uuid4
+
+from pydantic import BaseModel, Field
 
 
 class AboutBase(BaseModel):
@@ -6,6 +8,7 @@ class AboutBase(BaseModel):
 
 
 class About(AboutBase):
+    id: str = Field(default_factory=uuid4, alias="_id")
     user: str
 
 
