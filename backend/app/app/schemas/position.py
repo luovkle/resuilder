@@ -15,6 +15,7 @@ class Position(PositionBase):
     id: str = Field(default_factory=uuid4, alias="_id")
     picture_id: HttpUrl = Field(default_factory=uuid4)
     picture_url: HttpUrl | None = None
+    user: str
 
 
 class PositionCreate(PositionBase):

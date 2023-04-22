@@ -32,8 +32,10 @@ class CRUDPosition:
             raise HTTPException(
                 status.HTTP_403_FORBIDDEN, "Maximum number of elements reached"
             )
-        position_db = jsonable_encoder(Position.parse_obj(position))
-        id = db.positions.insert_one({"user": user, **position_db}).inserted_id
+        position_db = jsonable_encoder(
+            Position.parse_obj({**position.dict(), "user": user})
+        )
+        id = db.positions.insert_one(position_db).inserted_id
         return self._get_by_id(db, user, id)
 
     def read_one(self, db: Database, user: str, id: str):
