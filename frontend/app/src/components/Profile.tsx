@@ -4,7 +4,7 @@ import { Picture } from "./Picture";
 import { Name, Content, EditName, EditContent } from "./profile";
 import { useProfile } from "../hooks";
 
-export const Summary = () => {
+export const Profile = () => {
   const { profile, newName, newContent, newPicture } = useProfile({
     name: "",
     content: "",

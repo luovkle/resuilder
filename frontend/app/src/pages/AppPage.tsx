@@ -1,5 +1,5 @@
 import {
-  Summary,
+  Profile,
   Contact,
   About,
   Skills,
@@ -12,7 +12,7 @@ export const AppPage = () => {
     <>
       <div className="bg-gray-900 text-gray-200">
         <div className="container mx-auto divide-gray-700 max-w-3xl">
-          <Summary />
+          <Profile />
           <hr />
           <Contact />
           <hr />
