@@ -28,8 +28,8 @@ class CRUDSkill:
             raise HTTPException(
                 status.HTTP_403_FORBIDDEN, "Maximum number of elements reached"
             )
-        position_db = jsonable_encoder(Skill.parse_obj(skill))
-        id = db.skills.insert_one({"user": user, **position_db}).inserted_id
+        skill_db = jsonable_encoder(Skill.parse_obj(skill))
+        id = db.skills.insert_one({"user": user, **skill_db}).inserted_id
         return self._get_by_id(db, user, id)
 
     def read_one(self, db: Database, user: str, id: str):
