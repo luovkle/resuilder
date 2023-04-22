@@ -1,7 +1,6 @@
-import { useState, useRef, KeyboardEvent, useEffect } from "react";
-import { v4 as uuid4 } from "uuid";
+import { KeyboardEvent, useEffect, useRef, useState } from "react";
 
-import { methods as data } from "../contact.json";
+import { useContact } from "../hooks";
 
 interface NewMethod {
   title: string;
@@ -14,7 +13,7 @@ const methodInitialData = {
 };
 
 export const Contact = () => {
-  const [methods, setMethods] = useState(data);
+  const { contacts: methods, create } = useContact();
 
   const [addNewMethod, setAddNewMethod] = useState(false);
   const [newMethod, setNewMethod] = useState<NewMethod>(methodInitialData);
@@ -23,7 +22,7 @@ export const Contact = () => {
   const methodUrlInputRef = useRef<HTMLInputElement>(null);
 
   const addMethod = ({ title, url }: NewMethod) => {
-    setMethods([...methods, { id: uuid4().toString(), title, url }]);
+    create(title, url);
     setNewMethod(methodInitialData);
   };
 
@@ -66,7 +65,7 @@ export const Contact = () => {
       <div className="flex flex-wrap gap-2">
         {methods.map((method) => (
           <a
-            key={method.id}
+            key={method._id}
             href={method.url}
             target="”_blank”"
             className="bg-gray-700 px-4 py-1"
