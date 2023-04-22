@@ -1,10 +1,9 @@
 import React, { useState, KeyboardEvent, useRef, useEffect } from "react";
-import { v4 as uuid4 } from "uuid";
 
-import { skills as data } from "../skills.json";
+import { useSkills } from "../hooks";
 
 export const Skills = () => {
-  const [skills, setSkills] = useState(data);
+  const { skills, createSkill, updateSkill, deleteSkill } = useSkills();
 
   const [newSkill, setNewSkill] = useState("");
   const [addNewSkill, setAddNewSkill] = useState(false);
@@ -15,20 +14,8 @@ export const Skills = () => {
   const newSkillInputRef = useRef<HTMLInputElement>(null);
 
   const addSkill = (skill: string) => {
-    setSkills([...skills, { id: uuid4().toString(), name: skill }]);
+    createSkill(skill)
     setNewSkill("");
-  };
-
-  const updateSkill = (id: string, name: string) => {
-    setSkills(
-      skills.map((skill) => {
-        return skill.id === id ? { id, name } : skill;
-      })
-    );
-  };
-
-  const deleteSkill = (id: string) => {
-    setSkills(skills.filter((skill) => skill.id !== id));
   };
 
   const handleClick = ({
@@ -86,7 +73,7 @@ export const Skills = () => {
       </div>
       <div className="flex flex-wrap gap-2">
         {skills.map((skill) =>
-          skill.id === editSkill.id ? (
+          skill._id === editSkill.id ? (
             <input
               ref={skillInputRef}
               type="text"
@@ -97,8 +84,8 @@ export const Skills = () => {
             />
           ) : (
             <span
-              key={skill.id}
-              id={skill.id}
+              key={skill._id}
+              id={skill._id}
               onClick={handleClick}
               className="bg-gray-700 px-4 py-1"
             >
