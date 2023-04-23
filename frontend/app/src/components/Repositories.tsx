@@ -1,10 +1,10 @@
 import { useState } from "react";
+import { useRepositories } from "../hooks";
 
 import { Select } from "./repositories/Select";
-import { repositories as data } from "../repositories.json";
 
 export const Repositories = () => {
-  const [repositories, setRepositories] = useState(data);
+  const {repositories, updateRepository} = useRepositories();
   const [renderOptions, setRenderOptions] = useState(false);
 
   return (
@@ -27,9 +27,9 @@ export const Repositories = () => {
         </button>
       </div>
       <div className="grid grid-cols-2 gap-4">
-        {repositories.map((repository) => (
+        {repositories.map((repository) => repository.show && (
           <div
-            key={repository.id}
+            key={repository._id}
             className="col-span-1 space-y-3 p-5 border border-gray-700 rounded-lg"
           >
             <a
@@ -51,8 +51,8 @@ export const Repositories = () => {
       {renderOptions && (
         <Select
           showMenu={setRenderOptions}
-          repositories={data}
-          setRepositories={setRepositories}
+          repositories={repositories}
+          updateRepository={updateRepository}
         />
       )}
     </div>

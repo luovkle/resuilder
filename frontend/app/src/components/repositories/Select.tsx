@@ -1,23 +1,14 @@
 import React, { useEffect, useRef } from "react";
 
-interface Repository {
-  id: string;
-  name: string;
-  url: string;
-  description: string;
-  lang: string;
-  stars: number;
-  forks: number;
-  use: boolean;
-}
+import { RepositoryRead, RepositoryUpdate } from "../../client";
 
 interface Props {
   showMenu: (arg0: boolean) => void;
-  repositories: Repository[];
-  setRepositories: (arg0: Repository[]) => void;
+  repositories: RepositoryRead[];
+  updateRepository: (id: string, repository: RepositoryUpdate) => void;
 }
 
-export const Select = ({ showMenu, repositories, setRepositories }: Props) => {
+export const Select = ({ showMenu, repositories, updateRepository }: Props) => {
   const cardRef = useRef<HTMLDivElement>(null);
 
   const handleClick = ({ target }: MouseEvent) => {
@@ -28,22 +19,12 @@ export const Select = ({ showMenu, repositories, setRepositories }: Props) => {
     key === "Escape" && showMenu(false);
   };
 
-  const handleChange = ({ target: { id } }: React.ChangeEvent<HTMLInputElement>) => {
-    // setRepositories((repositories) => {
-    //   return repositories.map((repository) =>
-    //     repository.id === id
-    //       ? { ...repository, use: !repository.use }
-    //       : repository
-    //   );
-    // });
-    setRepositories(
-      repositories.map((repository) =>
-        repository.id === id
-          ? { ...repository, use: !repository.use }
-          : repository
-      )
-    );
-    console.log(id)
+  const handleChange = (
+    { target: { id } }: React.ChangeEvent<HTMLInputElement>,
+  ) => {
+    updateRepository(id, {
+      show: !repositories.find((repository) => repository._id === id)?.show,
+    });
   };
 
   useEffect(() => {
@@ -65,17 +46,17 @@ export const Select = ({ showMenu, repositories, setRepositories }: Props) => {
           <div className="mt-4 mx-4">
             {repositories.map((repository) => (
               <div
-                key={repository.id}
+                key={repository._id}
                 className="hover:bg-gray-800 rounded flex items-center"
               >
                 <input
-                  id={repository.id}
+                  id={repository._id}
                   type="checkbox"
-                  checked={repository.use}
+                  checked={repository.show}
                   onChange={handleChange}
                   className="h-4 w-4"
                 />
-                <label htmlFor={repository.id} className="ml-2 w-full">
+                <label htmlFor={repository._id} className="ml-2 w-full">
                   {repository.name}
                 </label>
               </div>
