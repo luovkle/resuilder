@@ -3,6 +3,5 @@
 /* eslint-disable */
 
 export type AboutUpdate = {
-    about?: string;
+  about?: string;
 };
-

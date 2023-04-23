@@ -1,4 +1,4 @@
-import React, { useState, KeyboardEvent, useRef, useEffect } from "react";
+import React, { KeyboardEvent, useEffect, useRef, useState } from "react";
 
 import { useSkills } from "../hooks";
 
@@ -14,7 +14,7 @@ export const Skills = () => {
   const newSkillInputRef = useRef<HTMLInputElement>(null);
 
   const addSkill = (skill: string) => {
-    createSkill(skill)
+    createSkill(skill);
     setNewSkill("");
   };
 
@@ -73,45 +73,49 @@ export const Skills = () => {
       </div>
       <div className="flex flex-wrap gap-2">
         {skills.map((skill) =>
-          skill._id === editSkill.id ? (
+          skill._id === editSkill.id
+            ? (
+              <input
+                ref={skillInputRef}
+                type="text"
+                className="bg-gray-700"
+                value={editSkill.name}
+                onChange={handleChangeUpdate}
+                onKeyDown={handleKeyDownUpdate}
+              />
+            )
+            : (
+              <span
+                key={skill._id}
+                id={skill._id}
+                onClick={handleClick}
+                className="bg-gray-700 px-4 py-1"
+              >
+                {skill.name}
+              </span>
+            )
+        )}
+        {addNewSkill
+          ? (
             <input
-              ref={skillInputRef}
+              ref={newSkillInputRef}
               type="text"
-              className="bg-gray-700"
-              value={editSkill.name}
-              onChange={handleChangeUpdate}
-              onKeyDown={handleKeyDownUpdate}
+              className="bg-blue-700 hover:bg-blue-600 px-4 py-1"
+              value={newSkill}
+              onChange={handleChange}
+              onKeyDown={handleKeyDown}
+              placeholder="Skill"
             />
-          ) : (
-            <span
-              key={skill._id}
-              id={skill._id}
-              onClick={handleClick}
-              className="bg-gray-700 px-4 py-1"
-            >
-              {skill.name}
-            </span>
           )
-        )}
-        {addNewSkill ? (
-          <input
-            ref={newSkillInputRef}
-            type="text"
-            className="bg-blue-700 hover:bg-blue-600 px-4 py-1"
-            value={newSkill}
-            onChange={handleChange}
-            onKeyDown={handleKeyDown}
-            placeholder="Skill"
-          />
-        ) : (
-          <button
-            type="button"
-            className="bg-blue-600 hover:bg-blue-500 px-4 py-1"
-            onClick={handleAddSkill}
-          >
-            +
-          </button>
-        )}
+          : (
+            <button
+              type="button"
+              className="bg-blue-600 hover:bg-blue-500 px-4 py-1"
+              onClick={handleAddSkill}
+            >
+              +
+            </button>
+          )}
       </div>
     </div>
   );

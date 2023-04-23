@@ -3,7 +3,6 @@
 /* eslint-disable */
 
 export type ContactUpdate = {
-    title?: string;
-    url?: string;
+  title?: string;
+  url?: string;
 };
-

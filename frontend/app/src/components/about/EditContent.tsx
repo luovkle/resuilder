@@ -1,4 +1,4 @@
-import { useState, KeyboardEvent } from "react";
+import { KeyboardEvent, useState } from "react";
 
 interface Props {
   currentContent?: string;
@@ -34,6 +34,7 @@ export const EditContent = ({
       value={content}
       onChange={handleChange}
       onKeyDown={handleKeyDown}
-    ></textarea>
+    >
+    </textarea>
   );
 };

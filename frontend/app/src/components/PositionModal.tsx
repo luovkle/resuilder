@@ -48,10 +48,11 @@ export const PositionModal = ({
     if (event.key === "Enter") {
       if (position.title.trim().length < 1) titleRef.current?.focus();
       else if (position.company.trim().length < 1) companyRef.current?.focus();
-      else if (position.start_date.trim().length < 1)
+      else if (position.start_date.trim().length < 1) {
         startDateRef.current?.focus();
-      else if (position.end_date.trim().length < 1) endDateRef.current?.focus();
-      else if (position.details.trim().length < 1) {
+      } else if (position.end_date.trim().length < 1) {
+        endDateRef.current?.focus();
+      } else if (position.details.trim().length < 1) {
         event.preventDefault();
         detailsRef.current?.focus();
       } else handleConfirm();
@@ -77,17 +78,19 @@ export const PositionModal = ({
           <div className="space-y-4 mx-8 my-8">
             <div className="grid grid-cols-12 gap-4" onKeyDown={handleKeyDown}>
               <div className="col-span-1">
-                {position.picture_url && position.picture_url.length > 0 ? (
-                  <img
-                    src={position.picture_url}
-                    alt={position.title}
-                    className="rounded-full"
-                  />
-                ) : (
-                  <div className="flex items-center justify-center bg-blue-600 w-[43.8333px] h-[43.8333px] rounded-full font-bold select-none">
-                    {position.title[0]?.toUpperCase()}
-                  </div>
-                )}
+                {position.picture_url && position.picture_url.length > 0
+                  ? (
+                    <img
+                      src={position.picture_url}
+                      alt={position.title}
+                      className="rounded-full"
+                    />
+                  )
+                  : (
+                    <div className="flex items-center justify-center bg-blue-600 w-[43.8333px] h-[43.8333px] rounded-full font-bold select-none">
+                      {position.title[0]?.toUpperCase()}
+                    </div>
+                  )}
               </div>
               <div className="col-span-11 space-y-2">
                 <div>
@@ -143,7 +146,8 @@ export const PositionModal = ({
                   onKeyDown={handleKeyDown}
                   className="bg-gray-800 hover:bg-gray-700 px-4 py-1 w-full rounded-md border border-gray-700 resize-none"
                   placeholder="Details"
-                ></textarea>
+                >
+                </textarea>
                 <button
                   type="button"
                   className="bg-blue-600 hover:bg-blue-500 px-4 py-1 w-full rounded-md"

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 
-import { OpenAPI, AboutService, AboutRead } from "../client";
+import { AboutRead, AboutService, OpenAPI } from "../client";
 
 export const useAbout = (initialData: AboutRead) => {
   const [about, setAbout] = useState(initialData);

@@ -3,8 +3,7 @@
 /* eslint-disable */
 
 export type ProfileRead = {
-    name: string;
-    content?: string;
-    picture_url: string;
+  name: string;
+  content?: string;
+  picture_url: string;
 };
-

@@ -3,6 +3,5 @@
 /* eslint-disable */
 
 export type RepositoryUpdate = {
-    show?: boolean;
+  show?: boolean;
 };
-

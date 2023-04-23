@@ -1,4 +1,4 @@
-import React, { useState, KeyboardEvent } from "react";
+import React, { KeyboardEvent, useState } from "react";
 
 interface Props {
   currentName: string;
@@ -22,7 +22,7 @@ export const EditName = ({
   };
 
   const onKeyDown = (
-    event: KeyboardEvent<HTMLInputElement | HTMLTextAreaElement>
+    event: KeyboardEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
     if (event.key === "Enter" || event.key === "Escape") {
       event.key === "Enter" && newName(name);

@@ -3,6 +3,5 @@
 /* eslint-disable */
 
 export type SkillCreate = {
-    name: string;
+  name: string;
 };
-

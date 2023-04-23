@@ -1,5 +1,3 @@
 export const HomePage = () => {
-  return (
-    <>Resuilder</>
-  );
+  return <>Resuilder</>;
 };

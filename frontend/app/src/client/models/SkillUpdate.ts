@@ -3,6 +3,5 @@
 /* eslint-disable */
 
 export type SkillUpdate = {
-    name?: string;
+  name?: string;
 };
-

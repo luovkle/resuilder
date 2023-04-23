@@ -3,8 +3,7 @@
 /* eslint-disable */
 
 export type ContactRead = {
-    title: string;
-    url: string;
-    _id: string;
+  title: string;
+  url: string;
+  _id: string;
 };
-

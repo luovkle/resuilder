@@ -3,6 +3,5 @@
 /* eslint-disable */
 
 export type AboutRead = {
-    about?: string;
+  about?: string;
 };
-

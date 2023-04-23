@@ -1,7 +1,7 @@
-import { useState, useRef, useEffect } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import { Picture } from "./Picture";
-import { Name, Content, EditName, EditContent } from "./profile";
+import { Content, EditContent, EditName, Name } from "./profile";
 import { useProfile } from "../hooks";
 
 export const Profile = () => {
@@ -47,26 +47,26 @@ export const Profile = () => {
         />
       </div>
       <div className="col-span-10 space-y-1.5">
-        {edit.name ? (
-          <EditName
-            inputRef={inputRef}
-            currentName={profile.name}
-            editName={editName}
-            newName={newName}
-          />
-        ) : (
-          <Name name={profile.name} editName={editName} />
-        )}
-        {edit.content ? (
-          <EditContent
-            textareaRef={textareaRef}
-            currentContent={profile.content}
-            editContent={editContent}
-            newContent={newContent}
-          />
-        ) : (
-          <Content content={profile.content} editContent={editContent} />
-        )}
+        {edit.name
+          ? (
+            <EditName
+              inputRef={inputRef}
+              currentName={profile.name}
+              editName={editName}
+              newName={newName}
+            />
+          )
+          : <Name name={profile.name} editName={editName} />}
+        {edit.content
+          ? (
+            <EditContent
+              textareaRef={textareaRef}
+              currentContent={profile.content}
+              editContent={editContent}
+              newContent={newContent}
+            />
+          )
+          : <Content content={profile.content} editContent={editContent} />}
       </div>
     </div>
   );

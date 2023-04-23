@@ -13,9 +13,7 @@ export const useSkills = () => {
     setIsLoading(true);
     SkillsService.createSkillProfilesMeSkillsPost({ name })
       .then((newSkill) =>
-        setSkills(
-          (currentSkills) => [...currentSkills, newSkill],
-        )
+        setSkills((currentSkills) => [...currentSkills, newSkill])
       )
       .catch(console.error);
     setIsLoading(false);

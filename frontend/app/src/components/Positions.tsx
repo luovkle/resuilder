@@ -16,10 +16,11 @@ const positionInitialData = {
 };
 
 export const Positions = () => {
-  const {positions, createPosition, updatePosition} = usePositions(); 
+  const { positions, createPosition, updatePosition } = usePositions();
   const [showModal, setShowModal] = useState(false);
-  const [positionData, setPositionData] =
-    useState<PositionRead>(positionInitialData);
+  const [positionData, setPositionData] = useState<PositionRead>(
+    positionInitialData,
+  );
 
   const handleClick = (position: PositionRead) => {
     setShowModal(true);
@@ -41,25 +42,30 @@ export const Positions = () => {
           {positions.map((position) => (
             <div key={position._id} className="grid grid-cols-12 gap-4">
               <div className="col-span-1">
-                {position.picture_url ? (
-                  <div>
-                  {/*
+                {position.picture_url
+                  ? (
+                    <div>
+                      {
+                        /*
                     <Picture
                       picture_url={position.picture_url}
                       alt={position.title}
                       newPicture={updatePositionPicture}
                     />
-                  */}
-                  </div>
-                ) : (
-                  <div className="flex items-center justify-center bg-blue-600 w-[43.8333px] h-[43.8333px] rounded-full font-bold select-none">
-                    {position.title[0]?.toUpperCase()}
-                  </div>
-                )}
+                  */
+                      }
+                    </div>
+                  )
+                  : (
+                    <div className="flex items-center justify-center bg-blue-600 w-[43.8333px] h-[43.8333px] rounded-full font-bold select-none">
+                      {position.title[0]?.toUpperCase()}
+                    </div>
+                  )}
               </div>
               <div
                 className="col-span-11 space-y-5"
-                onClick={() => handleClick(position)}
+                onClick={() =>
+                  handleClick(position)}
               >
                 <div>
                   <h3 className="text-lg font-semibold">{position.title}</h3>

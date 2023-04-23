@@ -1,10 +1,10 @@
 import {
-  Profile,
-  Contact,
   About,
-  Skills,
+  Contact,
   Positions,
+  Profile,
   Repositories,
+  Skills,
 } from "../components";
 
 export const AppPage = () => {

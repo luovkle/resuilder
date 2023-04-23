@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import { useAbout } from "../hooks";
 import { Content, EditContent } from "./about";
@@ -29,16 +29,16 @@ export const About = () => {
         <h5 className="text-sm font-medium text-gray-400">About</h5>
       </div>
       <div>
-        {edit ? (
-          <EditContent
-            textareaRef={textareaRef}
-            currentContent={about.about}
-            editContent={editContent}
-            newContent={updateAbout}
-          />
-        ) : (
-          <Content content={about.about} editContent={editContent} />
-        )}
+        {edit
+          ? (
+            <EditContent
+              textareaRef={textareaRef}
+              currentContent={about.about}
+              editContent={editContent}
+              newContent={updateAbout}
+            />
+          )
+          : <Content content={about.about} editContent={editContent} />}
       </div>
     </div>
   );

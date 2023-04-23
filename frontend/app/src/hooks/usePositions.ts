@@ -19,9 +19,7 @@ export const usePositions = () => {
     setIsLoading(true);
     PositionsService.createPositionProfilesMePositionsPost(position)
       .then((newPosition) =>
-        setPositions(
-          (currentPositions) => [...currentPositions, newPosition],
-        )
+        setPositions((currentPositions) => [...currentPositions, newPosition])
       )
       .catch(console.error);
     setIsLoading(false);

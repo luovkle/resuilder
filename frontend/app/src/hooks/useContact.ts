@@ -13,9 +13,7 @@ export const useContact = () => {
     setIsLoading(true);
     ContactsService.createCurrentContactProfilesMeContactsPost({ title, url })
       .then((newContact) =>
-        setContacts(
-          (currentContacts) => [...currentContacts, newContact],
-        )
+        setContacts((currentContacts) => [...currentContacts, newContact])
       )
       .catch(console.error);
     setIsLoading(false);

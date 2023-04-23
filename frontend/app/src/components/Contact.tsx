@@ -73,38 +73,40 @@ export const Contact = () => {
             {method.title}
           </a>
         ))}
-        {addNewMethod ? (
-          <>
-            <input
-              ref={methodTitleInputRef}
-              type="text"
-              className="bg-blue-700 hover:bg-blue-600 px-4 py-1"
-              name={"title"}
-              value={newMethod.title}
-              onChange={handleChange}
-              onKeyDown={handleKeyDown}
-              placeholder="Title"
-            />
-            <input
-              ref={methodUrlInputRef}
-              type="text"
-              className="bg-blue-700 hover:bg-blue-600 px-4 py-1"
-              name={"url"}
-              value={newMethod.url}
-              onChange={handleChange}
-              onKeyDown={handleKeyDown}
-              placeholder="Url"
-            />
-          </>
-        ) : (
-          <button
-            type="button"
-            className="bg-blue-600 hover:bg-blue-500 px-4 py-1"
-            onClick={handleAddMethod}
-          >
-            +
-          </button>
-        )}
+        {addNewMethod
+          ? (
+            <>
+              <input
+                ref={methodTitleInputRef}
+                type="text"
+                className="bg-blue-700 hover:bg-blue-600 px-4 py-1"
+                name={"title"}
+                value={newMethod.title}
+                onChange={handleChange}
+                onKeyDown={handleKeyDown}
+                placeholder="Title"
+              />
+              <input
+                ref={methodUrlInputRef}
+                type="text"
+                className="bg-blue-700 hover:bg-blue-600 px-4 py-1"
+                name={"url"}
+                value={newMethod.url}
+                onChange={handleChange}
+                onKeyDown={handleKeyDown}
+                placeholder="Url"
+              />
+            </>
+          )
+          : (
+            <button
+              type="button"
+              className="bg-blue-600 hover:bg-blue-500 px-4 py-1"
+              onClick={handleAddMethod}
+            >
+              +
+            </button>
+          )}
       </div>
     </div>
   );

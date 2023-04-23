@@ -4,7 +4,7 @@ import { useRepositories } from "../hooks";
 import { Select } from "./repositories/Select";
 
 export const Repositories = () => {
-  const {repositories, updateRepository} = useRepositories();
+  const { repositories, updateRepository } = useRepositories();
   const [renderOptions, setRenderOptions] = useState(false);
 
   return (
@@ -22,31 +22,38 @@ export const Repositories = () => {
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
           >
-            <path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"></path>
-          </svg>{" "}
+            <path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z">
+            </path>
+          </svg>
+          {" "}
         </button>
       </div>
       <div className="grid grid-cols-2 gap-4">
-        {repositories.map((repository) => repository.show && (
-          <div
-            key={repository._id}
-            className="col-span-1 space-y-3 p-5 border border-gray-700 rounded-lg"
-          >
-            <a
-              href={repository.url}
-              target="_blank"
-              className="text-base font-semibold text-blue-400"
-            >
-              {repository.name}
-            </a>
-            <p className="text-gray-400 truncate">{repository.description}</p>
-            <div className="space-x-5 text-sm text-gray-300">
-              <span className="font-semibold">{repository.lang}</span>
-              <span>Stars: {repository.stars}</span>
-              <span>Forks: {repository.forks}</span>
-            </div>
-          </div>
-        ))}
+        {repositories.map(
+          (repository) =>
+            repository.show && (
+              <div
+                key={repository._id}
+                className="col-span-1 space-y-3 p-5 border border-gray-700 rounded-lg"
+              >
+                <a
+                  href={repository.url}
+                  target="_blank"
+                  className="text-base font-semibold text-blue-400"
+                >
+                  {repository.name}
+                </a>
+                <p className="text-gray-400 truncate">
+                  {repository.description}
+                </p>
+                <div className="space-x-5 text-sm text-gray-300">
+                  <span className="font-semibold">{repository.lang}</span>
+                  <span>Stars: {repository.stars}</span>
+                  <span>Forks: {repository.forks}</span>
+                </div>
+              </div>
+            ),
+        )}
       </div>
       {renderOptions && (
         <Select
