@@ -58,7 +58,7 @@ export const useSkills = () => {
 
   useEffect(() => {
     readSkills();
-  }, [skills]);
+  }, []);
 
   return {
     skills,

@@ -50,7 +50,7 @@ export const usePositions = () => {
 
   useEffect(() => {
     readPositions();
-  }, [positions]);
+  }, []);
 
   return {
     positions,
