@@ -21,9 +21,12 @@ class CRUDProfile:
                 }
             )
         )
-        id = db.profiles.insert_one(profile_db).inserted_id
-        doc = db.profiles.find_one({"_id": id})
-        return doc
+        return db.profiles.find_one_and_update(
+            {"user": user},
+            {"$setOnInsert": profile_db},
+            upsert=True,
+            return_document=True,
+        )
 
     def _get_by_user(self, db: Database, user: str, access_token: str):
         doc = db.profiles.find_one({"user": user})
