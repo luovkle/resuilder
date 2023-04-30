@@ -9,8 +9,12 @@ class CRUDAbout:
         doc = db.about.find_one({"user": user})
         if not doc:
             about_db = jsonable_encoder(About.parse_obj({"user": user}))
-            id = db.about.insert_one(about_db).inserted_id
-            doc = db.about.find_one({"_id": id})
+            doc = db.about.find_one_and_update(
+                {"user": user},
+                {"$setOnInsert": about_db},
+                upsert=True,
+                return_document=True,
+            )
         if not doc:
             raise HTTPException(status.HTTP_404_NOT_FOUND)
         return doc
