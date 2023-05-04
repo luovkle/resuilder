@@ -4,6 +4,7 @@ from fastapi.testclient import TestClient
 from dotenv import load_dotenv
 
 from app.schemas.profile import ProfileRead
+from app.utils.profile import get_data
 
 load_dotenv()
 
@@ -42,3 +43,15 @@ def test_valid_profile_read_model(client: TestClient):
     assert response.status_code == 200
     response_json = response.json()
     assert response_json.keys() == ProfileRead(**response_json).dict().keys()
+
+
+def test_response_data(client: TestClient):
+    """Check that the /profiles/@me endpoint returns the correct data."""
+    current_data = get_data(ACCESS_TOKEN)
+    assert current_data
+    headers = {"Authorization": f"Bearer {ACCESS_TOKEN}"}
+    response = client.get(BASE_URL, headers=headers)
+    assert response.status_code == 200
+    res_json = response.json()
+    assert res_json["name"] == current_data["name"]
+    assert res_json["picture_url"] == current_data["picture"]
