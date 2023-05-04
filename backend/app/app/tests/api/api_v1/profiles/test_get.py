@@ -34,8 +34,9 @@ def test_invalid_access_token_provided(client: TestClient):
     assert response.status_code == 401
 
 
-def test_response_data(client: TestClient):
-    """Check that the data returned by the /profiles/@me endpoint is valid."""
+def test_valid_profile_read_model(client: TestClient):
+    """Check that the /profiles/@me endpoint returns data that matches the ProfileRead
+    model."""
     headers = {"Authorization": f"Bearer {ACCESS_TOKEN}"}
     response = client.get(BASE_URL, headers=headers)
     assert response.status_code == 200
