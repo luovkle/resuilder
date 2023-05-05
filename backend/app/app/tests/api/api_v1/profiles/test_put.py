@@ -39,7 +39,7 @@ def test_valid_profile_read_model(client: TestClient):
     """Check that the /profiles/@me endpoint returns data that matches the ProfileRead
     model."""
     headers = {"Authorization": f"Bearer {ACCESS_TOKEN}"}
-    response = client.get(BASE_URL, headers=headers)
+    response = client.put(BASE_URL, headers=headers, json={})
     assert response.status_code == 200
     response_json = response.json()
     assert response_json.keys() == ProfileRead(**response_json).dict().keys()
