@@ -59,12 +59,12 @@ export const Skills = () => {
   const handleAddSkill = () => setAddNewSkill(true);
 
   useEffect(() => {
-    if (editSkill.id) {
-      skillInputRef.current?.focus();
-    } else if (addNewSkill) {
-      newSkillInputRef.current?.focus();
-    }
-  }, [editSkill.id, addNewSkill]);
+    if (editSkill.id) skillInputRef.current?.focus();
+  }, [editSkill.id])
+
+  useEffect(() => {
+    if (addNewSkill) newSkillInputRef.current?.focus();
+  }, [addNewSkill])
 
   return (
     <div className="py-5 space-y-5">
