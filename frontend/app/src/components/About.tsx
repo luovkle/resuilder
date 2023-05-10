@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 
 import { useAbout } from "../hooks";
 import { Content, EditContent } from "./about";
+import { Section } from "./";
 
 export const About = () => {
   const { about, updateAbout } = useAbout({ about: "" });
@@ -24,10 +25,7 @@ export const About = () => {
   }, [edit]);
 
   return (
-    <div className="py-5 space-y-5">
-      <div>
-        <h5 className="text-sm font-medium text-gray-400">About</h5>
-      </div>
+    <Section name="About">
       <div>
         {edit ? (
           <EditContent
@@ -40,6 +38,6 @@ export const About = () => {
           <Content content={about.about} editContent={editContent} />
         )}
       </div>
-    </div>
+    </Section>
   );
 };
