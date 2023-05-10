@@ -30,7 +30,7 @@ export class RepositoriesService {
    * @throws ApiError
    */
   public static readCurrentRepositoryProfilesMeRepositoriesIdGet(
-    id: string,
+    id: string
   ): CancelablePromise<RepositoryRead> {
     return __request(OpenAPI, {
       method: "GET",
@@ -53,7 +53,7 @@ export class RepositoriesService {
    */
   public static updateCurrentRepositoryProfilesMeRepositoriesIdPut(
     id: string,
-    requestBody: RepositoryUpdate,
+    requestBody: RepositoryUpdate
   ): CancelablePromise<RepositoryRead> {
     return __request(OpenAPI, {
       method: "PUT",

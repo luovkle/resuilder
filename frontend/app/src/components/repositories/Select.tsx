@@ -19,9 +19,9 @@ export const Select = ({ showMenu, repositories, updateRepository }: Props) => {
     key === "Escape" && showMenu(false);
   };
 
-  const handleChange = (
-    { target: { id } }: React.ChangeEvent<HTMLInputElement>,
-  ) => {
+  const handleChange = ({
+    target: { id },
+  }: React.ChangeEvent<HTMLInputElement>) => {
     updateRepository(id, {
       show: !repositories.find((repository) => repository._id === id)?.show,
     });

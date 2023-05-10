@@ -29,16 +29,16 @@ export const About = () => {
         <h5 className="text-sm font-medium text-gray-400">About</h5>
       </div>
       <div>
-        {edit
-          ? (
-            <EditContent
-              textareaRef={textareaRef}
-              currentContent={about.about}
-              editContent={editContent}
-              newContent={updateAbout}
-            />
-          )
-          : <Content content={about.about} editContent={editContent} />}
+        {edit ? (
+          <EditContent
+            textareaRef={textareaRef}
+            currentContent={about.about}
+            editContent={editContent}
+            newContent={updateAbout}
+          />
+        ) : (
+          <Content content={about.about} editContent={editContent} />
+        )}
       </div>
     </div>
   );

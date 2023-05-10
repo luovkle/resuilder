@@ -32,7 +32,7 @@ export class SkillsService {
    * @throws ApiError
    */
   public static createSkillProfilesMeSkillsPost(
-    requestBody: SkillCreate,
+    requestBody: SkillCreate
   ): CancelablePromise<SkillRead> {
     return __request(OpenAPI, {
       method: "POST",
@@ -52,7 +52,7 @@ export class SkillsService {
    * @throws ApiError
    */
   public static readCurrentSkillProfilesMeSkillsIdGet(
-    id: string,
+    id: string
   ): CancelablePromise<SkillRead> {
     return __request(OpenAPI, {
       method: "GET",
@@ -75,7 +75,7 @@ export class SkillsService {
    */
   public static updateCurrentSkillsProfilesMeSkillsIdPut(
     id: string,
-    requestBody: SkillUpdate,
+    requestBody: SkillUpdate
   ): CancelablePromise<SkillRead> {
     return __request(OpenAPI, {
       method: "PUT",
@@ -98,7 +98,7 @@ export class SkillsService {
    * @throws ApiError
    */
   public static deleteCurrentSkillProfilesMeSkillsIdDelete(
-    id: string,
+    id: string
   ): CancelablePromise<Message> {
     return __request(OpenAPI, {
       method: "DELETE",

@@ -27,7 +27,7 @@ export const useRepositories = () => {
     setIsLoading(true);
     RepositoriesService.updateCurrentRepositoryProfilesMeRepositoriesIdPut(
       id,
-      repository,
+      repository
     )
       .then((newRepository) =>
         setRepositories((currentRepositories) =>

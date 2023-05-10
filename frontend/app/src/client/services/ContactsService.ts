@@ -32,7 +32,7 @@ export class ContactsService {
    * @throws ApiError
    */
   public static createCurrentContactProfilesMeContactsPost(
-    requestBody: ContactCreate,
+    requestBody: ContactCreate
   ): CancelablePromise<ContactRead> {
     return __request(OpenAPI, {
       method: "POST",
@@ -52,7 +52,7 @@ export class ContactsService {
    * @throws ApiError
    */
   public static readCurrentContactProfilesMeContactsIdGet(
-    id: string,
+    id: string
   ): CancelablePromise<ContactRead> {
     return __request(OpenAPI, {
       method: "GET",
@@ -75,7 +75,7 @@ export class ContactsService {
    */
   public static updateCurrentContactProfilesMeContactsIdPut(
     id: string,
-    requestBody: ContactUpdate,
+    requestBody: ContactUpdate
   ): CancelablePromise<ContactRead> {
     return __request(OpenAPI, {
       method: "PUT",
@@ -98,7 +98,7 @@ export class ContactsService {
    * @throws ApiError
    */
   public static deleteCurrentContactProfilesMeContactsIdDelete(
-    id: string,
+    id: string
   ): CancelablePromise<Message> {
     return __request(OpenAPI, {
       method: "DELETE",

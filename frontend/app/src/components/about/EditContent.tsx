@@ -34,7 +34,6 @@ export const EditContent = ({
       value={content}
       onChange={handleChange}
       onKeyDown={handleKeyDown}
-    >
-    </textarea>
+    ></textarea>
   );
 };

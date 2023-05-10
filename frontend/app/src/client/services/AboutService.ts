@@ -14,9 +14,7 @@ export class AboutService {
    * @returns AboutRead Successful Response
    * @throws ApiError
    */
-  public static readCurrentAboutProfilesMeAboutGet(): CancelablePromise<
-    AboutRead
-  > {
+  public static readCurrentAboutProfilesMeAboutGet(): CancelablePromise<AboutRead> {
     return __request(OpenAPI, {
       method: "GET",
       url: "/profiles/@me/about",
@@ -30,7 +28,7 @@ export class AboutService {
    * @throws ApiError
    */
   public static updateCurrentAboutProfilesMeAboutPut(
-    requestBody: AboutUpdate,
+    requestBody: AboutUpdate
   ): CancelablePromise<AboutRead> {
     return __request(OpenAPI, {
       method: "PUT",

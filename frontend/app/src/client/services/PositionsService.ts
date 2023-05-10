@@ -33,7 +33,7 @@ export class PositionsService {
    * @throws ApiError
    */
   public static createPositionProfilesMePositionsPost(
-    requestBody: PositionCreate,
+    requestBody: PositionCreate
   ): CancelablePromise<PositionRead> {
     return __request(OpenAPI, {
       method: "POST",
@@ -53,7 +53,7 @@ export class PositionsService {
    * @throws ApiError
    */
   public static readCurrentPositionProfilesMePositionsIdGet(
-    id: string,
+    id: string
   ): CancelablePromise<PositionRead> {
     return __request(OpenAPI, {
       method: "GET",
@@ -76,7 +76,7 @@ export class PositionsService {
    */
   public static updateCurrentPositionProfilesMePositionsIdPut(
     id: string,
-    requestBody: PositionUpdate,
+    requestBody: PositionUpdate
   ): CancelablePromise<PositionRead> {
     return __request(OpenAPI, {
       method: "PUT",
@@ -99,7 +99,7 @@ export class PositionsService {
    * @throws ApiError
    */
   public static deleteCurrentPositionProfilesMePositionsIdDelete(
-    id: string,
+    id: string
   ): CancelablePromise<Message> {
     return __request(OpenAPI, {
       method: "DELETE",
@@ -122,8 +122,7 @@ export class PositionsService {
    */
   public static updateCurrentPictureProfilesMePositionsIdPicturePut(
     id: string,
-    formData:
-      Body_update_current_picture_profiles__me_positions__id__picture_put,
+    formData: Body_update_current_picture_profiles__me_positions__id__picture_put
   ): CancelablePromise<PositionRead> {
     return __request(OpenAPI, {
       method: "PUT",

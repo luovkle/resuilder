@@ -15,9 +15,7 @@ export class ProfilesService {
    * @returns ProfileRead Successful Response
    * @throws ApiError
    */
-  public static readCurrentProfileProfilesMeGet(): CancelablePromise<
-    ProfileRead
-  > {
+  public static readCurrentProfileProfilesMeGet(): CancelablePromise<ProfileRead> {
     return __request(OpenAPI, {
       method: "GET",
       url: "/profiles/@me",
@@ -31,7 +29,7 @@ export class ProfilesService {
    * @throws ApiError
    */
   public static updateCurrentProfileProfilesMePut(
-    requestBody: ProfileUpdate,
+    requestBody: ProfileUpdate
   ): CancelablePromise<ProfileRead> {
     return __request(OpenAPI, {
       method: "PUT",
@@ -51,7 +49,7 @@ export class ProfilesService {
    * @throws ApiError
    */
   public static updateCurrentPictureProfilesMePicturePut(
-    formData: Body_update_current_picture_profiles__me_picture_put,
+    formData: Body_update_current_picture_profiles__me_picture_put
   ): CancelablePromise<ProfileRead> {
     return __request(OpenAPI, {
       method: "PUT",

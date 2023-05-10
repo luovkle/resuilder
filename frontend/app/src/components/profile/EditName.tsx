@@ -22,7 +22,7 @@ export const EditName = ({
   };
 
   const onKeyDown = (
-    event: KeyboardEvent<HTMLInputElement | HTMLTextAreaElement>,
+    event: KeyboardEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     if (event.key === "Enter" || event.key === "Escape") {
       event.key === "Enter" && newName(name);

@@ -60,11 +60,11 @@ export const Skills = () => {
 
   useEffect(() => {
     if (editSkill.id) skillInputRef.current?.focus();
-  }, [editSkill.id])
+  }, [editSkill.id]);
 
   useEffect(() => {
     if (addNewSkill) newSkillInputRef.current?.focus();
-  }, [addNewSkill])
+  }, [addNewSkill]);
 
   return (
     <div className="py-5 space-y-5">
@@ -73,49 +73,45 @@ export const Skills = () => {
       </div>
       <div className="flex flex-wrap gap-2">
         {skills.map((skill) =>
-          skill._id === editSkill.id
-            ? (
-              <input
-                ref={skillInputRef}
-                type="text"
-                className="bg-gray-700"
-                value={editSkill.name}
-                onChange={handleChangeUpdate}
-                onKeyDown={handleKeyDownUpdate}
-              />
-            )
-            : (
-              <span
-                key={skill._id}
-                id={skill._id}
-                onClick={handleClick}
-                className="bg-gray-700 px-4 py-1"
-              >
-                {skill.name}
-              </span>
-            )
-        )}
-        {addNewSkill
-          ? (
+          skill._id === editSkill.id ? (
             <input
-              ref={newSkillInputRef}
+              ref={skillInputRef}
               type="text"
-              className="bg-blue-700 hover:bg-blue-600 px-4 py-1"
-              value={newSkill}
-              onChange={handleChange}
-              onKeyDown={handleKeyDown}
-              placeholder="Skill"
+              className="bg-gray-700"
+              value={editSkill.name}
+              onChange={handleChangeUpdate}
+              onKeyDown={handleKeyDownUpdate}
             />
-          )
-          : (
-            <button
-              type="button"
-              className="bg-blue-600 hover:bg-blue-500 px-4 py-1"
-              onClick={handleAddSkill}
+          ) : (
+            <span
+              key={skill._id}
+              id={skill._id}
+              onClick={handleClick}
+              className="bg-gray-700 px-4 py-1"
             >
-              +
-            </button>
-          )}
+              {skill.name}
+            </span>
+          )
+        )}
+        {addNewSkill ? (
+          <input
+            ref={newSkillInputRef}
+            type="text"
+            className="bg-blue-700 hover:bg-blue-600 px-4 py-1"
+            value={newSkill}
+            onChange={handleChange}
+            onKeyDown={handleKeyDown}
+            placeholder="Skill"
+          />
+        ) : (
+          <button
+            type="button"
+            className="bg-blue-600 hover:bg-blue-500 px-4 py-1"
+            onClick={handleAddSkill}
+          >
+            +
+          </button>
+        )}
       </div>
     </div>
   );
