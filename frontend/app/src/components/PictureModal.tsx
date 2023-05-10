@@ -22,9 +22,14 @@ export const PictureModal = ({ showModal, url, alt, newPicture }: Props) => {
 
   useEffect(() => {
     document.addEventListener("click", handleClick, true);
-    document.addEventListener("keydown", handleKey);
     return () => {
       document.removeEventListener("click", handleClick, true);
+    };
+  }, []);
+
+  useEffect(() => {
+    document.addEventListener("keydown", handleKey);
+    return () => {
       document.removeEventListener("keydown", handleKey);
     };
   }, []);
