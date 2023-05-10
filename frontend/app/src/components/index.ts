@@ -7,3 +7,4 @@ export * from "./Repositories";
 export * from "./auth/LoginButton";
 export * from "./auth/LogoutButton";
 export * from "./Spinner";
+export * from "./Section";
