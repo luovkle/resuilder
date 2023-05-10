@@ -25,7 +25,7 @@ export const EditContent = ({
     event: KeyboardEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     if (event.key === "Enter" || event.key === "Escape") {
-      event.key === "Enter" && content && newContent(content);
+      event.key === "Enter" && newContent(content);
       editContent(false);
     }
   };
