@@ -14,12 +14,12 @@ export const About = () => {
   };
 
   useEffect(() => {
-    if (edit && textareaRef.current) {
+    if (edit) {
       if (about.about) {
         const end = about.about.length;
-        textareaRef.current.setSelectionRange(end, end);
+        textareaRef.current?.setSelectionRange(end, end);
       }
-      textareaRef.current.focus();
+      textareaRef.current?.focus();
     }
   }, [edit]);
 
