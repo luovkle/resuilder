@@ -26,14 +26,16 @@ export const Profile = () => {
   };
 
   useEffect(() => {
-    if (edit.name && inputRef.current) {
-      inputRef.current.focus();
-    } else if (edit.content && textareaRef.current) {
+    if (edit.name) inputRef.current?.focus();
+  }, [edit]);
+
+  useEffect(() => {
+    if (edit.content) {
       if (profile.content) {
         const end = profile.content.length;
-        textareaRef.current.setSelectionRange(end, end);
+        textareaRef.current?.setSelectionRange(end, end);
       }
-      textareaRef.current.focus();
+      textareaRef.current?.focus();
     }
   }, [edit]);
 
