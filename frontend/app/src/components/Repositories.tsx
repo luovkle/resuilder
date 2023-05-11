@@ -2,30 +2,14 @@ import { useState } from "react";
 import { useRepositories } from "../hooks";
 
 import { Select } from "./repositories/Select";
+import { Section } from "./Section";
 
 export const Repositories = () => {
   const { repositories, updateRepository } = useRepositories();
   const [renderOptions, setRenderOptions] = useState(false);
 
   return (
-    <div className="py-5 space-y-5">
-      <div className="flex justify-between">
-        <h5 className="text-sm font-medium text-gray-400">Repositories</h5>
-        <button
-          type="button"
-          className="fill-gray-400 hover:fill-gray-200"
-          onClick={() => setRenderOptions(true)}
-        >
-          <svg
-            width="20px"
-            focusable="false"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-          >
-            <path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"></path>
-          </svg>{" "}
-        </button>
-      </div>
+    <Section name="Repositories" onMenu={() => setRenderOptions(true)}>
       <div className="grid grid-cols-2 gap-4">
         {repositories.map(
           (repository) =>
@@ -60,6 +44,6 @@ export const Repositories = () => {
           updateRepository={updateRepository}
         />
       )}
-    </div>
+    </Section>
   );
 };
