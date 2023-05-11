@@ -73,6 +73,7 @@ export const Skills = () => {
         {skills.map((skill) =>
           skill._id === editSkill.id ? (
             <input
+              key={skill._id}
               ref={skillInputRef}
               type="text"
               className="bg-gray-700"
