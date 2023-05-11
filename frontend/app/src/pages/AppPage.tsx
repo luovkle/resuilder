@@ -9,22 +9,18 @@ import {
 
 export const AppPage = () => {
   return (
-    <>
-      <div className="bg-gray-900 text-gray-200">
-        <div className="container mx-auto divide-gray-700 max-w-3xl">
-          <Profile />
-          <hr />
-          <Contact />
-          <hr />
-          <About />
-          <hr />
-          <Skills />
-          <hr />
-          <Positions />
-          <hr />
-          <Repositories />
-        </div>
-      </div>
-    </>
+    <div className="container mx-auto divide-gray-700 max-w-3xl">
+      <Profile />
+      <hr />
+      <Contact />
+      <hr />
+      <About />
+      <hr />
+      <Skills />
+      <hr />
+      <Positions />
+      <hr />
+      <Repositories />
+    </div>
   );
 };
