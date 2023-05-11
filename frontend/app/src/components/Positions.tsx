@@ -4,6 +4,7 @@ import { PositionRead } from "../client";
 import { usePositions } from "../hooks";
 // import { Picture } from "./Picture";
 import { PositionModal } from "./PositionModal";
+import { Section } from "./Section";
 
 const positionInitialData = {
   _id: "",
@@ -33,10 +34,7 @@ export const Positions = () => {
 
   return (
     <div>
-      <div className="py-5 space-y-5">
-        <div>
-          <h5 className="text-sm font-medium text-gray-400">Positions</h5>
-        </div>
+      <Section name="Positions">
         <div className="space-y-5">
           {positions.map((position) => (
             <div key={position._id} className="grid grid-cols-12 gap-4">
@@ -82,15 +80,15 @@ export const Positions = () => {
             +
           </button>
         </div>
-      </div>
-      {showModal && (
-        <PositionModal
-          showModal={setShowModal}
-          positionData={positionData}
-          addPosition={createPosition}
-          editPosition={updatePosition}
-        />
-      )}
+        {showModal && (
+          <PositionModal
+            showModal={setShowModal}
+            positionData={positionData}
+            addPosition={createPosition}
+            editPosition={updatePosition}
+          />
+        )}
+      </Section>
     </div>
   );
 };
