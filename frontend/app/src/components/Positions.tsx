@@ -33,8 +33,8 @@ export const Positions = () => {
   };
 
   return (
-    <div>
-      <Section name="Positions">
+    <Section name="Positions">
+      <div className="overflow-hidden">
         <div className="space-y-5">
           {positions.map((position) => (
             <div key={position._id} className="grid grid-cols-12 gap-4">
@@ -88,7 +88,7 @@ export const Positions = () => {
             editPosition={updatePosition}
           />
         )}
-      </Section>
-    </div>
+      </div>
+    </Section>
   );
 };
