@@ -9,7 +9,7 @@ export const Name = ({ editName, name }: Props) => {
   };
 
   return (
-    <h1 onClick={handleClick} className="text-2xl font-bold">
+    <h1 onClick={handleClick} className="text-2xl font-semibold">
       {name.length > 0 ? name : <span className="italic">[Empty]</span>}
     </h1>
   );
