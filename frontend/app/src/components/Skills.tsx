@@ -1,6 +1,7 @@
 import React, { KeyboardEvent, useEffect, useRef, useState } from "react";
 
 import { useSkills } from "../hooks";
+import { Section } from "./Section";
 
 export const Skills = () => {
   const { skills, createSkill, updateSkill, deleteSkill } = useSkills();
@@ -67,10 +68,7 @@ export const Skills = () => {
   }, [addNewSkill]);
 
   return (
-    <div className="py-5 space-y-5">
-      <div>
-        <h5 className="text-sm font-medium text-gray-400">Tech Stack</h5>
-      </div>
+    <Section name="Tech Stack">
       <div className="flex flex-wrap gap-2">
         {skills.map((skill) =>
           skill._id === editSkill.id ? (
@@ -113,6 +111,6 @@ export const Skills = () => {
           </button>
         )}
       </div>
-    </div>
+    </Section>
   );
 };
