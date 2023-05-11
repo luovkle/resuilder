@@ -1,6 +1,7 @@
 import { KeyboardEvent, useEffect, useRef, useState } from "react";
 
 import { useContact } from "../hooks";
+import { Section } from "./Section";
 
 interface NewMethod {
   title: string;
@@ -58,10 +59,7 @@ export const Contact = () => {
   }, [addNewMethod]);
 
   return (
-    <div className="py-5 space-y-5">
-      <div>
-        <h5 className="text-sm font-medium text-gray-400">Contact</h5>
-      </div>
+    <Section name="Contact">
       <div className="flex flex-wrap gap-2">
         {methods.map((method) => (
           <a
@@ -106,6 +104,6 @@ export const Contact = () => {
           </button>
         )}
       </div>
-    </div>
+    </Section>
   );
 };
