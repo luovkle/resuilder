@@ -46,7 +46,7 @@ export const Select = ({ showMenu, repositories, updateRepository }: Props) => {
       <div className="h-screen w-full fixed left-0 top-0 flex justify-center items-center bg-black bg-opacity-50">
         <div
           ref={cardRef}
-          className="bg-gray-900 rounded-lg border border-gray-700 h-2/3 w-1/2"
+          className="bg-gray-900 rounded-lg border border-gray-700 h-2/3 w-1/2 overflow-auto"
         >
           <div className="mt-4 mx-4">
             {repositories.map((repository) => (
