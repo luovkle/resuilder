@@ -55,7 +55,7 @@ export const PositionModal = ({
       } else if (position.details.trim().length < 1) {
         event.preventDefault();
         detailsRef.current?.focus();
-      } else handleConfirm();
+      }
     }
   };
 
