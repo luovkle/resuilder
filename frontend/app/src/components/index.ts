@@ -9,3 +9,4 @@ export * from "./auth/LogoutButton";
 export * from "./Spinner";
 export * from "./Section";
 export * from "./Navbar";
+export * from "./Title";
