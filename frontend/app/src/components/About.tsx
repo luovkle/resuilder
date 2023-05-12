@@ -14,6 +14,17 @@ export const About = () => {
     setEdit(arg);
   };
 
+  const handleClick = ({ target }: MouseEvent) => {
+    !textareaRef.current?.contains(target as Node) && editContent(false);
+  };
+
+  useEffect(() => {
+    document.addEventListener("click", handleClick, true);
+    return () => {
+      document.removeEventListener("click", handleClick, true);
+    };
+  }, []);
+
   useEffect(() => {
     if (edit) {
       if (about.about) {
