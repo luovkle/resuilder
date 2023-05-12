@@ -9,7 +9,6 @@ COPY [ \
   "./app/vite.config.ts", \
   "/app/" \
 ]
-ADD ["./app/public", "/app/public/"]
 ADD ["./app/src", "/app/src/"]
 RUN npm run build
 
