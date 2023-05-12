@@ -2,22 +2,15 @@ import React, { KeyboardEvent, useEffect, useRef, useState } from "react";
 
 import { useSkills } from "../hooks";
 import { Section } from "./Section";
+import { AddSkill } from "./skills/AddSkill";
 
 export const Skills = () => {
   const { skills, createSkill, updateSkill, deleteSkill } = useSkills();
-
-  const [newSkill, setNewSkill] = useState("");
   const [addNewSkill, setAddNewSkill] = useState(false);
-
   const [editSkill, setEditSkill] = useState({ id: "", name: "" });
 
   const skillInputRef = useRef<HTMLInputElement>(null);
   const newSkillInputRef = useRef<HTMLInputElement>(null);
-
-  const addSkill = (skill: string) => {
-    createSkill(skill);
-    setNewSkill("");
-  };
 
   const handleClick = ({
     currentTarget: { id, textContent },
@@ -25,25 +18,10 @@ export const Skills = () => {
     setEditSkill({ id, name: textContent || "" });
   };
 
-  const handleChange = ({
-    target: { value },
-  }: React.ChangeEvent<HTMLInputElement>) => {
-    setNewSkill(value);
-  };
-
   const handleChangeUpdate = ({
     target: { value },
   }: React.ChangeEvent<HTMLInputElement>) => {
     setEditSkill({ ...editSkill, name: value });
-  };
-
-  const handleKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
-    if (event.key === "Enter" && newSkill.trim().length > 0) {
-      addSkill(newSkill);
-    } else if (event.key === "Escape") {
-      setNewSkill("");
-      setAddNewSkill(false);
-    }
   };
 
   const handleKeyDownUpdate = (event: KeyboardEvent<HTMLInputElement>) => {
@@ -93,14 +71,10 @@ export const Skills = () => {
           )
         )}
         {addNewSkill ? (
-          <input
-            ref={newSkillInputRef}
-            type="text"
-            className="bg-blue-700 hover:bg-blue-600 px-4 py-1"
-            value={newSkill}
-            onChange={handleChange}
-            onKeyDown={handleKeyDown}
-            placeholder="Skill"
+          <AddSkill
+            createSkill={createSkill}
+            setAddNewSkill={(arg: boolean) => setAddNewSkill(arg)}
+            inputRef={newSkillInputRef}
           />
         ) : (
           <button
