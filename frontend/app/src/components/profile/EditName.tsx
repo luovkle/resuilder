@@ -1,4 +1,4 @@
-import React, { KeyboardEvent, useState } from "react";
+import React, { KeyboardEvent, useState, useEffect } from "react";
 
 interface Props {
   currentName: string;
@@ -29,6 +29,17 @@ export const EditName = ({
       editName(false);
     }
   };
+
+  const handleClick = ({ target }: MouseEvent) => {
+    !inputRef.current?.contains(target as Node) && editName(false);
+  };
+
+  useEffect(() => {
+    document.addEventListener("click", handleClick, true);
+    return () => {
+      document.removeEventListener("click", handleClick, true);
+    };
+  }, []);
 
   return (
     <input
