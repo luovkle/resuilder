@@ -48,7 +48,7 @@ export const Select = ({ showMenu, repositories, updateRepository }: Props) => {
           ref={cardRef}
           className="bg-gray-900 rounded-lg border border-gray-700 h-2/3 w-1/2 overflow-auto"
         >
-          <div className="mt-4 mx-4">
+          <div className="my-4 mx-4">
             {repositories.map((repository) => (
               <div
                 key={repository._id}
@@ -59,13 +59,20 @@ export const Select = ({ showMenu, repositories, updateRepository }: Props) => {
                   type="checkbox"
                   checked={repository.show}
                   onChange={handleChange}
-                  className="h-4 w-4"
+                  className="h-4 w-4 accent-blue-600"
                 />
                 <label htmlFor={repository._id} className="ml-2 w-full">
                   {repository.name}
                 </label>
               </div>
             ))}
+            <button
+              type="button"
+              className="bg-blue-600 hover:bg-blue-500 px-4 py-1 w-full rounded-md mt-2"
+              onClick={() => showMenu(false)}
+            >
+              Confirm
+            </button>
           </div>
         </div>
       </div>
