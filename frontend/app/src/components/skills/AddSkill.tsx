@@ -1,4 +1,4 @@
-import React, { KeyboardEvent, useState } from "react";
+import React, { KeyboardEvent, useEffect, useState } from "react";
 
 export const AddSkill = ({
   createSkill,
@@ -30,6 +30,17 @@ export const AddSkill = ({
       setAddNewSkill(false);
     }
   };
+
+  const handleClick = ({ target }: MouseEvent) => {
+    !inputRef.current?.contains(target as Node) && setAddNewSkill(false);
+  };
+
+  useEffect(() => {
+    document.addEventListener("click", handleClick, true);
+    return () => {
+      document.removeEventListener("click", handleClick, true);
+    };
+  }, []);
 
   return (
     <input
