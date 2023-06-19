@@ -1,7 +1,7 @@
 FROM node:19-alpine
 WORKDIR /app
 COPY ["./app/package.json", "/app/"]
-RUN npm install --no-cache
+RUN yarn install --no-cache
 COPY [ \
   "./app/index.html", \
   "./app/tsconfig.json", \
@@ -11,4 +11,4 @@ COPY [ \
 ]
 ADD ["./app/src", "/app/src/"]
 EXPOSE 3000
-CMD ["npm", "run", "dev", "--", "--host", "--port", "3000"]
+CMD ["yarn", "run", "dev", "--", "--host", "--port", "3000"]
