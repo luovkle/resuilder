@@ -11,6 +11,8 @@ COPY [ \
   "./app/tsconfig.json", \
   "./app/tsconfig.node.json", \
   "./app/vite.config.ts", \
+  "./app/postcss.config.cjs", \
+  "./app/tailwind.config.cjs", \
   "/app/" \
 ]
 ADD ["./app/src", "/app/src/"]
