@@ -29,7 +29,7 @@ services:
   frontend:
     build:
       context: ./frontend
-      target: builder
+      dockerfile: dev.dockerfile
     env_file:
       - ./frontend/app/.env
     restart: always

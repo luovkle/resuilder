@@ -10,7 +10,9 @@ services:
       - 8000:8000
 
   frontend:
-    build: ./frontend
+    build:
+      context: ./frontend
+      dockerfile: prod.dockerfile
     env_file:
       - ./frontend/app/.env
     restart: always
