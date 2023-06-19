@@ -13,6 +13,10 @@ services:
     build:
       context: ./frontend
       dockerfile: prod.dockerfile
+      args:
+        VITE_AUTH0_DOMAIN: ${VITE_AUTH0_DOMAIN}
+        VITE_AUTH0_CLIENT_ID: ${VITE_AUTH0_CLIENT_ID}
+        VITE_AUTH0_AUDIENCE: ${VITE_AUTH0_AUDIENCE}
     env_file:
       - ./frontend/app/.env
     restart: always
