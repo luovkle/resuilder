@@ -1,6 +1,10 @@
 FROM node:19-alpine
 WORKDIR /app
-COPY ["./app/package.json", "/app/"]
+COPY [ \
+  "./app/package.json", \
+  "./app/yarn.lock", \
+  "/app/" \
+]
 RUN yarn install --no-cache
 COPY [ \
   "./app/index.html", \
