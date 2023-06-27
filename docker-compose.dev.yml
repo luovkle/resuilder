@@ -11,6 +11,18 @@ services:
     volumes:
       - data:/data/db
 
+  generator:
+    build: ./generator
+    restart: always
+    ports:
+      - 8001:8001
+    command: yarn start:dev
+    volumes:
+      - ./generator/app:/app
+      - /app/node_modules
+    depends_on:
+      - mongo
+
   backend:
     build: ./backend
     env_file:
@@ -41,6 +53,7 @@ services:
       - /app/node_modules
     depends_on:
       - backend
+      - generator
 
 volumes:
   data:
