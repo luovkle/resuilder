@@ -4,8 +4,8 @@ services:
   generator:
     build: ./generator
     restart: always
-    ports:
-      - 8001:8001
+    expose:
+      - 8001
 
   backend:
     build: ./backend
