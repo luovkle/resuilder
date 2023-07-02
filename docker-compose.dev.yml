@@ -6,8 +6,8 @@ services:
     env_file:
       - ./mongo/.env
     restart: always
-    expose:
-      - 27017
+    ports:
+      - 27017:27017
     volumes:
       - data:/data/db
 
