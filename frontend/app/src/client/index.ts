@@ -27,7 +27,7 @@ export type { SkillRead } from "./models/SkillRead";
 export type { SkillUpdate } from "./models/SkillUpdate";
 export type { ValidationError } from "./models/ValidationError";
 
-export { AboutService } from "./services/AboutService";
+export { AboutsService } from "./services/AboutsService";
 export { ContactsService } from "./services/ContactsService";
 export { PositionsService } from "./services/PositionsService";
 export { ProfilesService } from "./services/ProfilesService";

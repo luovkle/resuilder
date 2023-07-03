@@ -8,16 +8,16 @@ import type { CancelablePromise } from "../core/CancelablePromise";
 import { OpenAPI } from "../core/OpenAPI";
 import { request as __request } from "../core/request";
 
-export class AboutService {
+export class AboutsService {
   /**
    * Read Current About
    * @returns AboutRead Successful Response
    * @throws ApiError
    */
-  public static readCurrentAboutProfilesMeAboutGet(): CancelablePromise<AboutRead> {
+  public static readCurrentAboutProfilesMeAboutsGet(): CancelablePromise<AboutRead> {
     return __request(OpenAPI, {
       method: "GET",
-      url: "/profiles/@me/about",
+      url: "/profiles/@me/abouts",
     });
   }
 
@@ -27,12 +27,12 @@ export class AboutService {
    * @returns AboutRead Successful Response
    * @throws ApiError
    */
-  public static updateCurrentAboutProfilesMeAboutPut(
+  public static updateCurrentAboutProfilesMeAboutsPut(
     requestBody: AboutUpdate
   ): CancelablePromise<AboutRead> {
     return __request(OpenAPI, {
       method: "PUT",
-      url: "/profiles/@me/about",
+      url: "/profiles/@me/abouts",
       body: requestBody,
       mediaType: "application/json",
       errors: {
