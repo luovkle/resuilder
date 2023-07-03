@@ -10,6 +10,7 @@ services:
       - 27017:27017
     volumes:
       - data:/data/db
+      - ./mongo/mongo-init.sh:/docker-entrypoint-initdb.d/mongo-init.sh
 
   generator:
     build: ./generator
