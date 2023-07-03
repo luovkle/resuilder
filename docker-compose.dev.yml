@@ -14,6 +14,8 @@ services:
 
   generator:
     build: ./generator
+    env_file:
+      - ./generator/app/.env
     restart: always
     ports:
       - 8001:8001
