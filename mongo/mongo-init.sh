@@ -16,7 +16,7 @@ db.createUser({
   ],
 });
 
-db.createCollection("about");
+db.createCollection("abouts");
 db.createCollection("contacts");
 db.createCollection("positions");
 db.createCollection("profiles");

@@ -6,10 +6,10 @@ from app.schemas.about import AboutUpdate, About
 
 class CRUDAbout:
     def _get_by_user(self, db: Database, user: str):
-        doc = db.about.find_one({"user": user})
+        doc = db.abouts.find_one({"user": user})
         if not doc:
             about_db = jsonable_encoder(About.parse_obj({"user": user}))
-            doc = db.about.find_one_and_update(
+            doc = db.abouts.find_one_and_update(
                 {"user": user},
                 {"$setOnInsert": about_db},
                 upsert=True,
@@ -24,7 +24,7 @@ class CRUDAbout:
 
     def update(self, db: Database, user: str, about: AboutUpdate):
         doc = self._get_by_user(db, user)
-        changes = db.about.update_one(
+        changes = db.abouts.update_one(
             {"_id": doc["_id"]}, {"$set": about.dict(exclude_none=True)}
         ).modified_count
         return self._get_by_user(db, user) if changes else doc
