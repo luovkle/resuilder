@@ -7,6 +7,7 @@ import { Position } from './schemas/position.schema';
 import { Profile } from './schemas/profile.schema';
 import { Repository } from './schemas/repository.schema';
 import { Skill } from './schemas/skill.schema';
+import { render as nunjucksRender } from 'nunjucks';
 
 @Injectable()
 export class ResumeService {
@@ -29,5 +30,10 @@ export class ResumeService {
       skills: await this.skillModel.find({ user }),
     };
     return data;
+  }
+
+  async #renderTemplate(user: string) {
+    const data = await this.#getData(user);
+    return nunjucksRender('template.html', data);
   }
 }
