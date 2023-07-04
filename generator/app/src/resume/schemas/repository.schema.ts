@@ -1,5 +1,24 @@
-import { SchemaFactory } from '@nestjs/mongoose';
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 
-export class Repository {}
+@Schema()
+export class Repository {
+  @Prop()
+  url: string;
+
+  @Prop()
+  name: string;
+
+  @Prop()
+  desscription: string;
+
+  @Prop()
+  lang: string;
+
+  @Prop()
+  stars: string;
+
+  @Prop()
+  forks: string;
+}
 
 export const RepositorySchema = SchemaFactory.createForClass(Repository);

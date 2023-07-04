@@ -1,5 +1,9 @@
-import { SchemaFactory } from '@nestjs/mongoose';
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 
-export class About {}
+@Schema()
+export class About {
+  @Prop()
+  about: string;
+}
 
 export const AboutSchema = SchemaFactory.createForClass(About);
