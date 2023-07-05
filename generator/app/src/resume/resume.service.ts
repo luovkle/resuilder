@@ -42,6 +42,13 @@ export class ResumeService {
   async #renderPdf(user: string) {
     const browser = await puppeteer.launch({
       headless: 'new',
+      executablePath: process.env.CHROME_BIN || '/usr/bin/chromium-browser',
+      args: [
+        '--no-sandbox',
+        '--headless',
+        '--disable-gpu',
+        '--disable-dev-shm-usage',
+      ],
     });
     const page = await browser.newPage();
     await page.goto('http://localhost:8001/resume/html/' + user, {

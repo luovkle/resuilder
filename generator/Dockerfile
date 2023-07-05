@@ -1,4 +1,10 @@
 FROM node:19-alpine
+ENV CHROME_BIN="/usr/bin/chromium-browser" \
+    PUPPETEER_SKIP_CHROMIUM_DOWNLOAD="true"
+RUN apk add --no-cache \
+    udev \
+    ttf-freefont \
+    chromium
 WORKDIR /app
 COPY [ \
   "./app/package.json", \
