@@ -36,4 +36,8 @@ export class ResumeService {
     const data = await this.#getData(user);
     return nunjucksRender('template.html', data);
   }
+
+  async getHtml(user: string) {
+    return this.#renderTemplate(user);
+  }
 }
