@@ -60,6 +60,10 @@ export class ResumeService {
     return pdfPath;
   }
 
+  async getPdf(user: string) {
+    return this.#renderPdf(user);
+  }
+
   async getHtml(user: string) {
     return this.#renderTemplate(user);
   }
