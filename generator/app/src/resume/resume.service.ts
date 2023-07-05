@@ -8,6 +8,8 @@ import { Profile } from './schemas/profile.schema';
 import { Repository } from './schemas/repository.schema';
 import { Skill } from './schemas/skill.schema';
 import { render as nunjucksRender } from 'nunjucks';
+import puppeteer from 'puppeteer';
+import { join } from 'path';
 
 @Injectable()
 export class ResumeService {
@@ -35,6 +37,27 @@ export class ResumeService {
   async #renderTemplate(user: string) {
     const data = await this.#getData(user);
     return nunjucksRender('template.html', data);
+  }
+
+  async #renderPdf(user: string) {
+    const browser = await puppeteer.launch({
+      headless: 'new',
+    });
+    const page = await browser.newPage();
+    await page.goto('http://localhost:8001/resume/html/' + user, {
+      waitUntil: 'networkidle2',
+    });
+    await page.setViewport({ width: 960, height: 1080 });
+    const pdfPath = join(__dirname, user + '.pdf');
+    await page.pdf({
+      path: pdfPath,
+      width: 1300,
+      height: 900,
+      landscape: true,
+      printBackground: true,
+    });
+    await browser.close();
+    return pdfPath;
   }
 
   async getHtml(user: string) {
