@@ -7,7 +7,7 @@
   "license": "UNLICENSED",
   "scripts": {
     "build": "nest build",
-    "build:css": "tailwindcss -i ./src/resume/static/input.css -o ./dist/resume/static/output.css --watch",
+    "build:css": "tailwindcss -i ./src/resume/static/input.css -o ./dist/resume/static/output.css",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "start": "nest start",
     "start:dev": "nest start --watch",
