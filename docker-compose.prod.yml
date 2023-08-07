@@ -3,6 +3,8 @@ version: "3.8"
 services:
   generator:
     build: ./generator
+    environment:
+      DB_URI: ${DB_URI}
     restart: always
     expose:
       - 8001
@@ -23,8 +25,6 @@ services:
         VITE_AUTH0_DOMAIN: ${VITE_AUTH0_DOMAIN}
         VITE_AUTH0_CLIENT_ID: ${VITE_AUTH0_CLIENT_ID}
         VITE_AUTH0_AUDIENCE: ${VITE_AUTH0_AUDIENCE}
-    env_file:
-      - ./frontend/app/.env
     restart: always
     ports:
       - 80:80
