@@ -5,7 +5,6 @@ export default function DownloadButton() {
 
   const handleClick = async () => {
     const accessToken = await getAccessTokenSilently();
-    console.log(accessToken);
     fetch("http://localhost:8000/profiles/@me/resumes", {
       method: "GET",
       headers: {
