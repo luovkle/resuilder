@@ -11,8 +11,14 @@ services:
 
   backend:
     build: ./backend
-    env_file:
-      - ./backend/app/.env.prod
+    environment:
+      ALLOW_ORIGINS: ${ALLOW_ORIGINS}
+      DOMAIN: ${DOMAIN}
+      API_AUDIENCE: ${API_AUDIENCE}
+      ISSUER: ${ISSUER}
+      ALGORITHMS: ${ALGORITHMS}
+      DB_URI: ${DB_URI}
+      CLOUDINARY_URL: ${CLOUDINARY_URL}
     restart: always
     ports:
       - 8000:8000
