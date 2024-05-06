@@ -7,6 +7,7 @@ class ProfileBase(BaseModel):
     name: str
     content: str | None = None
     picture_url: HttpUrl
+    nickname: str
 
 
 class Profile(ProfileBase):
