@@ -84,11 +84,17 @@
         {% for position in positions %}
           <div class="grid grid-cols-12 gap-4">
             <div class="col-span-1">
+            {% if position.picture_url %}
               <img
                 src="{{ position.picture_url }}"
                 alt="{{ position.title }}"
                 class="rounded-full"
               />
+            {% else %}
+              <div class="flex items-center justify-center bg-blue-600 w-[43.8333px] h-[43.8333px] rounded-full font-bold select-none">
+                {{ position.title[0]|upper if position.title }}
+              </div>
+            {% endif %}
             </div>
             <div class="col-span-11 space-y-5">
               <div>
