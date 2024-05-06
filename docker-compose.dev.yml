@@ -26,6 +26,21 @@ services:
     depends_on:
       - mongo
 
+  renderer:
+    build: ./renderer
+    env_file:
+      - ./renderer/.env
+    environment:
+      PYTHONDONTWRITEBYTECODE: 1
+    restart: always
+    ports:
+      - 8002:8001
+    command: pipenv run dev
+    volumes:
+      - ./renderer/app/:/app/app
+    depends_on:
+      - mongo
+
   backend:
     build: ./backend
     env_file:

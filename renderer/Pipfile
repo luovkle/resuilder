@@ -16,5 +16,5 @@ pymongo = {extras = ["srv"], version = "*"}
 python_version = "3.11"
 
 [scripts]
-dev = "flask --app app.main:app run --debug --port 8001"
+dev = "flask --app app.main:app run --debug --port 8001 --host 0.0.0.0"
 prod = "gunicorn app.main:app --bind 0.0.0.0:8001 -k gevent -w 1"
