@@ -73,5 +73,17 @@ services:
       - backend
       - generator
 
+  domain:
+    build:
+      context: ./domain
+      dockerfile: dev.dockerfile
+    env_file:
+      - ./domain/.env
+    restart: always
+    ports:
+      - 80:3000
+    volumes:
+      - ./domain:/app
+
 volumes:
   data:
