@@ -37,3 +37,14 @@ services:
     depends_on:
       - backend
       - generator
+
+  frontend:
+    build:
+      context: ./domain
+      dockerfile: prod.dockerfile
+      args:
+        REPO_URL: ${REPO_URL}
+        EDITOR_URL: ${EDITOR_URL}
+    restart: always
+    ports:
+      - 81:80
