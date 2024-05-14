@@ -1,3 +1,5 @@
+import { Tag } from "./";
+
 interface Props {
   job: { tools: string[] };
 }
@@ -10,9 +12,7 @@ const Tools = ({ job }: Props) => {
       </div>
       <div className="flex flex-wrap gap-2">
         {job.tools.map((tool) => (
-          <span key={tool} className="bg-gray-700 px-4 py-1">
-            {tool}
-          </span>
+          <Tag key={tool} content={tool} />
         ))}
       </div>
     </div>

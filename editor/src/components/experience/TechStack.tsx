@@ -1,3 +1,5 @@
+import { Tag } from "./";
+
 interface Props {
   job: { techStack: string[] };
 }
@@ -12,9 +14,7 @@ const TechStack = ({ job }: Props) => {
       </div>
       <div className="flex flex-wrap gap-2">
         {job.techStack.map((technology) => (
-          <span key={technology} className="bg-gray-700 px-4 py-1">
-            {technology}
-          </span>
+          <Tag key={technology} content={technology} />
         ))}
       </div>
     </div>
