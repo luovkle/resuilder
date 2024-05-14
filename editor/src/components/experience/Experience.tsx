@@ -1,10 +1,12 @@
 import { useState } from "react";
 
+import DefaultPicture from "./DefaultPicture";
+
 const Experience = () => {
   const [jobs, setJobs] = useState([
     {
       title: "test",
-      picture_url: "https://localhost/picture.png",
+      picture_url: "",
       start_date: "",
       end_date: "",
       details: "",
@@ -25,11 +27,15 @@ const Experience = () => {
         {jobs.map((job) => (
           <div className="grid grid-cols-12 gap-4">
             <div className="col-span-1">
-              <img
-                src={job.picture_url}
-                alt={job.title}
-                className="rounded-full"
-              />
+              {job.picture_url ? (
+                <img
+                  src={job.picture_url}
+                  alt={job.title}
+                  className="rounded-full"
+                />
+              ) : (
+                <DefaultPicture title={job.title} />
+              )}
             </div>
             <div className="col-span-11">
               <div className="space-y-2.5">
