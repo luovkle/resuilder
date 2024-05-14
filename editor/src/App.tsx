@@ -1,5 +1,11 @@
+import { Resume } from "./components";
+
 const App = () => {
-  return <>Resuilder</>;
+  return (
+    <>
+      <Resume />
+    </>
+  );
 };
 
 export default App;
