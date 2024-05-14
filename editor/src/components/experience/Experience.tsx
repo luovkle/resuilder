@@ -5,6 +5,7 @@ import { DefaultPicture, Responsibilities, TechStack, Tools } from "./";
 const Experience = () => {
   const [jobs, setJobs] = useState([
     {
+      id: "1",
       title: "test",
       picture_url: "",
       start_date: "",
@@ -25,7 +26,7 @@ const Experience = () => {
       </div>
       <div className="space-y-5">
         {jobs.map((job) => (
-          <div className="grid grid-cols-12 gap-4">
+          <div key={job.id} className="grid grid-cols-12 gap-4">
             <div className="col-span-1">
               {job.picture_url ? (
                 <img

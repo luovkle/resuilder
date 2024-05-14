@@ -3,6 +3,7 @@ import { useState } from "react";
 const Contact = () => {
   const [contactMethods, setContactMethods] = useState([
     {
+      id: "1",
       title: "localhost",
       url: "http://localhost",
     },
@@ -18,6 +19,7 @@ const Contact = () => {
       <div className="flex flex-wrap gap-2">
         {contactMethods.map((contactMethod) => (
           <a
+            key={contactMethod.id}
             href={contactMethod.url}
             target="”_blank”"
             className="bg-gray-700 px-4 py-1"

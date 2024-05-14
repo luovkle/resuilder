@@ -12,7 +12,7 @@ const Responsibilities = ({ job }: Props) => {
       </div>
       <ul className="pl-10 list-disc">
         {job.responsibilities.map((responsibility) => (
-          <li>{responsibility}</li>
+          <li key={responsibility}>{responsibility}</li>
         ))}
       </ul>
     </div>

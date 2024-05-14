@@ -10,7 +10,9 @@ const Tools = ({ job }: Props) => {
       </div>
       <div className="flex flex-wrap gap-2">
         {job.tools.map((tool) => (
-          <span className="bg-gray-700 px-4 py-1">{tool}</span>
+          <span key={tool} className="bg-gray-700 px-4 py-1">
+            {tool}
+          </span>
         ))}
       </div>
     </div>

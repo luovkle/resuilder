@@ -12,7 +12,9 @@ const TechStack = ({ job }: Props) => {
       </div>
       <div className="flex flex-wrap gap-2">
         {job.techStack.map((technology) => (
-          <span className="bg-gray-700 px-4 py-1">{technology}</span>
+          <span key={technology} className="bg-gray-700 px-4 py-1">
+            {technology}
+          </span>
         ))}
       </div>
     </div>
