@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import DefaultPicture from "./DefaultPicture";
+import { DefaultPicture, Responsibilities, TechStack, Tools } from "./";
 
 const Experience = () => {
   const [jobs, setJobs] = useState([
@@ -51,51 +51,9 @@ const Experience = () => {
                   <p className="text-gray-400">{job.details}</p>
                 </div>
               </div>
-
-              {/* Responsibilities */}
-              <div className="py-2.5 space-y-2.5">
-                <div>
-                  <h5 className="text-sm font-medium text-gray-400 select-none">
-                    Responsibilities
-                  </h5>
-                </div>
-                <ul className="pl-10 list-disc">
-                  {job.responsibilities.map((responsibility) => (
-                    <li>{responsibility}</li>
-                  ))}
-                </ul>
-              </div>
-              {/* End Responsibilities */}
-
-              {/* Tech Stack */}
-              <div className="py-2.5 space-y-2.5">
-                <div>
-                  <h5 className="text-sm font-medium text-gray-400 select-none">
-                    Tech Stack
-                  </h5>
-                </div>
-                <div className="flex flex-wrap gap-2">
-                  {job.techStack.map((technology) => (
-                    <span className="bg-gray-700 px-4 py-1">{technology}</span>
-                  ))}
-                </div>
-              </div>
-              {/* End Tech Stack */}
-
-              {/* Tools */}
-              <div className="py-2.5 space-y-2.5">
-                <div>
-                  <h5 className="text-sm font-medium text-gray-400 select-none">
-                    Tools
-                  </h5>
-                </div>
-                <div className="flex flex-wrap gap-2">
-                  {job.tools.map((tool) => (
-                    <span className="bg-gray-700 px-4 py-1">{tool}</span>
-                  ))}
-                </div>
-              </div>
-              {/* End Tools */}
+              <Responsibilities job={job} />
+              <TechStack job={job} />
+              <Tools job={job} />
             </div>
           </div>
         ))}
