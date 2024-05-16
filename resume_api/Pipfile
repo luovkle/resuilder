@@ -19,6 +19,7 @@ autoflake = "*"
 isort = "*"
 black = "*"
 pytest = "*"
+types-beautifulsoup4 = "*"
 
 [requires]
 python_version = "3.11"
