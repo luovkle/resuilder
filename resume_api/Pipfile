@@ -21,6 +21,7 @@ isort = "*"
 black = "*"
 pytest = "*"
 types-beautifulsoup4 = "*"
+docformatter = "*"
 
 [requires]
 python_version = "3.11"
