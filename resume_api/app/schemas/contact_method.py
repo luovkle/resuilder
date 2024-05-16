@@ -13,7 +13,7 @@ class ContactMethodDB(ContactMethodBase):
     user_id: str
 
 
-class ContactMethodCreate(ContactMethodBase): ...
+class ContactMethodCreate(ContactMethodBase): ...  # noqa: E701
 
 
 class ContactMethodRead(ContactMethodBase):

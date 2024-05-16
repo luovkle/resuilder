@@ -19,7 +19,7 @@ class JobDB(JobBase):
     picture_url: HttpUrl | None = None
 
 
-class JobCreate(JobBase): ...
+class JobCreate(JobBase): ...  # noqa: E701
 
 
 class JobRead(JobBase):
