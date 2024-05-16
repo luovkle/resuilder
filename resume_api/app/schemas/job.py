@@ -19,6 +19,9 @@ class JobDB(JobBase):
     picture_url: HttpUrl | None = None
 
 
+class JobCreate(JobBase): ...
+
+
 class JobRead(JobBase):
     id: str
     picture_url: HttpUrl | None = None
