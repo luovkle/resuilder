@@ -8,8 +8,7 @@ from app.schemas.repository import Lang, Repository
 
 
 def get_repository_langs(url: str) -> list[Lang]:
-    """
-    Fetches programming language data from a repository's page and extracts details
+    """Fetches programming language data from a repository's page and extracts details
     about each language's usage within the repository.
 
     The function sends an HTTP GET request to the specified URL, decodes the response
@@ -85,8 +84,7 @@ def get_repository_list(
     all_langs: bool = False,
     repository_limit: int = settings.SCRAPER_REPOSITORY_LIMIT,
 ) -> list[Repository]:
-    """
-    Fetches a list of repositories from a user's GitHub profile page.
+    """Fetches a list of repositories from a user's GitHub profile page.
 
     This function scrapes GitHub to retrieve repository information including name, URL,
     description, and programming languages. It allows for fetching either all

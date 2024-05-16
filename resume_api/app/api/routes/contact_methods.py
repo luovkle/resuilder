@@ -3,13 +3,13 @@ from typing import Annotated
 from fastapi import APIRouter, Depends
 from pymongo.database import Database
 
+from app.api.deps import get_db
 from app.schemas.contact_method import (
     ContactMethodCreate,
     ContactMethodRead,
     ContactMethodUpdate,
 )
 from app.schemas.message import Message
-from app.api.deps import get_db
 
 router = APIRouter()
 

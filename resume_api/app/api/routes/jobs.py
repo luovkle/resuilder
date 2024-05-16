@@ -1,11 +1,11 @@
 from typing import Annotated
 
-from fastapi import APIRouter, UploadFile, Depends
+from fastapi import APIRouter, Depends, UploadFile
 from pymongo.database import Database
 
+from app.api.deps import get_db
 from app.schemas.job import JobCreate, JobRead, JobUpdate
 from app.schemas.message import Message
-from app.api.deps import get_db
 
 router = APIRouter()
 
