@@ -13,6 +13,9 @@ class ContactMethodDB(ContactMethodBase):
     user_id: str
 
 
+class ContactMethodCreate(ContactMethodBase): ...
+
+
 class ContactMethodRead(ContactMethodBase):
     id: str
 
