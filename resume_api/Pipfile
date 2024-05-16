@@ -10,6 +10,7 @@ pydantic-settings = "*"
 beautifulsoup4 = "*"
 lxml = "*"
 cloudinary = "*"
+pymongo = {extras = ["srv"], version = "*"}
 
 [dev-packages]
 
