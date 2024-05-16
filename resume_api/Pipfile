@@ -11,6 +11,7 @@ beautifulsoup4 = "*"
 lxml = "*"
 cloudinary = "*"
 pymongo = {extras = ["srv"], version = "*"}
+pyjwt = {extras = ["crypto"], version = "*"}
 
 [dev-packages]
 mypy = "*"
