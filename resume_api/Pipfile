@@ -16,6 +16,7 @@ pymongo = {extras = ["srv"], version = "*"}
 mypy = "*"
 flake8 = "*"
 autoflake = "*"
+isort = "*"
 
 [requires]
 python_version = "3.11"
