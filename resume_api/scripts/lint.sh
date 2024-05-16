@@ -6,3 +6,4 @@ mypy .
 black --check .
 isort --check-only .
 flake8 .
+docformatter --check .

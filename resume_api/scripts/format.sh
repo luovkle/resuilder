@@ -6,3 +6,4 @@ set -x
 autoflake --in-place .
 black .
 isort .
+docformatter --in-place .
