@@ -1,5 +1,5 @@
 from app.core.config import settings
-from app.db import client
+from app.core.db import client
 
 
 def get_db():
