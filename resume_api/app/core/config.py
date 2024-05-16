@@ -11,6 +11,10 @@ class Settings(BaseSettings):
     APP_ALLOW_HEADERS: list[str] = ["Authorization"]
     APP_ALLOW_METHODS: list[str] = ["OPTIONS", "GET", "POST", "PUT", "DELETE"]
 
+    # Scraper
+    # By default a github page contains 30 repositories.
+    SCRAPER_REPOSITORY_LIMIT: int = 10
+
     # Auth0
     AUTH0_DOMAIN: str
     AUTH0_API_AUDIENCE: str
