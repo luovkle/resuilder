@@ -17,6 +17,7 @@ mypy = "*"
 flake8 = "*"
 autoflake = "*"
 isort = "*"
+black = "*"
 
 [requires]
 python_version = "3.11"
