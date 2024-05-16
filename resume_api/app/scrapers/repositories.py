@@ -27,7 +27,7 @@ def get_repository_langs(url: str) -> list[Lang]:
             in the repository.
             Returns an empty list if no language data could be extracted.
     """
-    langs = []
+    langs: list[Lang] = []
     # Regular expression pattern to find hexadecimal color codes
     color_pattern = r"#([0-9a-fA-F]{6})"
     # Send an HTTP GET request to the provided URL and retrieve the response
@@ -106,7 +106,7 @@ def get_repository_list(
         list: A list of Repository objects, each containing details about a repository
             such as name, URL, description, and a list of programming languages.
     """
-    repositories = []
+    repositories: list[Repository] = []
     # Construct the URL to fetch repositories from a user's GitHub page
     url = f"https://github.com/{user.lower()}?tab=repositories"
     # Loop indefinitely to handle pagination
