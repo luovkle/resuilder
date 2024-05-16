@@ -25,5 +25,6 @@ python_version = "3.11"
 
 [scripts]
 dev = "fastapi dev app/main.py"
+prod = "fastapi run app/main.py"
 format = "./scripts/format.sh"
 lint = "./scripts/lint.sh"
