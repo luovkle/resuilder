@@ -1,13 +1,22 @@
-from fastapi import APIRouter
+from typing import Annotated
 
+from fastapi import APIRouter, Depends
+from pymongo.database import Database
+
+from app.api.deps import get_db
 from app.schemas.profile import ProfileRead, ProfileUpdate
 
 router = APIRouter()
 
 
 @router.get("/@me", response_model=ProfileRead)
-def read_profile_current_user(): ...
+def read_profile_current_user(
+    db: Annotated[Database, Depends(get_db)],
+): ...
 
 
 @router.patch("/@me", response_model=ProfileRead)
-def update_profile_current_user(new_data: ProfileUpdate): ...
+def update_profile_current_user(
+    db: Annotated[Database, Depends(get_db)],
+    new_data: ProfileUpdate,
+): ...
