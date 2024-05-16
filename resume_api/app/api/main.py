@@ -1,6 +1,6 @@
 from fastapi import APIRouter
 
-from app.api.routes import contact_methods, profiles, jobs, projects, resumes
+from app.api.routes import contact_methods, jobs, profiles, projects, resumes
 
 api_router = APIRouter()
 

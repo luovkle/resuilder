@@ -3,8 +3,8 @@ import re
 import httpx
 from bs4 import BeautifulSoup
 
-from app.schemas.repository import Lang, Repository
 from app.core.config import settings
+from app.schemas.repository import Lang, Repository
 
 
 def get_repository_langs(url: str) -> list[Lang]:

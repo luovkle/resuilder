@@ -1,6 +1,6 @@
 from fastapi import APIRouter
 
-from app.schemas.profile import ProfileUpdate, ProfileRead
+from app.schemas.profile import ProfileRead, ProfileUpdate
 
 router = APIRouter()
 

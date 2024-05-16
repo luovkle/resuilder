@@ -1,6 +1,6 @@
 from fastapi import APIRouter
 
-from app.schemas.project import ProjectUpdate, ProjectRead
+from app.schemas.project import ProjectRead, ProjectUpdate
 
 router = APIRouter()
 

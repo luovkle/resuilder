@@ -1,10 +1,6 @@
 from fastapi import APIRouter, UploadFile
 
-from app.schemas.job import (
-    JobCreate,
-    JobRead,
-    JobUpdate,
-)
+from app.schemas.job import JobCreate, JobRead, JobUpdate
 from app.schemas.message import Message
 
 router = APIRouter()

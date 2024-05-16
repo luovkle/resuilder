@@ -1,7 +1,7 @@
 from fastapi import APIRouter
 
 from app.schemas.message import Message
-from app.schemas.resume import ResumeUpdate, ResumeRead
+from app.schemas.resume import ResumeRead, ResumeUpdate
 
 router = APIRouter()
 
