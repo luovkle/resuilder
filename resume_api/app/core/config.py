@@ -2,18 +2,23 @@ from pydantic_settings import BaseSettings
 
 
 class Settings(BaseSettings):
-    # APP
-    APP_TITLE: str = "resuilder"
+    # App
+    APP_TITLE: str = "resume_api"
     APP_VERSION: str = "0.2.0"
-    APP_DOCS_URL: str = "/"
-    APP_REDOC_URL: str | None = None
-    APP_ALLOW_ORIGINS: list[str] = []
-    APP_ALLOW_HEADERS: list[str] = ["Authorization"]
-    APP_ALLOW_METHODS: list[str] = ["OPTIONS", "GET", "POST", "PUT", "DELETE"]
+
+    # CORS
+    CORS_ALLOW_ORIGINS: list[str] = []
+    CORS_ALLOW_HEADERS: list[str] = ["Authorization"]
+    CORS_ALLOW_METHODS: list[str] = ["OPTIONS", "GET", "POST", "PUT", "DELETE"]
+    CORS_ALLOW_CREDENTIALS: bool = True
 
     # Scraper
     # By default a github page contains 30 repositories.
     SCRAPER_REPOSITORY_LIMIT: int = 10
+
+    # MongoDB
+    DB_URI: str
+    DB_NAME: str
 
     # Auth0
     AUTH0_DOMAIN: str
@@ -23,9 +28,6 @@ class Settings(BaseSettings):
 
     # Cloudinary
     CLOUDINARY_URL: str
-
-    # DB
-    DB_URI: str
 
 
 settings = Settings()  # type: ignore
