@@ -1,6 +1,6 @@
-from uuid import uuid4
+from uuid import UUID, uuid4
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, field_serializer
 
 
 class ResumeBase(BaseModel):
@@ -8,12 +8,16 @@ class ResumeBase(BaseModel):
 
 
 class ResumeDB(ResumeBase):
-    id: str = Field(default_factory=uuid4, alias="_id")
+    id: UUID = Field(default_factory=uuid4, alias="_id")
     user_id: str
+
+    @field_serializer("id")
+    def serialize_id(self, id: UUID):
+        return str(id)
 
 
 class ResumeRead(ResumeBase):
-    id: str
+    id: str = Field(alias="_id", serialization_alias="id")
 
 
 class ResumeUpdate(BaseModel):
