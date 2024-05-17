@@ -1,4 +1,5 @@
-from fastapi import Depends, HTTPException, status
+import httpx
+from fastapi import Depends, HTTPException, Request, status
 from fastapi.security import HTTPBearer
 from fastapi.security.http import HTTPAuthorizationCredentials
 
@@ -20,3 +21,12 @@ def get_current_user(token: HTTPAuthorizationCredentials = Depends(token_auth_sc
     if not result.get("sub"):
         raise HTTPException(status.HTTP_401_UNAUTHORIZED)
     return result["sub"]
+
+
+def get_current_account(request: Request):
+    access_token = request.headers["Authorization"].split()[1]
+    response = httpx.get(
+        settings.AUTH0_ISSUER + "userinfo",
+        headers={"Authorization": f"Bearer {access_token}"},
+    )
+    return response.json() if response.status_code == 200 else None
