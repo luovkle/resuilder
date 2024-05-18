@@ -14,7 +14,9 @@ def get_db():
     return client[settings.DB_NAME]
 
 
-def get_current_user(token: HTTPAuthorizationCredentials = Depends(token_auth_scheme)):
+def get_current_user(
+    token: HTTPAuthorizationCredentials = Depends(token_auth_scheme),
+) -> str:
     result = VerifyToken(token.credentials).verify()
     if result.get("status"):
         raise HTTPException(status.HTTP_401_UNAUTHORIZED, detail=result.get("msg", ""))
@@ -23,10 +25,14 @@ def get_current_user(token: HTTPAuthorizationCredentials = Depends(token_auth_sc
     return result["sub"]
 
 
-def get_current_account(request: Request):
+def get_current_account(request: Request) -> str:
     access_token = request.headers["Authorization"].split()[1]
     response = httpx.get(
         settings.AUTH0_ISSUER + "userinfo",
         headers={"Authorization": f"Bearer {access_token}"},
     )
-    return response.json() if response.status_code == 200 else None
+    try:
+        response.raise_for_status()
+    except:
+        raise HTTPException(status.HTTP_500_INTERNAL_SERVER_ERROR)
+    return response.json().get("name", "")

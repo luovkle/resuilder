@@ -65,4 +65,4 @@ def delete_resume(db: Database, user_id: str) -> dict:
             status_code=status.HTTP_404_NOT_FOUND,
             detail="Resume not found",
         )
-    return {"msg": "Resume deleted successfully."}
+    return {"msg": "Resume deleted successfully"}
