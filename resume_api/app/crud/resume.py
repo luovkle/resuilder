@@ -1,6 +1,7 @@
 from fastapi import HTTPException, status
 from pymongo.database import Database
 
+from app.crud.contact_method import cleanup_contact_methods
 from app.crud.profile import cleanup_profile
 from app.schemas.resume import ResumeDB, ResumeUpdate
 
@@ -67,6 +68,7 @@ def delete_resume(db: Database, user_id: str) -> dict:
             detail="Resume not found",
         )
     cleanup_profile(db, user_id)
+    cleanup_contact_methods(db, user_id)
     return {"msg": "Resume deleted successfully"}
 
 

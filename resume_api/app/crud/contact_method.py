@@ -80,7 +80,7 @@ def delete_contact_method(db: Database, user_id: str, contact_id: str) -> dict:
     return {"msg": "Contact method deleted successfully"}
 
 
-def delete_all_contact_methods(db: Database, user_id: str) -> dict:
+def cleanup_contact_methods(db: Database, user_id: str) -> dict:
     result = db.contact_methods.delete_many({"user_id": user_id})
     if result.deleted_count == 0:
         return {"msg": "No contact methods found for the specified user"}
