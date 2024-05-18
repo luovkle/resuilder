@@ -1,10 +1,12 @@
 from fastapi import HTTPException, status
 from pymongo.database import Database
 
+from app.crud.resume import check_resume_exists
 from app.schemas.profile import ProfileDB, ProfileUpdate
 
 
 def create_profile(db: Database, user_id: str, name: str) -> dict:
+    check_resume_exists(db, user_id)
     if db.profiles.find_one({"user_id": user_id}):
         raise HTTPException(
             status_code=status.HTTP_409_CONFLICT,
@@ -22,6 +24,7 @@ def create_profile(db: Database, user_id: str, name: str) -> dict:
 
 
 def read_profile(db: Database, user_id: str) -> dict:
+    check_resume_exists(db, user_id)
     doc = db.profiles.find_one({"user_id": user_id})
     if not doc:
         raise HTTPException(
@@ -32,6 +35,7 @@ def read_profile(db: Database, user_id: str) -> dict:
 
 
 def update_profile(db: Database, user_id: str, new_data: ProfileUpdate) -> dict:
+    check_resume_exists(db, user_id)
     update_data = new_data.model_dump(exclude_none=True)
     if not update_data:
         raise HTTPException(
@@ -59,6 +63,7 @@ def update_profile(db: Database, user_id: str, new_data: ProfileUpdate) -> dict:
 
 
 def delete_profile(db: Database, user_id: str) -> dict:
+    check_resume_exists(db, user_id)
     result = db.profiles.delete_one({"user_id": user_id})
     if result.deleted_count == 0:
         raise HTTPException(
