@@ -62,12 +62,8 @@ def update_profile(db: Database, user_id: str, new_data: ProfileUpdate) -> dict:
     return updated_doc
 
 
-def delete_profile(db: Database, user_id: str) -> dict:
-    check_resume_exists(db, user_id)
+def cleanup_profile(db: Database, user_id: str) -> dict:
     result = db.profiles.delete_one({"user_id": user_id})
     if result.deleted_count == 0:
-        raise HTTPException(
-            status_code=status.HTTP_404_NOT_FOUND,
-            detail="Profile not found",
-        )
+        return {"msg": "Profile not found"}
     return {"msg": "Profile deleted successfully"}

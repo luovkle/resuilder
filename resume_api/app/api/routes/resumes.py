@@ -5,7 +5,7 @@ from pymongo.database import Database
 
 from app.api.deps import get_current_account, get_current_user, get_db
 from app.crud.contact_method import delete_all_contact_methods
-from app.crud.profile import create_profile, delete_profile
+from app.crud.profile import create_profile
 from app.crud.resume import create_resume, delete_resume, read_resume, update_resume
 from app.schemas.message import Message
 from app.schemas.resume import ResumeRead, ResumeUpdate
@@ -46,6 +46,5 @@ def delete_resume_current_user(
     current_user: Annotated[str, Depends(get_current_user)],
 ):
     response = delete_resume(db, current_user)
-    delete_profile(db, current_user)
     delete_all_contact_methods(db, current_user)
     return response
