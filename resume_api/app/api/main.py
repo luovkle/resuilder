@@ -11,15 +11,15 @@ api_router.include_router(
 )
 
 api_router.include_router(
-    contact_methods.router,
-    prefix="/contact-methods",
-    tags=["contact-methods"],
-)
-
-api_router.include_router(
     profiles.router,
     prefix="/profiles",
     tags=["profiles"],
+)
+
+api_router.include_router(
+    contact_methods.router,
+    prefix="/contact-methods",
+    tags=["contact-methods"],
 )
 
 api_router.include_router(
