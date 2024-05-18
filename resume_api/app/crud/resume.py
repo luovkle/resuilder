@@ -1,12 +1,10 @@
 from fastapi import HTTPException, status
 from pymongo.database import Database
 
-from app.crud.contact_method import cleanup_contact_methods
-from app.crud.profile import cleanup_profile, setup_profile
 from app.schemas.resume import ResumeDB, ResumeUpdate
 
 
-def create_resume(db: Database, user_id: str, current_account: str) -> dict:
+def create_resume(db: Database, user_id: str) -> dict:
     if db.resumes.find_one({"user_id": user_id}):
         raise HTTPException(
             status_code=status.HTTP_409_CONFLICT,
@@ -20,7 +18,6 @@ def create_resume(db: Database, user_id: str, current_account: str) -> dict:
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
             detail="Failed to retrieve the created resume",
         )
-    setup_profile(db, user_id, current_account)
     return doc
 
 
@@ -68,8 +65,6 @@ def delete_resume(db: Database, user_id: str) -> dict:
             status_code=status.HTTP_404_NOT_FOUND,
             detail="Resume not found",
         )
-    cleanup_profile(db, user_id)
-    cleanup_contact_methods(db, user_id)
     return {"msg": "Resume deleted successfully"}
 
 
