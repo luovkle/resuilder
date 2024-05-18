@@ -5,6 +5,7 @@ from pymongo.database import Database
 
 from app.api.deps import get_current_account, get_current_user, get_db
 from app.crud.contact_method import cleanup_contact_methods
+from app.crud.job import cleanup_jobs
 from app.crud.profile import cleanup_profile, setup_profile
 from app.crud.resume import create_resume, delete_resume, read_resume, update_resume
 from app.schemas.message import Message
@@ -47,4 +48,5 @@ def delete_resume_current_user(
 ):
     cleanup_profile(db, current_user)
     cleanup_contact_methods(db, current_user)
+    cleanup_jobs(db, current_user)
     return delete_resume(db, current_user)
