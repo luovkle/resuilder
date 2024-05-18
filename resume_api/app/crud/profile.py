@@ -5,7 +5,7 @@ from app.crud.resume import check_resume_exists
 from app.schemas.profile import ProfileDB, ProfileUpdate
 
 
-def create_profile(db: Database, user_id: str, name: str) -> dict:
+def setup_profile(db: Database, user_id: str, name: str) -> dict:
     check_resume_exists(db, user_id)
     if db.profiles.find_one({"user_id": user_id}):
         raise HTTPException(
