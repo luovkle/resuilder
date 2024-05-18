@@ -14,5 +14,5 @@ class Repository(BaseModel):
     langs: list[Lang] = []
 
     @field_serializer("url")
-    def serialize_dt(self, value: HttpUrl):
-        return str(value)
+    def serialize_url(self, url: HttpUrl):
+        return str(url)
