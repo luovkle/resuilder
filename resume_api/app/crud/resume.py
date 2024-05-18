@@ -66,3 +66,12 @@ def delete_resume(db: Database, user_id: str) -> dict:
             detail="Resume not found",
         )
     return {"msg": "Resume deleted successfully"}
+
+
+def check_resume_exists(db: Database, user_id: str):
+    resume_exists = db.resumes.find_one({"user_id": user_id})
+    if not resume_exists:
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail="User must have a resume to perform this operation",
+        )
