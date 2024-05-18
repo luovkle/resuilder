@@ -6,6 +6,7 @@ from fastapi.security.http import HTTPAuthorizationCredentials
 from app.core.config import settings
 from app.core.db import client
 from app.core.security import VerifyToken
+from app.schemas.account import Account
 
 token_auth_scheme = HTTPBearer()
 
@@ -25,7 +26,7 @@ def get_current_user(
     return result["sub"]
 
 
-def get_current_account(request: Request) -> str:
+def get_current_account(request: Request) -> Account:
     access_token = request.headers["Authorization"].split()[1]
     response = httpx.get(
         settings.AUTH0_ISSUER + "userinfo",
@@ -33,6 +34,7 @@ def get_current_account(request: Request) -> str:
     )
     try:
         response.raise_for_status()
+        account = Account(**response.json())
     except:
         raise HTTPException(status.HTTP_500_INTERNAL_SERVER_ERROR)
-    return response.json().get("name", "")
+    return account

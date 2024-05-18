@@ -6,7 +6,6 @@ from app.schemas.profile import ProfileDB, ProfileUpdate
 
 
 def setup_profile(db: Database, user_id: str, name: str) -> dict:
-    check_resume_exists(db, user_id)
     if db.profiles.find_one({"user_id": user_id}):
         raise HTTPException(
             status_code=status.HTTP_409_CONFLICT,

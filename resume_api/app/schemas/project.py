@@ -1,6 +1,6 @@
-from uuid import uuid4
+from uuid import UUID, uuid4
 
-from pydantic import BaseModel, Field, HttpUrl
+from pydantic import BaseModel, Field, HttpUrl, field_serializer
 
 
 class Lang(BaseModel):
@@ -17,12 +17,16 @@ class ProjectBase(BaseModel):
 
 
 class ProjectDB(ProjectBase):
-    id: str = Field(default_factory=uuid4, alias="_id")
+    id: UUID = Field(default_factory=uuid4, alias="_id")
     user_id: str
+
+    @field_serializer("url")
+    def serialize_url(self, url: HttpUrl):
+        return str(url)
 
 
 class ProjectRead(ProjectBase):
-    id: str
+    id: str = Field(alias="_id", serialization_alias="id")
 
 
 class ProjectUpdate(BaseModel):
