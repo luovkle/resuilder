@@ -1,6 +1,7 @@
 from fastapi import HTTPException, status
 from pymongo.database import Database
 
+from app.crud.resume import check_resume_exists
 from app.schemas.contact_method import (
     ContactMethodDB,
     ContactMethodCreate,
@@ -11,12 +12,7 @@ from app.schemas.contact_method import (
 def create_contact_method(
     db: Database, user_id: str, contact_method: ContactMethodCreate
 ) -> dict:
-    resume_exists = db.resumes.find_one({"user_id": user_id})
-    if not resume_exists:
-        raise HTTPException(
-            status_code=status.HTTP_403_FORBIDDEN,
-            detail="User must have a resume to create a contact method",
-        )
+    check_resume_exists(db, user_id)
     new_contact_method = ContactMethodDB(
         **contact_method.model_dump(by_alias=True), user_id=user_id
     )
@@ -31,6 +27,7 @@ def create_contact_method(
 
 
 def read_contact_methods(db: Database, user_id: str) -> list:
+    check_resume_exists(db, user_id)
     docs = list(db.contact_methods.find({"user_id": user_id}))
     if not docs:
         raise HTTPException(
@@ -43,6 +40,7 @@ def read_contact_methods(db: Database, user_id: str) -> list:
 def update_contact_method(
     db: Database, user_id: str, contact_id: str, new_data: ContactMethodUpdate
 ) -> dict:
+    check_resume_exists(db, user_id)
     update_data = new_data.model_dump(exclude_none=True)
     if not update_data:
         raise HTTPException(
@@ -72,6 +70,7 @@ def update_contact_method(
 
 
 def delete_contact_method(db: Database, user_id: str, contact_id: str) -> dict:
+    check_resume_exists(db, user_id)
     result = db.contact_methods.delete_one({"_id": contact_id, "user_id": user_id})
     if result.deleted_count == 0:
         raise HTTPException(
