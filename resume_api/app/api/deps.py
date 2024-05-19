@@ -2,6 +2,7 @@ import httpx
 from fastapi import Depends, HTTPException, Request, status
 from fastapi.security import HTTPBearer
 from fastapi.security.http import HTTPAuthorizationCredentials
+from pydantic import ValidationError
 
 from app.core.config import settings
 from app.core.db import client
@@ -35,6 +36,8 @@ def get_current_account(request: Request) -> Account:
     try:
         response.raise_for_status()
         account = Account(**response.json())
-    except:
+    except httpx.HTTPStatusError:
         raise HTTPException(status.HTTP_500_INTERNAL_SERVER_ERROR)
+    except ValidationError as e:
+        raise HTTPException(status.HTTP_422_UNPROCESSABLE_ENTITY, detail=str(e))
     return account

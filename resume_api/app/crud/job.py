@@ -1,5 +1,5 @@
-import cloudinary
-import cloudinary.uploader
+import cloudinary  # type: ignore[import-untyped]
+import cloudinary.uploader  # type: ignore[import-untyped]
 from fastapi import HTTPException, UploadFile, status
 from pymongo.database import Database
 
