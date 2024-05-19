@@ -4,8 +4,8 @@ from fastapi import APIRouter, Depends
 from pymongo.database import Database
 
 from app.api.deps import get_current_user, get_db
-from app.schemas.profile import ProfileRead, ProfileUpdate
 from app.crud.profile import read_profile, update_profile
+from app.schemas.profile import ProfileRead, ProfileUpdate
 
 router = APIRouter()
 

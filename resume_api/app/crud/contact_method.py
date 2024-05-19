@@ -3,8 +3,8 @@ from pymongo.database import Database
 
 from app.crud.resume import check_resume_exists
 from app.schemas.contact_method import (
-    ContactMethodDB,
     ContactMethodCreate,
+    ContactMethodDB,
     ContactMethodUpdate,
 )
 

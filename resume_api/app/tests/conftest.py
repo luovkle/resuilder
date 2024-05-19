@@ -1,10 +1,10 @@
 import pytest
+from fastapi.testclient import TestClient
 from pymongo import MongoClient
 from pymongo.database import Database
-from fastapi.testclient import TestClient
 
-from app.main import app
 from app.api.deps import get_db
+from app.main import app
 from app.tests.config import test_settings
 
 

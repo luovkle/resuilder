@@ -4,9 +4,9 @@ from fastapi import APIRouter, Depends
 from pymongo.database import Database
 
 from app.api.deps import get_current_account, get_current_user, get_db
+from app.crud.project import read_projects, update_project, update_project_refresh
 from app.schemas.account import Account
 from app.schemas.project import ProjectRead, ProjectUpdate
-from app.crud.project import read_projects, update_project, update_project_refresh
 
 router = APIRouter()
 

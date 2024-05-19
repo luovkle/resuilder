@@ -4,7 +4,7 @@ from fastapi import HTTPException, UploadFile, status
 from pymongo.database import Database
 
 from app.crud.resume import check_resume_exists
-from app.schemas.job import JobDB, JobCreate, JobUpdate
+from app.schemas.job import JobCreate, JobDB, JobUpdate
 
 cloudinary.config(secure=True)
 

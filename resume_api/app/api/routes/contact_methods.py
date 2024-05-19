@@ -6,9 +6,9 @@ from pymongo.database import Database
 from app.api.deps import get_current_user, get_db
 from app.crud.contact_method import (
     create_contact_method,
+    delete_contact_method,
     read_contact_methods,
     update_contact_method,
-    delete_contact_method,
 )
 from app.schemas.contact_method import (
     ContactMethodCreate,
