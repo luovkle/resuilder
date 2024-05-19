@@ -12,6 +12,16 @@ services:
       - data:/data/db
       - ./mongo/mongo-init.sh:/docker-entrypoint-initdb.d/mongo-init.sh
 
+  mongo-express:
+    image: mongo-express:1.0.2-20-alpine3.19
+    env_file:
+      - ./mongo-express/.env
+    restart: always
+    ports:
+      - 8081:8081
+    depends_on:
+     - mongo
+
   generator:
     build: ./generator
     env_file:
@@ -84,6 +94,8 @@ services:
       - 80:3000
     volumes:
       - ./domain:/app
+
+
 
 volumes:
   data:
