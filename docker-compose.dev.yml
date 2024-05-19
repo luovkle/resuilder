@@ -66,6 +66,21 @@ services:
     depends_on:
       - mongo
 
+  resume_api:
+    build: ./resume_api
+    env_file:
+      - ./resume_api/.env
+    environment:
+      PYTHONDONTWRITEBYTECODE: 1
+    restart: always
+    ports:
+      - 8003:8000
+    command: pipenv run dev --host 0.0.0.0
+    volumes:
+      - ./resume_api/app:/app/app
+    depends_on:
+      - mongo
+
   frontend:
     build:
       context: ./frontend
@@ -94,8 +109,6 @@ services:
       - 80:3000
     volumes:
       - ./domain:/app
-
-
 
 volumes:
   data:
