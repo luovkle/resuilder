@@ -17,6 +17,7 @@ autoflake = "*"
 isort = "*"
 black = "*"
 pytest = "*"
+docformatter = "*"
 
 [requires]
 python_version = "3.11"
