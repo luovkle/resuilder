@@ -4,7 +4,7 @@
     <title>{{ profile.name }}</title>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link href="/static/public/styles.css" rel="stylesheet">
+    <link href={{ url_for("static", filename="public/styles.css") }} rel="stylesheet">
     <link
       rel="icon"
       type="image/svg+xml"
