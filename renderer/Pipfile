@@ -11,6 +11,12 @@ gevent = "*"
 pymongo = {extras = ["srv"], version = "*"}
 
 [dev-packages]
+mypy = "*"
+flake8 = "*"
+autoflake = "*"
+isort = "*"
+black = "*"
+pytest = "*"
 
 [requires]
 python_version = "3.11"
