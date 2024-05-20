@@ -1,20 +1,6 @@
 version: "3.8"
 
 services:
-  backend:
-    build: ./backend
-    environment:
-      ALLOW_ORIGINS: ${ALLOW_ORIGINS}
-      DOMAIN: ${DOMAIN}
-      API_AUDIENCE: ${API_AUDIENCE}
-      ISSUER: ${ISSUER}
-      ALGORITHMS: ${ALGORITHMS}
-      DB_URI: ${DB_URI}
-      CLOUDINARY_URL: ${CLOUDINARY_URL}
-    restart: always
-    ports:
-      - 8000:8000
-
   frontend:
     build:
       context: ./frontend
@@ -26,9 +12,6 @@ services:
     restart: always
     ports:
       - 80:80
-    depends_on:
-      - backend
-      - generator
 
   frontend:
     build:
