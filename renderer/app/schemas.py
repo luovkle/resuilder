@@ -1,47 +1,42 @@
 from pydantic import BaseModel, HttpUrl
 
 
-class About(BaseModel):
-    about: str | None = None
-    user: str
-
-
-class Contact(BaseModel):
-    title: str
-    url: HttpUrl
-    user: str
-
-
-class Position(BaseModel):
-    title: str
-    company: str
-    start_date: str
-    end_date: str
-    details: str
-    picture_id: str
-    picture_url: HttpUrl | None = None
-    user: str
+class Resume(BaseModel):
+    public: bool
+    user_id: str
+    nickname: str
 
 
 class Profile(BaseModel):
     name: str
-    content: str | None = None
-    picture_url: HttpUrl
-    picture_id: str
-    user: str
+    about: str | None = None
 
 
-class Repository(BaseModel):
-    name: str
+class ContactMethod(BaseModel):
+    title: str
     url: HttpUrl
-    description: str
-    lang: str
-    stars: int
-    forks: int
-    show: bool
-    user: str
 
 
-class Skill(BaseModel):
+class Job(BaseModel):
+    picture_url: HttpUrl | None = None
+    title: str
+    start_date: str
+    end_date: str
+    details: str
+    responsibilities: list[str] = []
+    tech_stack: list[str] = []
+    tools: list[str] = []
+
+
+class Lang(BaseModel):
+    color: str | None = None
     name: str
-    user: str
+    percentage: float | None = None
+
+
+class Project(BaseModel):
+    url: HttpUrl
+    name: str
+    description: str
+    langs: list[Lang] = []
+    public: bool
