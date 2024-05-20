@@ -13,7 +13,7 @@ services:
     ports:
       - 80:80
 
-  frontend:
+  domain:
     build:
       context: ./domain
       dockerfile: prod.dockerfile
