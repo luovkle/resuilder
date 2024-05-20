@@ -22,7 +22,7 @@ def create_resume_current_user(
     current_user: Annotated[str, Depends(get_current_user)],
     current_account: Annotated[Account, Depends(get_current_account)],
 ):
-    setup_profile(db, current_user, current_account.sub)
+    setup_profile(db, current_user, current_account.name)
     setup_projects(db, current_user, current_account.nickname)
     return create_resume(db, current_user, current_account.nickname)
 
