@@ -1,14 +1,6 @@
 version: "3.8"
 
 services:
-  generator:
-    build: ./generator
-    environment:
-      DB_URI: ${DB_URI}
-    restart: always
-    expose:
-      - 8001
-
   backend:
     build: ./backend
     environment:

@@ -22,20 +22,6 @@ services:
     depends_on:
      - mongo
 
-  generator:
-    build: ./generator
-    env_file:
-      - ./generator/app/.env
-    restart: always
-    ports:
-      - 8001:8001
-    command: yarn start:dev
-    volumes:
-      - ./generator/app:/app
-      - /app/node_modules
-    depends_on:
-      - mongo
-
   renderer:
     build: ./renderer
     env_file:
