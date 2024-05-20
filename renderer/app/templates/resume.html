@@ -14,144 +14,172 @@
   <body class="bg-gray-900 text-gray-200">
     <main class="container mx-auto divide-gray-700 max-w-3xl">
       <!-- Profile -->
-      <div class="grid grid-cols-12 gap-5 py-5">
-        <div class="col-span-2">
-          <img
-            src="{{ profile.picture_url }}"
-            alt="{{ profile.name }}"
-            class="rounded-full"
-          />
+      <div class="py-5 space-y-5">
+        <div>
+          <h5 class="text-sm font-medium text-gray-400 select-none">Profile</h5>
         </div>
-        <div class="col-span-10 space-y-1.5">
-          <h1 class="text-2xl font-bold">{{ profile.name }}</h1>
-          <p class="text-gray-300">
-            {{ profile.content }}
-          </p>
+        <div class="space-y-2">
+          <h2 class="text-2xl font-bold">{{ profile.name }}</h2>
+          {% if profile.about %}
+          <p class="text-gray-300">{{ profile.about }}</p>
+          {% endif %}
         </div>
       </div>
       <!-- End Profile -->
       <!-- Contact -->
+      {% if contact_methods %}
       <hr />
       <div class="py-5 space-y-5">
         <div>
-          <h5 class="text-sm font-medium text-gray-400">Contact</h5>
+          <h5 class="text-sm font-medium text-gray-400 select-none">Contact</h5>
         </div>
         <div class="flex flex-wrap gap-2">
-        {% for contact in contacts %}
+          {% for method in contact_methods %}
           <a
-            href="{{ contact.url }}"
+            href="{{ method.url }}"
             target="”_blank”"
-            class="bg-gray-700 px-4 py-1"
-            >{{ contact.title }}</a
+            class="bg-gray-700 px-4 py-1 rounded-lg"
+            >{{ method.title }}</a
           >
-        {% endfor %}
+          {% endfor %}
         </div>
       </div>
+      {% endif %}
       <!-- End Contact -->
-      <!-- About -->
+      <!-- Experience -->
+      {% if jobs %}
       <hr />
       <div class="py-5 space-y-5">
         <div>
-          <h5 class="text-sm font-medium text-gray-400">About</h5>
-        </div>
-        <div>
-          <p class="text-gray-300">
-            {{ about.about }}
-          </p>
-        </div>
-      </div>
-      <!-- End About -->
-      <!-- Tech Stack -->
-      <hr />
-      <div class="py-5 space-y-5">
-        <div>
-          <h5 class="text-sm font-medium text-gray-400">Tech Stack</h5>
-        </div>
-        <div class="flex flex-wrap gap-2">
-        {% for skill in skills %}
-          <span class="bg-gray-700 px-4 py-1">{{ skill.name }}</span>
-        {% endfor %}
-        </div>
-      </div>
-      <!-- End Tech Stack -->
-      <!-- Positions -->
-      <hr />
-      <div class="py-5 space-y-5">
-        <div>
-          <h5 class="text-sm font-medium text-gray-400">Positions</h5>
+          <h5 class="text-sm font-medium text-gray-400 select-none">
+            Experience
+          </h5>
         </div>
         <div class="space-y-5">
-        {% for position in positions %}
+          {% for job in jobs %}
           <div class="grid grid-cols-12 gap-4">
             <div class="col-span-1">
-            {% if position.picture_url %}
+              {% if job.picture_url %}
               <img
-                src="{{ position.picture_url }}"
-                alt="{{ position.title }}"
+                src="{{ job.picture_url }}"
+                alt="{{ job.title }}"
                 class="rounded-full"
               />
-            {% else %}
+              {% else %}
               <div class="flex items-center justify-center bg-blue-600 w-[43.8333px] h-[43.8333px] rounded-full font-bold select-none">
-                {{ position.title[0]|upper if position.title }}
+                {{ job.title[0]|upper if job.title }}
               </div>
-            {% endif %}
+              {% endif %}
             </div>
-            <div class="col-span-11 space-y-5">
-              <div>
-                <h3 class="text-lg font-semibold">{{ position.title }}</h3>
-                <p class="text-gray-400 text-sm">
-                  <span{{ position.company }}</span> •
-                  <span>{{ position.start_date }} - {{ position.end_date }}</span>
-                </p>
+            <div class="col-span-11">
+              <div class="space-y-2.5">
+                <div>
+                  <h3 class="text-lg font-semibold">{{ job.title }}</h3>
+                  <p class="text-gray-400 text-sm">
+                    <span>{{ job.start_date }} - {{ job.end_date }}</span>
+                  </p>
+                </div>
+                <div>
+                  <p class="text-gray-400">{{ job.details }}</p>
+                </div>
               </div>
-              <p class="text-gray-400">
-                {{ position.details }}
-              </p>
+              <!-- Responsibilities -->
+              {% if job.responsibilities %}
+              <div class="py-2.5 space-y-2.5">
+                <div>
+                  <h5 class="text-sm font-medium text-gray-400 select-none">
+                    Responsibilities
+                  </h5>
+                </div>
+                <ul class="pl-10 list-disc">
+                  {% for responsibility in job.responsibilities %}
+                  <li>{{ responsibility }}</li>
+                  {% endfor %}
+                </ul>
+              </div>
+              {% endif %}
+              <!-- End Responsibilities -->
+              <!-- Tech Stack -->
+              {% if job.tech_stack %}
+              <div class="py-2.5 space-y-2.5">
+                <div>
+                  <h5 class="text-sm font-medium text-gray-400 select-none">
+                    Tech Stack
+                  </h5>
+                </div>
+                <div class="flex flex-wrap gap-2">
+                  {% for technology in job.tech_stack %}
+                  <span class="bg-gray-700 px-4 py-1 rounded-lg">{{ technology }}</span>
+                  {% endfor %}
+                </div>
+              </div>
+              {% endif %}
+              <!-- End Tech Stack -->
+              <!-- Tools -->
+              {% if job.tools %}
+              <div class="py-2.5 space-y-2.5">
+                <div>
+                  <h5 class="text-sm font-medium text-gray-400 select-none">
+                    Tools
+                  </h5>
+                </div>
+                <div class="flex flex-wrap gap-2">
+                  {% for tool in job.tools %}
+                  <span class="bg-gray-700 px-4 py-1 rounded-lg">{{ tool }}</span>
+                  {% endfor %}
+                </div>
+              </div>
+              {% endif %}
+              <!-- End Tools -->
             </div>
           </div>
-        {% endfor %}
+          {% endfor %}
         </div>
       </div>
-      <!-- End Positions -->
-      <!-- Repositories -->
+      {% endif %}
+      <!-- End Experience -->
+      <!-- Projects -->
+      {% if projects and projects[0].public %}
       <hr />
       <div class="py-5 space-y-5">
         <div>
-          <h5 class="text-sm font-medium text-gray-400">Repositories</h5>
+          <h5 class="text-sm font-medium text-gray-400 select-none">
+            Projects
+          </h5>
         </div>
         <div class="grid grid-cols-2 gap-4">
-        {% for repository in repositories %}
-          {% if repository.show %}
+          {% for project in projects %}
+          {% if project.public %}
           <div
             class="col-span-1 space-y-3 p-5 border border-gray-700 rounded-lg"
           >
             <a
-              href="{{ repository.url }}"
+              href="{{ project.url }}"
               target="_blank"
               class="text-base font-semibold text-blue-400"
-              >{{ repository.name }}</a
+              >{{ project.name }}</a
             >
-            <p class="text-gray-400 truncate">
-              {{ repository.description }}
-            </p>
-            <div class="space-x-5 text-sm text-gray-300">
-              <span class="font-semibold">{{ repository.lang }}</span>
-              <span>Stars: {{ repository.stars }}</span>
-              <span>Forks: {{ repository.forks }}</span>
+            <p class="text-gray-400 line-clamp-2">{{ project.description }}</p>
+            <div class="text-sm text-gray-300 flex flex-wrap gap-x-4">
+              {% for lang in project.langs %}
+              <div class="flex gap-2">
+                {% if lang.color %}
+                <span style="color: {{ lang.color }}">●</span>
+                {% endif %}
+                <span class="font-semibold">{{ lang.name }}</span>
+                {% if lang.percentage %}
+                <span>{{ lang.percentage }}%</span>
+                {% endif %}
+              </div>
+              {% endfor %}
             </div>
           </div>
           {% endif %}
-        {% endfor %}
+          {% endfor %}
         </div>
       </div>
-      <!-- End Repositories-->
+      {% endif %}
+      <!-- End Projects -->
     </main>
-    <footer class="container mx-auto divide-gray-700 max-w-3xl">
-      <div class="py-5 flex justify-center">
-        <h5 class="text-sm font-light text-gray-400">
-          This resume was generated with <a href="https://github.com/luovkle/resuilder" class="text-blue-400">Resuilder</a>
-        </h5>
-      </div>
-    </footer>
   </body>
 </html>
