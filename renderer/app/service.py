@@ -2,7 +2,7 @@ from flask import abort, render_template
 from pydantic import ValidationError
 from pymongo.database import Database
 
-from app.schemas import Resume, Profile, ContactMethod, Job, Project
+from app.schemas import ContactMethod, Job, Profile, Project, Resume
 
 
 def get_resume_by_nickname(db: Database, nickname: str) -> Resume:
