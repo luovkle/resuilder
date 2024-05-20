@@ -24,7 +24,7 @@ def create_resume_current_user(
 ):
     setup_profile(db, current_user, current_account.sub)
     setup_projects(db, current_user, current_account.nickname)
-    return create_resume(db, current_user)
+    return create_resume(db, current_user, current_account.nickname)
 
 
 @router.get("/@me", response_model=ResumeRead)

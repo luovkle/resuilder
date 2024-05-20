@@ -4,13 +4,13 @@ from pymongo.database import Database
 from app.schemas.resume import ResumeDB, ResumeUpdate
 
 
-def create_resume(db: Database, user_id: str) -> dict:
+def create_resume(db: Database, user_id: str, nickname: str) -> dict:
     if db.resumes.find_one({"user_id": user_id}):
         raise HTTPException(
             status_code=status.HTTP_409_CONFLICT,
             detail="Resume already exists",
         )
-    new_resume_obj = ResumeDB(user_id=user_id)
+    new_resume_obj = ResumeDB(user_id=user_id, nickname=nickname)
     result = db.resumes.insert_one(new_resume_obj.model_dump(by_alias=True))
     doc = db.resumes.find_one({"_id": result.inserted_id})
     if not doc:
