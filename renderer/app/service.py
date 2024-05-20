@@ -1,86 +1,69 @@
-from flask import abort
+from flask import abort, render_template
+from pydantic import ValidationError
 from pymongo.database import Database
 
-from app.schemas import About, Contact, Position, Profile, Repository, Skill
+from app.schemas import Resume, Profile, ContactMethod, Job, Project
 
 
-def get_collections() -> list[dict]:
-    return [
-        {
-            "internal_name": "abouts",
-            "external_name": "about",
-            "many": False,
-            "schema": About,
-        },
-        {
-            "internal_name": "contacts",
-            "external_name": "contacts",
-            "many": True,
-            "schema": Contact,
-        },
-        {
-            "internal_name": "positions",
-            "external_name": "positions",
-            "many": True,
-            "schema": Position,
-        },
-        {
-            "internal_name": "profiles",
-            "external_name": "profile",
-            "many": False,
-            "schema": Profile,
-        },
-        {
-            "internal_name": "repositories",
-            "external_name": "repositories",
-            "many": True,
-            "schema": Repository,
-        },
-        {
-            "internal_name": "skills",
-            "external_name": "skills",
-            "many": True,
-            "schema": Skill,
-        },
-    ]
-
-
-def get_user_by_nickname(db: Database, nickname: str) -> str:
-    doc = db.profiles.find_one({"nickname": nickname})
-    if not doc:
+def get_resume_by_nickname(db: Database, nickname: str) -> Resume:
+    resume_obj = db.resumes.find_one({"nickname": nickname})
+    if not resume_obj:
         abort(404)
-    return doc["user"]
+    try:
+        return Resume.model_validate(resume_obj)
+    except ValidationError:
+        abort(500)
 
 
-def get_collection_by_user(
-    db: Database,
-    coll_name: str,
-    user: str,
-    many: bool = True,
-):
-    search = {"user": user}
-    coll = db[coll_name]
-    doc = list(coll.find(search)) if many else coll.find_one(search)
-    if not doc:
+def get_profile_by_user_id(db: Database, user_id: str) -> Profile:
+    profile_obj = db.profiles.find_one({"user_id": user_id})
+    if not profile_obj:
         abort(404)
-    return doc
+    try:
+        return Profile.model_validate(profile_obj)
+    except ValidationError:
+        abort(500)
 
 
-def get_user_data(db: Database, nickname: str) -> dict:
-    user = get_user_by_nickname(db, nickname)
-    user_data = {}
-    for collection in get_collections():
-        collection_data = get_collection_by_user(
-            db, collection["internal_name"], user, collection["many"]
-        )
-        # Many elements
-        if type(collection_data) is list:
-            collection_data = [
-                collection["schema"](**element).model_dump()
-                for element in collection_data
-            ]
-        # Single element
-        else:
-            collection_data = collection["schema"](**collection_data).model_dump()
-        user_data.update({collection["external_name"]: collection_data})
-    return user_data
+def get_contact_methods_by_user_id(db: Database, user_id: str) -> list[ContactMethod]:
+    contact_methods_objs = list(db.contact_methods.find({"user_id": user_id}))
+    try:
+        return [
+            ContactMethod.model_validate(contact_method_obj)
+            for contact_method_obj in contact_methods_objs
+        ]
+    except ValidationError:
+        abort(500)
+
+
+def get_jobs_by_user_id(db: Database, user_id: str) -> list[Job]:
+    jobs_objs = list(db.jobs.find({"user_id": user_id}))
+    try:
+        return [Job.model_validate(job_obj) for job_obj in jobs_objs]
+    except ValidationError:
+        abort(500)
+
+
+def get_projects_by_user_id(db: Database, user_id: str) -> list[Project]:
+    projects_objs = list(db.projects.find({"user_id": user_id}))
+    try:
+        return [Project.model_validate(project_obj) for project_obj in projects_objs]
+    except ValidationError:
+        abort(500)
+
+
+def render_resume(db: Database, nickname: str) -> str:
+    resume = get_resume_by_nickname(db, nickname)
+    if not resume.public:
+        abort(404)
+    profile = get_profile_by_user_id(db, resume.user_id)
+    contact_methods = get_contact_methods_by_user_id(db, resume.user_id)
+    jobs = get_jobs_by_user_id(db, resume.user_id)
+    projects = get_projects_by_user_id(db, resume.user_id)
+    return render_template(
+        "resume.html",
+        profile=profile,
+        contact_methods=contact_methods,
+        jobs=jobs,
+        projects=projects,
+    )
