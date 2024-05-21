@@ -20,7 +20,7 @@ services:
     ports:
       - 8081:8081
     depends_on:
-     - mongo
+      - mongo
 
   browser:
     build:
@@ -74,22 +74,6 @@ services:
       - ./resume_api/app:/app/app
     depends_on:
       - mongo
-
-  frontend:
-    build:
-      context: ./frontend
-      dockerfile: dev.dockerfile
-    env_file:
-      - ./frontend/app/.env
-    restart: always
-    ports:
-      - 3000:3000
-    command: npm run dev -- --host --port 3000
-    volumes:
-      - ./frontend/app:/app
-      - /app/node_modules
-    depends_on:
-      - generator
 
   domain:
     build:
