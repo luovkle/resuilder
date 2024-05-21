@@ -1,8 +1,6 @@
 from fastapi import FastAPI
 
+from app.routes import router
+
 app = FastAPI()
-
-
-@app.get("/")
-def index():
-    return {"msg": "index"}
+app.include_router(router)
