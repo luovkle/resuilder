@@ -1,8 +1,8 @@
 import io
 
 import cloudinary.uploader
-from playwright.async_api import async_playwright
 from fastapi import HTTPException
+from playwright.async_api import async_playwright
 
 from app.config import settings
 
