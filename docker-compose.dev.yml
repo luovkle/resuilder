@@ -37,12 +37,28 @@ services:
       PYTHONDONTWRITEBYTECODE: 1
     restart: always
     ports:
-      - 8002:8001
+      - 8001:8001
     command: pipenv run dev
     volumes:
       - ./renderer/app/:/app/app
     depends_on:
       - mongo
+
+  generator:
+    build: ./generator
+    env_file:
+      - ./generator/.env
+    environment:
+      PYTHONDONTWRITEBYTECODE: 1
+    restart: always
+    ports:
+      - 8002:8000
+    command: pipenv run dev --host 0.0.0.0
+    volumes:
+      - ./generator/app/:/app/app
+    depends_on:
+      - browser
+      - renderer
 
   resume_api:
     build: ./resume_api
@@ -52,7 +68,7 @@ services:
       PYTHONDONTWRITEBYTECODE: 1
     restart: always
     ports:
-      - 8003:8000
+      - 8000:8000
     command: pipenv run dev --host 0.0.0.0
     volumes:
       - ./resume_api/app:/app/app
