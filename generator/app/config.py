@@ -1,4 +1,4 @@
-from pydantic import HttpUrl, WebsocketUrl
+from pydantic import AnyUrl, HttpUrl, WebsocketUrl
 from pydantic_settings import BaseSettings
 
 
@@ -8,6 +8,9 @@ class Settings(BaseSettings):
 
     # Renderer
     RENDERER_HTTP_URL: HttpUrl
+
+    # Cloudinaty
+    CLOUDINARY_URL: AnyUrl
 
 
 settings = Settings()  # type: ignore[call-arg]
