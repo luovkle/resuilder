@@ -4,21 +4,21 @@
 
 /* width */
 ::-webkit-scrollbar {
-    width: 4px;
+  width: 4px;
 }
- 
+
 /* Track */
 ::-webkit-scrollbar-track {
-    background: #111827;
+  background: #111827;
 }
- 
+
 /* Handle */
 ::-webkit-scrollbar-thumb {
-    background: #2563eb;
-    border-radius: 5px;
+  background: #2563eb;
+  border-radius: 5px;
 }
- 
+
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-    background: #3b82f6;
+  background: #3b82f6;
 }
