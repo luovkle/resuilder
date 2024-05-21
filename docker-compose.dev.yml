@@ -22,6 +22,13 @@ services:
     depends_on:
      - mongo
 
+  browser:
+    build:
+      context: ./browser
+    restart: always
+    ports:
+      - 3030:3000
+
   renderer:
     build: ./renderer
     env_file:
