@@ -1,6 +1,6 @@
 import io
 
-import cloudinary.uploader
+import cloudinary.uploader  # type: ignore[import-untyped]
 from fastapi import HTTPException
 from playwright.async_api import async_playwright
 
