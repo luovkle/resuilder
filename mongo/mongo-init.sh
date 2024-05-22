@@ -16,10 +16,9 @@ db.createUser({
   ],
 });
 
-db.createCollection("abouts");
-db.createCollection("contacts");
-db.createCollection("positions");
+db.createCollection("resumes");
 db.createCollection("profiles");
-db.createCollection("repositories");
-db.createCollection("skills");
+db.createCollection("contact_methods");
+db.createCollection("jobs");
+db.createCollection("projects");
 EOF
