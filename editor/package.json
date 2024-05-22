@@ -12,6 +12,7 @@
     "generate-client": "./scripts/generate-client.sh"
   },
   "dependencies": {
+    "axios": "^1.7.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
