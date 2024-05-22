@@ -4,7 +4,7 @@ if [ -f .env ]; then
   export $(grep -v '^#' .env | xargs)
 fi
 
-openapi-generator-cli generate \
+pnpm openapi-generator-cli generate \
   -i $EDITOR_API_URL/openapi.json \
   -g typescript-axios \
-  -o ./src/services/client/
+  -o ./src/services/api/
