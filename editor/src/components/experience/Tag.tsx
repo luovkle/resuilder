@@ -19,7 +19,7 @@ const Tag = ({ content }: Props) => {
     <div
       onMouseEnter={() => setShowOptions(true)}
       onMouseLeave={() => setShowOptions(false)}
-      className="bg-gray-700 px-4 py-1 rounded-lg"
+      className="bg-blue-600 hover:bg-blue-500 px-4 py-1 rounded-md"
     >
       {!showOptions ? (
         <span>{content}</span>
