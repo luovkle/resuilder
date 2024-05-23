@@ -5,6 +5,6 @@ if [ -f .env ]; then
 fi
 
 pnpm openapi-generator-cli generate \
-  -i $EDITOR_API_URL/openapi.json \
+  -i $VITE_EDITOR_API_HTTP_URL/openapi.json \
   -g typescript-axios \
   -o ./src/services/api/
