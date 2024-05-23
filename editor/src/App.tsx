@@ -1,8 +1,9 @@
-import { Resume } from "./components";
+import { Navbar, Resume } from "./components";
 
 const App = () => {
   return (
     <>
+      <Navbar />
       <Resume />
     </>
   );

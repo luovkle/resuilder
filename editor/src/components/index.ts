@@ -1,4 +1,5 @@
 export { default as Resume } from "./Resume";
+export { default as Navbar } from "./Navbar.tsx";
 export { default as Profile } from "./profile/Profile";
 export { default as Contact } from "./contact/Contact";
 export { default as Experience } from "./experience/Experience";
