@@ -4,6 +4,6 @@ export { default as Profile } from "./profile/Profile";
 export { default as Contact } from "./contact/Contact";
 export { default as Experience } from "./experience/Experience";
 export { default as Projects } from "./projects/Projects";
-export { default as LoginButton } from "./auth/LoginButton";
+export { default as Login } from "./auth/Login.tsx";
 export { default as Auth0ProviderWithRedirectCallback } from "./auth/Auth0ProviderWithRedirectCallback.tsx";
 export { default as Loading } from "./common/Loading.tsx";
