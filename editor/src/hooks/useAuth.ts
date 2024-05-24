@@ -13,8 +13,6 @@ const useAuth = () => {
         if (isAuthenticated) {
           const token = await getAccessTokenSilently();
           setAccessToken(token);
-        } else {
-          loginWithRedirect();
         }
       } catch (err: any) {
         setError(err.message);
