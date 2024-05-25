@@ -13,7 +13,13 @@ const useProjectApi = () => {
     return response.data;
   };
 
-  const updateProject = async (id: string, data: ProjectUpdate) => {
+  const updateProject = async ({
+    id,
+    data,
+  }: {
+    id: string;
+    data: ProjectUpdate;
+  }) => {
     if (!projectApi) {
       return Promise.reject("projectApi is undefined");
     }
