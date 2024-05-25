@@ -1,20 +1,7 @@
-import { useState } from "react";
+import { useProject } from "../../hooks";
 
 const Projects = () => {
-  const [projects, setProjects] = useState([
-    {
-      id: "1",
-      name: "test",
-      url: "https://localhost",
-      description: "test",
-      langs: [
-        {
-          name: "test",
-          percen: "test",
-        },
-      ],
-    },
-  ]);
+  const { projects } = useProject();
 
   return (
     <div className="py-5 space-y-5">
@@ -24,7 +11,7 @@ const Projects = () => {
         </h5>
       </div>
       <div className="grid grid-cols-2 gap-4">
-        {projects.map((project) => (
+        {projects?.map((project) => (
           <div
             key={project.id}
             className="col-span-1 space-y-3 p-5 border border-gray-700 rounded-lg"
@@ -38,10 +25,10 @@ const Projects = () => {
             </a>
             <p className="text-gray-400 line-clamp-2">{project.description}</p>
             <div className="text-sm text-gray-300 flex flex-wrap gap-x-4">
-              {project.langs.map((lang) => (
+              {project.langs?.map((lang) => (
                 <div key={lang.name} className="flex gap-2">
                   <span className="font-semibold">{lang.name}</span>
-                  <span>{lang.percen}%</span>
+                  <span>{lang.percentage}%</span>
                 </div>
               ))}
             </div>
