@@ -28,7 +28,13 @@ const useContactMethodApi = () => {
     return response.data;
   };
 
-  const updateContactMethod = async (id: string, data: ContactMethodUpdate) => {
+  const updateContactMethod = async ({
+    id,
+    data,
+  }: {
+    id: string;
+    data: ContactMethodUpdate;
+  }) => {
     if (!contactMethodApi) {
       return Promise.reject("contactMethodApi is undefined");
     }
