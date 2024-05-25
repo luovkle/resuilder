@@ -1,7 +1,8 @@
+import type { JobRead } from "../../services/api";
 import { Tag } from "./";
 
 interface Props {
-  job: { tools: string[] };
+  job: JobRead;
 }
 
 const Tools = ({ job }: Props) => {
@@ -11,9 +12,7 @@ const Tools = ({ job }: Props) => {
         <h5 className="text-sm font-medium text-gray-400 select-none">Tools</h5>
       </div>
       <div className="flex flex-wrap gap-2">
-        {job.tools.map((tool) => (
-          <Tag key={tool} content={tool} />
-        ))}
+        {job.tools?.map((tool) => <Tag key={tool} content={tool} />)}
       </div>
     </div>
   );

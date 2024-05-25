@@ -1,21 +1,8 @@
-import { useState } from "react";
-
 import { DefaultPicture, Responsibilities, TechStack, Tools } from "./";
+import { useJob } from "../../hooks";
 
 const Experience = () => {
-  const [jobs, setJobs] = useState([
-    {
-      id: "1",
-      title: "test",
-      picture_url: "",
-      start_date: "",
-      end_date: "",
-      details: "",
-      responsibilities: ["test"],
-      techStack: ["test"],
-      tools: ["test"],
-    },
-  ]);
+  const { jobs } = useJob();
 
   return (
     <div className="py-5 space-y-5">
@@ -25,7 +12,7 @@ const Experience = () => {
         </h5>
       </div>
       <div className="space-y-5">
-        {jobs.map((job) => (
+        {jobs?.map((job) => (
           <div key={job.id} className="grid grid-cols-12 gap-4">
             <div className="col-span-1">
               {job.picture_url ? (

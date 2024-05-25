@@ -1,5 +1,7 @@
+import type { JobRead } from "../../services/api";
+
 interface Props {
-  job: { responsibilities: string[] };
+  job: JobRead;
 }
 
 const Responsibilities = ({ job }: Props) => {
@@ -11,7 +13,7 @@ const Responsibilities = ({ job }: Props) => {
         </h5>
       </div>
       <ul className="pl-10 list-disc">
-        {job.responsibilities.map((responsibility) => (
+        {job.responsibilities?.map((responsibility) => (
           <li key={responsibility}>{responsibility}</li>
         ))}
       </ul>

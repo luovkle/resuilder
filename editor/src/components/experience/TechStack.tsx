@@ -1,7 +1,8 @@
+import type { JobRead } from "../../services/api";
 import { Tag } from "./";
 
 interface Props {
-  job: { techStack: string[] };
+  job: JobRead;
 }
 
 const TechStack = ({ job }: Props) => {
@@ -13,7 +14,7 @@ const TechStack = ({ job }: Props) => {
         </h5>
       </div>
       <div className="flex flex-wrap gap-2">
-        {job.techStack.map((technology) => (
+        {job.tech_stack?.map((technology) => (
           <Tag key={technology} content={technology} />
         ))}
       </div>
