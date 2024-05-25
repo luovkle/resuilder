@@ -21,7 +21,7 @@ const useJobApi = () => {
     return response.data;
   };
 
-  const updateJob = async (id: string, data: JobUpdate) => {
+  const updateJob = async ({ id, data }: { id: string; data: JobUpdate }) => {
     if (!jobApi) {
       return Promise.reject("jobApi is undefined");
     }
