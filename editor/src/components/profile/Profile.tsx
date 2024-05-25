@@ -1,10 +1,7 @@
-import { useState } from "react";
+import { useProfile } from "../../hooks";
 
 const Profile = () => {
-  const [profile, setProfile] = useState({
-    name: "John Doe",
-    about: "...",
-  });
+  const { profile } = useProfile();
 
   return (
     <div className="py-5 space-y-5">
@@ -14,8 +11,8 @@ const Profile = () => {
         </h5>
       </div>
       <div className="space-y-2">
-        <h2 className="text-2xl font-bold">{profile.name}</h2>
-        <p className="text-gray-300">{profile.about}</p>
+        <h2 className="text-2xl font-bold">{profile?.name}</h2>
+        <p className="text-gray-300">{profile?.about}</p>
       </div>
     </div>
   );
