@@ -1,5 +1,5 @@
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
-import type { ResumeUpdate } from "../services/api";
+import type { ResumeUpdate } from "../../services/api";
 import useResumeApi from "./useResumeApi";
 
 const useResume = () => {

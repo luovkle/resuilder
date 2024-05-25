@@ -1,6 +1,6 @@
-import type { ResumeUpdate } from "../services/api";
-import { ResumesApi } from "../services/api";
-import useApi from "./useApi";
+import type { ResumeUpdate } from "../../services/api";
+import { ResumesApi } from "../../services/api";
+import useApi from "../useApi";
 
 const useResumeApi = () => {
   const resumeApi = useApi(ResumesApi);
