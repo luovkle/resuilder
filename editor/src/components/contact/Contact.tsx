@@ -1,13 +1,7 @@
-import { useState } from "react";
+import { useContactMethod } from "../../hooks";
 
 const Contact = () => {
-  const [contactMethods, setContactMethods] = useState([
-    {
-      id: "1",
-      title: "localhost",
-      url: "http://localhost",
-    },
-  ]);
+  const { contactMethods } = useContactMethod();
 
   return (
     <div className="py-5 space-y-5">
@@ -17,12 +11,12 @@ const Contact = () => {
         </h5>
       </div>
       <div className="flex flex-wrap gap-2">
-        {contactMethods.map((contactMethod) => (
+        {contactMethods?.map((contactMethod) => (
           <a
             key={contactMethod.id}
             href={contactMethod.url}
             target="”_blank”"
-            className="bg-gray-700 px-4 py-1"
+            className="bg-blue-600 hover:bg-blue-500 px-4 py-1 rounded-md"
           >
             {contactMethod.title}
           </a>
