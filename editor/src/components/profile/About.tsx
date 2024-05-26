@@ -1,10 +1,11 @@
 import { useEffect, useRef, useState } from "react";
 
 interface Props {
-  about?: string;
+  about: string;
+  updateAbout: (about: string) => void;
 }
 
-const About = ({ about }: Props) => {
+const About = ({ about, updateAbout }: Props) => {
   const [editing, setEditing] = useState(false);
   const [currentAbout, setCurrentAbout] = useState(about);
   const [previousAbout, setPreviousAbout] = useState(about);
@@ -30,6 +31,8 @@ const About = ({ about }: Props) => {
     if (e.key === "Enter") {
       if (currentAbout?.length === 0) {
         setCurrentAbout(previousAbout);
+      } else if (currentAbout.length >= 1 && currentAbout !== previousAbout) {
+        updateAbout(currentAbout);
       }
       setEditing(false);
     } else if (e.key === "Escape") {

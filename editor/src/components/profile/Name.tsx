@@ -1,10 +1,11 @@
 import { useEffect, useRef, useState } from "react";
 
 interface Props {
-  name?: string;
+  name: string;
+  updateName: (name: string) => void;
 }
 
-const Name = ({ name }: Props) => {
+const Name = ({ name, updateName }: Props) => {
   const [editing, setEditing] = useState(false);
   const [currentName, setCurrentName] = useState(name);
   const [previousName, setPreviousName] = useState(name);
@@ -30,6 +31,8 @@ const Name = ({ name }: Props) => {
     if (e.key === "Enter") {
       if (currentName?.length === 0) {
         setCurrentName(previousName);
+      } else if (currentName.length >= 1 && currentName !== previousName) {
+        updateName(currentName);
       }
       setEditing(false);
     } else if (e.key === "Escape") {
