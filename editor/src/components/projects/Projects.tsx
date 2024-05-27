@@ -1,4 +1,5 @@
 import { useProject } from "../../hooks";
+import Skeleton from "./Skeleton";
 
 const Projects = () => {
   const { projects } = useProject();
@@ -10,31 +11,37 @@ const Projects = () => {
           Projects
         </h5>
       </div>
-      <div className="grid grid-cols-2 gap-4">
-        {projects?.map((project) => (
-          <div
-            key={project.id}
-            className="col-span-1 space-y-3 p-5 border border-gray-700 rounded-lg"
-          >
-            <a
-              href={project.url}
-              target="_blank"
-              className="text-base font-semibold text-blue-400"
+      {true ? (
+        <Skeleton />
+      ) : (
+        <div className="grid grid-cols-2 gap-4">
+          {projects?.map((project) => (
+            <div
+              key={project.id}
+              className="col-span-1 space-y-3 p-5 border border-gray-700 rounded-lg"
             >
-              {project.name}
-            </a>
-            <p className="text-gray-400 line-clamp-2">{project.description}</p>
-            <div className="text-sm text-gray-300 flex flex-wrap gap-x-4">
-              {project.langs?.map((lang) => (
-                <div key={lang.name} className="flex gap-2">
-                  <span className="font-semibold">{lang.name}</span>
-                  <span>{lang.percentage}%</span>
-                </div>
-              ))}
+              <a
+                href={project.url}
+                target="_blank"
+                className="text-base font-semibold text-blue-400"
+              >
+                {project.name}
+              </a>
+              <p className="text-gray-400 line-clamp-2">
+                {project.description}
+              </p>
+              <div className="text-sm text-gray-300 flex flex-wrap gap-x-4">
+                {project.langs?.map((lang) => (
+                  <div key={lang.name} className="flex gap-2">
+                    <span className="font-semibold">{lang.name}</span>
+                    <span>{lang.percentage}%</span>
+                  </div>
+                ))}
+              </div>
             </div>
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 };
