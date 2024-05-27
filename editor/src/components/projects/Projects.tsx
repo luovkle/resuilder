@@ -2,7 +2,7 @@ import { useProject } from "../../hooks";
 import Skeleton from "./Skeleton";
 
 const Projects = () => {
-  const { projects } = useProject();
+  const { projects, isLoading } = useProject();
 
   return (
     <div className="py-5 space-y-5">
@@ -11,7 +11,7 @@ const Projects = () => {
           Projects
         </h5>
       </div>
-      {true ? (
+      {isLoading ? (
         <Skeleton />
       ) : (
         <div className="grid grid-cols-2 gap-4">
