@@ -51,7 +51,12 @@ const ProjectsModal: React.FC<ProjectsModalProps> = ({
 
   return (
     <div>
-      <button onClick={() => setIsModalOpen(true)}>🔧</button>
+      <button
+        onClick={() => setIsModalOpen(true)}
+        className="bg-blue-600 hover:bg-blue-500 py-1 px-2 rounded-md"
+      >
+        🔧
+      </button>
       {isModalOpen && (
         <div
           className="fixed inset-0 bg-gray-800 bg-opacity-50 flex justify-center items-center"
