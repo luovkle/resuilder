@@ -74,7 +74,7 @@ const NewElement = ({ addElement }: Props) => {
           onChange={handleInputChange}
           onBlur={handleBlur}
           onKeyDown={handleKeyDown}
-          className="bg-blue-500 px-4 py-1 rounded-md bg-transparent outline-none"
+          className="bg-blue-500 px-4 py-1 rounded-md outline-none"
         />
       ) : (
         <button
