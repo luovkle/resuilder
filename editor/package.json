@@ -9,7 +9,7 @@
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "format": "prettier --write .",
-    "generate-client": "./scripts/generate-client.sh"
+    "generate-clients": "./scripts/generate-clients.sh"
   },
   "dependencies": {
     "@auth0/auth0-react": "^2.2.4",
