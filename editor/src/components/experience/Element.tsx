@@ -79,7 +79,7 @@ const Element = ({ idx, element, updateElement, deleteElement }: Props) => {
           onChange={handleInputChange}
           onBlur={handleBlur}
           onKeyDown={handleKeyDown}
-          className="bg-blue-500 px-4 py-1 rounded-md bg-transparent outline-none"
+          className="bg-blue-500 px-4 py-1 rounded-md outline-none"
         />
       ) : (
         <div className="bg-blue-600 hover:bg-blue-500 px-4 py-1 rounded-md space-x-2">
