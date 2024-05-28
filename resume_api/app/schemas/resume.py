@@ -4,7 +4,7 @@ from pydantic import BaseModel, Field, field_serializer
 
 
 class ResumeBase(BaseModel):
-    public: bool = False
+    public: bool = True
 
 
 class ResumeDB(ResumeBase):
