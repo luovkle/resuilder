@@ -52,8 +52,11 @@ const Projects = () => {
                   <div className="text-sm text-gray-300 flex flex-wrap gap-x-4">
                     {project.langs?.map((lang) => (
                       <div key={lang.name} className="flex gap-2">
+                        {lang.color && (
+                          <span style={{ color: lang.color }}>●</span>
+                        )}
                         <span className="font-semibold">{lang.name}</span>
-                        <span>{lang.percentage}%</span>
+                        {lang.percentage && <span>{lang.percentage}%</span>}
                       </div>
                     ))}
                   </div>
