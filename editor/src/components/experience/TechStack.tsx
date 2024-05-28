@@ -16,7 +16,7 @@ const TechStack = ({ job, updateTechStack }: Props) => {
     updateTechStack(
       job.id,
       job.tech_stack?.map((skill, cIdx) => (cIdx === idx ? element : skill)) ||
-      [],
+        [],
     );
   };
 
