@@ -430,6 +430,12 @@ export interface ResumeRead {
    * @memberof ResumeRead
    */
   id: string;
+  /**
+   *
+   * @type {string}
+   * @memberof ResumeRead
+   */
+  nickname: string;
 }
 /**
  *

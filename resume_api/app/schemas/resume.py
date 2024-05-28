@@ -19,6 +19,7 @@ class ResumeDB(ResumeBase):
 
 class ResumeRead(ResumeBase):
     id: str = Field(alias="_id", serialization_alias="id")
+    nickname: str
 
 
 class ResumeUpdate(BaseModel):
