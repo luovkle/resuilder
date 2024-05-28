@@ -38,7 +38,7 @@
           <a
             href="{{ method.url }}"
             target="”_blank”"
-            class="bg-gray-700 px-4 py-1 rounded-lg"
+            class="bg-blue-600 px-4 py-1 rounded-md"
             >{{ method.title }}</a
           >
           {% endfor %}
@@ -109,7 +109,7 @@
                 </div>
                 <div class="flex flex-wrap gap-2">
                   {% for technology in job.tech_stack %}
-                  <span class="bg-gray-700 px-4 py-1 rounded-lg">{{ technology }}</span>
+                  <span class="bg-blue-600 px-4 py-1 rounded-md">{{ technology }}</span>
                   {% endfor %}
                 </div>
               </div>
@@ -125,7 +125,7 @@
                 </div>
                 <div class="flex flex-wrap gap-2">
                   {% for tool in job.tools %}
-                  <span class="bg-gray-700 px-4 py-1 rounded-lg">{{ tool }}</span>
+                  <span class="bg-blue-600 px-4 py-1 rounded-md">{{ tool }}</span>
                   {% endfor %}
                 </div>
               </div>
