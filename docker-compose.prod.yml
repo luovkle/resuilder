@@ -1,4 +1,15 @@
 services:
+  generator:
+    build: ./generator
+    environment:
+      - CORS_ALLOW_ORIGINS=${CORS_ALLOW_ORIGINS}
+      - BROWSER_WS_URL=${BROWSER_WS_URL}
+      - RENDERER_HTTP_URL=${RENDERER_HTTP_URL}
+      - CLOUDINARY_URL=${RENDERER_HTTP_URL}
+    restart: always
+    ports:
+      - 8002:8000
+
   resume_api:
     build: ./resume_api
     environment:
@@ -29,6 +40,7 @@ services:
       - 3000:80
     depends_on:
       - resume_api
+      - generator
 
   domain:
     build:
