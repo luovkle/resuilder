@@ -73,6 +73,21 @@ services:
     depends_on:
       - mongo
 
+  editor:
+    build:
+      context: ./editor
+      dockerfile: dev.dockerfile
+    env_file:
+      - ./editor/.env
+    restart: always
+    ports:
+      - 3000:3000
+    volumes:
+      - ./editor:/app
+    depends_on:
+      - resume_api
+      - generator
+
   domain:
     build:
       context: ./domain
