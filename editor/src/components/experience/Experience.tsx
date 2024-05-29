@@ -91,7 +91,7 @@ const Experience = () => {
           Experience
         </h5>
         <button
-          onClick={() => handleCreateJob}
+          onClick={() => handleCreateJob()}
           type="submit"
           className="bg-blue-600 hover:bg-blue-500 py-1 px-2 rounded-md"
         >
