@@ -1,4 +1,18 @@
 services:
+  resume_api:
+    build: ./resume_api
+    environment:
+      - CORS_ALLOW_ORIGINS=${CORS_ALLOW_ORIGINS}
+      - DB_URI=${DB_URI}
+      - DB_NAME=${DB_NAME}
+      - AUTH0_DOMAIN=${AUTH0_DOMAIN}
+      - AUTH0_API_AUDIENCE=${AUTH0_API_AUDIENCE}
+      - AUTH0_ISSUER=${AUTH0_ISSUER}
+      - CLOUDINARY_URL=${CLOUDINARY_URL}
+    restart: always
+    ports:
+      - 8000:8000
+
   editor:
     build:
       context: ./editor
@@ -13,6 +27,8 @@ services:
     restart: always
     ports:
       - 3000:80
+    depends_on:
+      - resume_api
 
   domain:
     build:
