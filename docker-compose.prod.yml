@@ -1,4 +1,13 @@
 services:
+  renderer:
+    build: ./renderer
+    environment:
+      - MONGO_URI=${MONGO_URI}
+      - MONGO_DB=${MONGO_DB}
+    restart: always
+    ports:
+      - 8001:8001
+
   generator:
     build: ./generator
     environment:
@@ -9,6 +18,8 @@ services:
     restart: always
     ports:
       - 8002:8000
+    depends_on:
+      - renderer
 
   resume_api:
     build: ./resume_api
@@ -41,6 +52,7 @@ services:
     depends_on:
       - resume_api
       - generator
+      - renderer
 
   domain:
     build:
