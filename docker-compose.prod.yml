@@ -1,4 +1,11 @@
 services:
+  browser:
+    build:
+      context: ./browser
+    restart: always
+    ports:
+      - 3030:3000
+
   renderer:
     build: ./renderer
     environment:
@@ -7,6 +14,8 @@ services:
     restart: always
     ports:
       - 8001:8001
+    depends_on:
+      - browser
 
   generator:
     build: ./generator
