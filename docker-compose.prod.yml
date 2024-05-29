@@ -1,4 +1,19 @@
 services:
+  editor:
+    build:
+      context: ./editor
+      dockerfile: prod.dockerfile
+      args:
+        VITE_EDITOR_API_HTTP_URL: ${VITE_EDITOR_API_HTTP_URL}
+        VITE_RENDERER_HTTP_URL: ${VITE_RENDERER_HTTP_URL}
+        VITE_GENERATOR_HTTP_URL: ${VITE_GENERATOR_HTTP_URL}
+        VITE_AUTH0_DOMAIN: ${VITE_AUTH0_DOMAIN}
+        VITE_AUTH0_CLIENT_ID: ${VITE_AUTH0_CLIENT_ID}
+        VITE_AUTH0_AUDIENCE: ${VITE_AUTH0_AUDIENCE}
+    restart: always
+    ports:
+      - 3000:80
+
   domain:
     build:
       context: ./domain
@@ -8,4 +23,4 @@ services:
         EDITOR_URL: ${EDITOR_URL}
     restart: always
     ports:
-      - 81:80
+      - 80:80
