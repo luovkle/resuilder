@@ -20,24 +20,13 @@ import globalAxios from "axios";
 import {
   DUMMY_BASE_URL,
   assertParamExists,
-  setApiKeyToObject,
-  setBasicAuthToObject,
-  setBearerAuthToObject,
-  setOAuthToObject,
   setSearchParams,
-  serializeDataIfNeeded,
   toPathString,
   createRequestFunction,
 } from "./common";
 import type { RequestArgs } from "./base";
 // @ts-ignore
-import {
-  BASE_PATH,
-  COLLECTION_FORMATS,
-  BaseAPI,
-  RequiredError,
-  operationServerMap,
-} from "./base";
+import { BASE_PATH, BaseAPI, operationServerMap } from "./base";
 
 /**
  *
