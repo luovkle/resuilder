@@ -88,6 +88,7 @@ services:
     depends_on:
       - resume_api
       - generator
+      - renderer
 
   domain:
     build:
