@@ -84,6 +84,7 @@ services:
       - 3000:3000
     volumes:
       - ./editor:/app
+      - /app/node_modules
     depends_on:
       - resume_api
       - generator
@@ -99,6 +100,7 @@ services:
       - 80:3000
     volumes:
       - ./domain:/app
+      - /app/node_modules
 
 volumes:
   data:
