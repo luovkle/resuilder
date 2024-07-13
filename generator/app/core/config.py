@@ -19,6 +19,12 @@ class Settings(BaseSettings):
     # Renderer
     RENDERER_HTTP_URL: HttpUrl
 
+    # Auth0
+    AUTH0_DOMAIN: str
+    AUTH0_API_AUDIENCE: str
+    AUTH0_ISSUER: str
+    AUTH0_ALGORITHMS: list[str] = ["RS256"]
+
     # Cloudinaty
     CLOUDINARY_URL: AnyUrl
 
