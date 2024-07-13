@@ -4,7 +4,7 @@ import cloudinary.uploader  # type: ignore[import-untyped]
 from fastapi import HTTPException
 from playwright.async_api import async_playwright
 
-from app.config import settings
+from app.core.config import settings
 
 cloudinary.config(secure=True)
 
