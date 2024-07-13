@@ -8,6 +8,7 @@ fastapi = "*"
 playwright = "*"
 pydantic-settings = "*"
 cloudinary = "*"
+pyjwt = {extras = ["crypto"], version = "*"}
 
 [dev-packages]
 mypy = "*"
